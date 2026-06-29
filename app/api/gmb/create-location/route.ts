@@ -51,14 +51,22 @@ export async function POST(req: NextRequest) {
     if (hoursRaw) {
       try {
         hours = JSON.parse(hoursRaw)
+        if (!Array.isArray(hours)) {
+          return NextResponse.json({ error: 'Invalid hours format' }, { status: 400 })
+        }
       } catch {
         return NextResponse.json({ error: 'Invalid hours format' }, { status: 400 })
       }
     }
 
-    const artistSlug = name // "Jean-Luc Boyer" → folder name as-is for readability
-    const r2Prefix = `artitude/ateliers/${artistSlug}`
+    const artistName = name // "Jean-Luc Boyer" → folder name as-is for readability
     const storeCode = toSlug(name)
+
+    if (!storeCode || !/^[a-z0-9-]+$/.test(storeCode)) {
+      return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
+    }
+
+    const r2Prefix = `artitude/ateliers/${storeCode}`
 
     // Compress and upload photos
     const [interiorBuf, exterior1Buf, exterior2Buf, ownerBuf] = await Promise.all([
