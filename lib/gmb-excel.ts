@@ -1,5 +1,6 @@
 import ExcelJS from 'exceljs'
 import path from 'path'
+import fs from 'fs'
 
 export interface GmbExcelData {
   storeCode: string
@@ -35,6 +36,9 @@ function formatHours(day: string, hours: GmbExcelData['hours']): string {
 }
 
 export async function generateGmbExcel(data: GmbExcelData): Promise<Buffer> {
+  if (!fs.existsSync(TEMPLATE_PATH)) {
+    throw new Error(`GMB template not found at ${TEMPLATE_PATH}`)
+  }
   const workbook = new ExcelJS.Workbook()
   await workbook.xlsx.readFile(TEMPLATE_PATH)
 

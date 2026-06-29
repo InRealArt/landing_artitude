@@ -43,6 +43,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
+    if (websiteUri) {
+      try {
+        const parsed = new URL(websiteUri)
+        if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+          return NextResponse.json({ error: 'Invalid website URL' }, { status: 400 })
+        }
+      } catch {
+        return NextResponse.json({ error: 'Invalid website URL' }, { status: 400 })
+      }
+    }
+
     if (!photoInterior || !photoExterior1 || !photoExterior2 || !photoOwner) {
       return NextResponse.json({ error: 'All 4 photos are required' }, { status: 400 })
     }

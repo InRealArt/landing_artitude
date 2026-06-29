@@ -322,11 +322,11 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                   download="gmb-import.xlsx"
                   className="btn-action justify-center py-3 text-[11px]"
                 >
-                  {(d as any).successDownload}
+                  {d.successDownload}
                 </a>
               )}
               <p className="text-[10px] text-grayText max-w-sm mx-auto font-sans leading-relaxed">
-                {(d as any).successInstructions}
+                {d.successInstructions}
               </p>
               <button onClick={handleReset} className="btn-mag">{d.successReset}</button>
             </div>
