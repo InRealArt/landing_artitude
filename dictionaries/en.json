@@ -138,37 +138,37 @@
     "cta": "Request professional support",
     "members": [
       {
-        "name": "Thomas Laurent",
+        "name": "Timothée",
         "role": "Legal Director & Intellectual Property",
         "service": "Legal kit to structure your career",
         "description": "Artist status, standard gallery contracts, resale rights management and intellectual property."
       },
       {
-        "name": "Sophie Dumont",
+        "name": "Maxime",
         "role": "Artist Career Strategy Consultant",
         "service": "Audit & career structuring kit",
         "description": "Global positioning analysis, studio pricing audit and strategic action plan."
       },
       {
-        "name": "Marc-Antoine Becker",
+        "name": "Gilles",
         "role": "Artistic Mentor & Lead Curator",
         "service": "Personalised mentoring",
         "description": "Recurring individual support to develop your signature, your catalog and optimise your collector relationships."
       },
       {
-        "name": "Elena Rostova",
+        "name": "Allegra",
         "role": "Scenographer & Exhibition Director",
         "service": "Exhibition support",
         "description": "Logistical preparation of your openings, exhibition sale catalog design and space scenography."
       },
       {
-        "name": "Camille Mercier",
+        "name": "Lauranne",
         "role": "Communications & Social Media Manager",
         "service": "Digital visibility kit",
         "description": "Instagram and LinkedIn content strategy tailored for artists, editorial visual creation and monthly content planning."
       },
       {
-        "name": "Julien Favre",
+        "name": "Julien",
         "role": "Funding & Arts Patronage Expert",
         "service": "Project funding kit",
         "description": "Identification of public and private funding sources, grant application support and introduction to cultural patrons."
@@ -203,7 +203,51 @@
     "privacy": "🔒 Your data is never sold. Unsubscribe in one click.",
     "successTitle": "Registration request received.",
     "successDesc": "Thank you for activating your profile. A member of the InRealArt team will evaluate and configure your studio within 48 hours.",
-    "successReset": "Register another studio"
+    "successReset": "Register another studio",
+    "stepLabels": ["Information", "Location & Hours", "Photos"],
+    "fieldPhone": "Phone *",
+    "fieldPhonePlaceholder": "+1 555 000 0000",
+    "fieldWebsite": "Website",
+    "fieldWebsitePlaceholder": "https://mystudio.com",
+    "fieldAddress": "Address *",
+    "fieldAddressPlaceholder": "48 Artists Street",
+    "fieldPostalCode": "Postal code *",
+    "fieldPostalCodePlaceholder": "10001",
+    "fieldCountry": "Country *",
+    "fieldDescription": "Studio description",
+    "fieldDescriptionPlaceholder": "Describe your studio in a few words... (max 750 characters)",
+    "fieldHours": "Opening hours",
+    "hoursLabels": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun",
+      "closed": "Closed",
+      "openTime": "Open",
+      "closeTime": "Close"
+    },
+    "countries": [
+      { "value": "US", "label": "United States" },
+      { "value": "GB", "label": "United Kingdom" },
+      { "value": "CA", "label": "Canada" },
+      { "value": "AU", "label": "Australia" },
+      { "value": "FR", "label": "France" }
+    ],
+    "photosTitle": "Studio photos",
+    "photosSubtitle": "These photos will be published on your Google listing.",
+    "photoInterior": "Interior photo *",
+    "photoExterior1": "Exterior photo 1 *",
+    "photoExterior2": "Exterior photo 2 *",
+    "photoOwner": "Owner photo *",
+    "photoHint": "JPG, PNG or WebP · max 10 MB",
+    "btnNext": "Next",
+    "btnPrev": "Back",
+    "btnSubmitting": "Creating listing...",
+    "errorGeneric": "An error occurred. Please try again.",
+    "errorPhotos": "Please add all required photos."
   },
   "faq": {
     "eyebrow": "Clear Answers",

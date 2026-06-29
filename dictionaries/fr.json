@@ -138,37 +138,37 @@
     "cta": "Solliciter un accompagnement professionnel",
     "members": [
       {
-        "name": "Thomas Laurent",
+        "name": "Timothée",
         "role": "Directeur Juridique & Propriété Intellectuelle",
         "service": "Kit juridique pour structurer sa carrière",
         "description": "Statuts d'artiste, contrats types de galerie, gestion du droit de suite et de la propriété intellectuelle."
       },
       {
-        "name": "Sophie Dumont",
+        "name": "Maxime",
         "role": "Consultante en Stratégie de Carrière d'Artistes",
         "service": "Kit Audit et structuration de carrière",
         "description": "Analyse globale de votre positionnement, audit de pricing d'ateliers et plan d'actions stratégiques."
       },
       {
-        "name": "Marc-Antoine Becker",
+        "name": "Gilles",
         "role": "Mentor Artistique & Curateur Principal",
         "service": "Accompagnement personnalisé",
         "description": "Suivi individuel récurrent pour développer votre signature, votre catalogue et optimiser vos relations collectionneurs."
       },
       {
-        "name": "Elena Rostova",
+        "name": "Allegra",
         "role": "Scénographe & Directrice d'Expositions",
         "service": "Accompagnement expo",
         "description": "Préparation logistique de vos vernissages, conception de catalogues de ventes d'exposition et scénographie d'espace."
       },
       {
-        "name": "Camille Mercier",
+        "name": "Lauranne",
         "role": "Responsable Communication & Réseaux Sociaux",
         "service": "Kit visibilité digitale",
         "description": "Stratégie de contenu Instagram et LinkedIn adaptée aux artistes, création de visuels éditoriaux et planning éditorial mensuel."
       },
       {
-        "name": "Julien Favre",
+        "name": "Julien",
         "role": "Expert Financement & Mécénat Artistique",
         "service": "Kit financement de projets",
         "description": "Identification de financements publics et privés, montage de dossiers de subvention et mise en relation avec des mécènes culturels."
@@ -203,7 +203,51 @@
     "privacy": "🔒 Vos données ne sont jamais revendues. Désinscription en un clic.",
     "successTitle": "Demande d'inscription reçue.",
     "successDesc": "Merci d'avoir activé votre profil. Un membre de l'équipe d'InRealArt va procéder à l'évaluation et la configuration de votre atelier sous 48 heures.",
-    "successReset": "Inscrire un autre atelier"
+    "successReset": "Inscrire un autre atelier",
+    "stepLabels": ["Informations", "Localisation & Horaires", "Photos"],
+    "fieldPhone": "Téléphone *",
+    "fieldPhonePlaceholder": "+33 6 00 00 00 00",
+    "fieldWebsite": "Site web",
+    "fieldWebsitePlaceholder": "https://monatelier.fr",
+    "fieldAddress": "Adresse *",
+    "fieldAddressPlaceholder": "48 rue des Artistes",
+    "fieldPostalCode": "Code postal *",
+    "fieldPostalCodePlaceholder": "06000",
+    "fieldCountry": "Pays *",
+    "fieldDescription": "Description de l'atelier",
+    "fieldDescriptionPlaceholder": "Décrivez votre atelier en quelques mots... (max 750 caractères)",
+    "fieldHours": "Horaires d'ouverture",
+    "hoursLabels": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday": "Sam",
+      "sunday": "Dim",
+      "closed": "Fermé",
+      "openTime": "Ouverture",
+      "closeTime": "Fermeture"
+    },
+    "countries": [
+      { "value": "FR", "label": "France" },
+      { "value": "BE", "label": "Belgique" },
+      { "value": "CH", "label": "Suisse" },
+      { "value": "LU", "label": "Luxembourg" },
+      { "value": "CA", "label": "Canada" }
+    ],
+    "photosTitle": "Photos de votre atelier",
+    "photosSubtitle": "Ces photos seront publiées sur votre fiche Google.",
+    "photoInterior": "Photo intérieur *",
+    "photoExterior1": "Photo extérieur 1 *",
+    "photoExterior2": "Photo extérieur 2 *",
+    "photoOwner": "Photo du propriétaire *",
+    "photoHint": "JPG, PNG ou WebP · max 10 Mo",
+    "btnNext": "Suivant",
+    "btnPrev": "Retour",
+    "btnSubmitting": "Création en cours...",
+    "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
+    "errorPhotos": "Veuillez ajouter toutes les photos requises."
   },
   "faq": {
     "eyebrow": "Des Réponses Claires",
