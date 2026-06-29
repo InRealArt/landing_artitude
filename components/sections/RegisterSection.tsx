@@ -65,51 +65,33 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
           closeTime: h.closeTime,
         }))
 
+      // Send everything as multipart/form-data in one call.
+      // The server creates the location and uploads photos without the client
+      // ever receiving or supplying the GMB locationName (prevents injection).
+      const fd = new FormData()
+      fd.append('title', atelierName)
+      fd.append('phone', phone)
+      fd.append('addressLine', address)
+      fd.append('postalCode', postalCode)
+      fd.append('locality', city)
+      fd.append('regionCode', country)
+      if (website) fd.append('websiteUri', website)
+      if (description) fd.append('description', description)
+      if (openPeriods.length > 0) fd.append('hours', JSON.stringify(openPeriods))
+      fd.append('photoInterior', photoInterior)
+      fd.append('photoExterior1', photoExterior1)
+      fd.append('photoExterior2', photoExterior2)
+      fd.append('photoOwner', photoOwner)
+
       const createRes = await fetch('/api/gmb/create-location', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: atelierName,
-          phone,
-          addressLine: address,
-          postalCode,
-          locality: city,
-          regionCode: country,
-          websiteUri: website || undefined,
-          description: description || undefined,
-          hours: openPeriods.length > 0 ? openPeriods : undefined,
-        }),
+        body: fd,
       })
 
       if (!createRes.ok) {
         setErrorMsg(d.errorGeneric)
         setSubmitting(false)
         return
-      }
-
-      const { locationName } = await createRes.json()
-
-      const photoUploads: Array<{ file: File; category: string }> = [
-        { file: photoInterior, category: 'INTERIOR' },
-        { file: photoExterior1, category: 'EXTERIOR' },
-        { file: photoExterior2, category: 'EXTERIOR' },
-        { file: photoOwner, category: 'OWNER' },
-      ]
-
-      for (const { file, category } of photoUploads) {
-        const fd = new FormData()
-        fd.append('file', file)
-        fd.append('category', category)
-        fd.append('locationName', locationName)
-
-        const uploadRes = await fetch('/api/gmb/upload-media', {
-          method: 'POST',
-          body: fd,
-        })
-
-        if (!uploadRes.ok) {
-          console.warn(`Photo upload failed for category ${category}`)
-        }
       }
 
       setSuccess(true)
