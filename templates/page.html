@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artitude by InRealArt — L'élégance de la visibilité</title>
+    
+    <!-- Google Fonts: Cormorant Garamond for editorial headers & Inter for sleek readable text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iraBlack: '#000000',
+                        iraWhite: '#FFFFFF',
+                        iraDarkGray: '#F5F5F7',
+                        iraMediumGray: '#E5E5E5',
+                        iraLightGray: '#FAFAFA',
+                        iraBorderDark: '#E5E5E5',
+                        iraBorderLight: '#1A1A1A',
+                        iraTextMuted: '#737373'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom clean transitions & luxury editorial visual styles */
+        .premium-border {
+            border: 1px solid #E5E5E5;
+        }
+        .premium-border-dark {
+            border: 1px solid #1A1A1A;
+        }
+        .btn-shimmer:hover {
+            background-color: #000000;
+            color: #FFFFFF;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn-shimmer-reverse:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        /* Hide scrollbar for cleaner look in some elements */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-black font-sans overflow-x-hidden antialiased">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/95 border-b border-iraBorderDark transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="https://www.inrealart.com" class="flex items-center gap-3 group">
+                <div class="h-9 w-9 rounded-none border border-black flex items-center justify-center bg-black transition-transform duration-300">
+                    <span class="text-white font-serif font-light text-base tracking-wider">I</span>
+                </div>
+                <div>
+                    <span class="font-serif text-lg font-light tracking-[0.2em] text-black">INREALART</span>
+                    <span class="block text-[8px] uppercase tracking-[0.3em] text-iraTextMuted">Artitude Network</span>
+                </div>
+            </a>
+
+            <!-- Desk Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#problem" class="text-[10px] uppercase tracking-[0.2em] text-iraTextMuted hover:text-black transition-colors">Le Défi</a>
+                <a href="#solution" class="text-[10px] uppercase tracking-[0.2em] text-iraTextMuted hover:text-black transition-colors">La Solution</a>
+                <a href="#index" class="text-[10px] uppercase tracking-[0.2em] text-iraTextMuted hover:text-black transition-colors">L'Index</a>
+                <a href="#catalog" class="text-[10px] uppercase tracking-[0.2em] text-black font-medium border-b border-black pb-0.5 tracking-[0.25em]">Services Accompagnement</a>
+                <a href="#faq" class="text-[10px] uppercase tracking-[0.2em] text-iraTextMuted hover:text-black transition-colors">FAQ</a>
+            </div>
+
+            <div>
+                <a href="#register" class="bg-black text-white font-semibold text-[10px] uppercase tracking-[0.2em] px-5 py-3 border border-black hover:bg-white hover:text-black transition-all duration-300">
+                    S'inscrire
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Announcement Banner -->
+    <div class="bg-iraDarkGray border-b border-iraBorderDark text-center py-2.5 px-4">
+        <p class="text-[11px] uppercase tracking-[0.15em] text-iraTextMuted font-light">
+            📢 Catalogue d'artistes principaux complet. <span class="text-black font-medium">Artitude reste ouvert gratuitement à tous les créateurs.</span>
+        </p>
+    </div>
+
+    <section class="relative min-h-[calc(100vh-120px)] flex items-center justify-center py-16 lg:py-28 overflow-hidden border-b border-iraBorderDark bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Hero Left: Content -->
+                <div class="lg:col-span-7 space-y-8 text-left">
+                    <div class="inline-flex items-center gap-2 border border-iraBorderDark px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-iraTextMuted">
+                        <span class="h-1.5 w-1.5 bg-black"></span>
+                        Initiative de soutien aux Ateliers 2026
+                    </div>
+
+                    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-black leading-[1.1]">
+                        Votre talent mérite <br>
+                        <span class="italic text-neutral-600">d'être trouvé.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-iraTextMuted font-light leading-relaxed max-w-xl">
+                        Notre catalogue d'artistes principaux est actuellement clos. C'est pourquoi nous offrons <strong class="text-black font-semibold">Artitude</strong> : un outil gratuit pour référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.
+                    </p>
+
+                    <!-- Reassurance Band -->
+                    <div class="py-4 border-y border-iraBorderDark max-w-xl grid grid-cols-3 gap-4 text-center sm:text-left">
+                        <div class="flex flex-col sm:flex-row items-center gap-2">
+                            <span class="text-black text-base">✦</span>
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-iraTextMuted">100% Gratuit</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center gap-2 border-x border-iraBorderDark px-4">
+                            <span class="text-black text-base">✦</span>
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-iraTextMuted">Sans Engagement</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center gap-2">
+                            <span class="text-black text-base">✦</span>
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-iraTextMuted">Activé en 48h</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <a href="#register" class="btn-shimmer inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-black text-white font-semibold uppercase tracking-[0.15em] text-xs transition-all duration-300 border border-black">
+                            <span>Rejoindre Artitude Gratuitement</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <p class="text-[11px] text-iraTextMuted tracking-[0.1em] pl-1 font-light">
+                            Déjà plus de <span class="text-black font-semibold">420 ateliers</span> référencés de façon indépendante.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Interactive Google Mock -->
+                <div class="lg:col-span-5 relative w-full flex items-center justify-center">
+                    <div class="relative w-full max-w-md aspect-[4/5] bg-iraDarkGray border border-iraBorderDark overflow-hidden shadow-xl">
+                        <!-- High Contrast B&W Artist Studio Background -->
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600&auto=format&fit=crop" 
+                             alt="Atelier d'artiste minimaliste" 
+                             class="w-full h-full object-cover grayscale brightness-[0.9] contrast-[1.15]"
+                             onerror="this.src='https://placehold.co/600x800/FFFFFF/000000?text=Atelier+InRealArt'">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
+
+                        <!-- Elegant Google Profile Widget -->
+                        <div class="absolute bottom-6 left-5 right-5 bg-white text-black rounded-none p-5 shadow-2xl border border-neutral-200 transform transition-transform duration-500 hover:-translate-y-1">
+                            
+                            <div class="absolute -top-3 right-4 bg-black text-white font-semibold text-[8px] uppercase tracking-[0.25em] px-2.5 py-1 flex items-center gap-1.5">
+                                <span class="h-1.5 w-1.5 bg-white animate-ping"></span>
+                                OPTIMISÉ ARTITUDE
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="bg-neutral-50 p-2 rounded-none border border-neutral-200">
+                                    <!-- Google G Minimalist Icon -->
+                                    <svg class="w-6 h-6 fill-current text-black" viewBox="0 0 24 24">
+                                        <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.986 0-.74-.08-1.3-.176-1.855H12.24z"/>
+                                    </svg>
+                                </div>
+                                <div class="space-y-1">
+                                    <h4 class="font-serif font-bold text-base text-neutral-900 tracking-wide">Atelier Catherine Sénéchal</h4>
+                                    <p class="text-[10px] uppercase tracking-wider text-neutral-500">Peinture & Plasticienne • Lyon</p>
+                                    
+                                    <div class="flex items-center gap-1 pt-0.5">
+                                        <span class="text-neutral-950 font-bold text-xs">4.9</span>
+                                        <div class="flex text-neutral-950 text-[10px]">★ ★ ★ ★ ★</div>
+                                        <span class="text-[10px] text-neutral-400 font-light">(48 avis)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4 border-neutral-100">
+
+                            <!-- B&W Interactive Mock Actions -->
+                            <div class="grid grid-cols-3 gap-2 text-center text-[10px] font-semibold text-neutral-700 uppercase tracking-wider">
+                                <div class="py-1 border border-neutral-200 hover:bg-neutral-50 transition-colors cursor-pointer">
+                                    Appel
+                                </div>
+                                <div class="py-1 border border-neutral-200 hover:bg-neutral-50 transition-colors cursor-pointer">
+                                    Adresse
+                                </div>
+                                <div class="py-1 border border-neutral-200 hover:bg-neutral-50 transition-colors cursor-pointer">
+                                    Site
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="problem" class="relative py-20 lg:py-28 bg-white border-b border-iraBorderDark">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold">Le défi de l'artiste</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-black leading-tight">
+                    Vos clients vous cherchent. <br>
+                    <span class="italic text-neutral-500">Ils ne vous trouvent pas.</span>
+                </h2>
+                <div class="w-12 h-[1px] bg-black mx-auto my-6"></div>
+            </div>
+
+            <!-- Problem Cards Grid (Minimalist Light Theme) -->
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark hover:border-black transition-all duration-300 flex flex-col items-center text-center space-y-5">
+                    <div class="h-12 w-12 border border-iraBorderDark flex items-center justify-center text-black text-xl">
+                        🔍
+                    </div>
+                    <h3 class="font-serif text-lg text-black font-medium">Vous n'avez pas de fiche Google à jour</h3>
+                    <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                        Sans présence optimisée sur Maps et Search, vous restez invisible pour 85% des amateurs d'art locaux recherchant des galeries près de chez eux.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark hover:border-black transition-all duration-300 flex flex-col items-center text-center space-y-5">
+                    <div class="h-12 w-12 border border-iraBorderDark flex items-center justify-center text-black text-xl">
+                        ⏱️
+                    </div>
+                    <h3 class="font-serif text-lg text-black font-medium">Vous n'avez pas le temps de vous en occuper</h3>
+                    <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                        Mots-clés SEO, mises à jour, gestion d'avis... Référencer correctement son travail demande des heures complexes que vous préférez passer à créer.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark hover:border-black transition-all duration-300 flex flex-col items-center text-center space-y-5">
+                    <div class="h-12 w-12 border border-iraBorderDark flex items-center justify-center text-black text-xl">
+                        📍
+                    </div>
+                    <h3 class="font-serif text-lg text-black font-medium">Vos concurrents, eux, sont visibles</h3>
+                    <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                        D'autres créateurs captent l'attention immédiate des collectionneurs urbains simplement parce qu'ils se positionnent stratégiquement sur les recherches locales.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Transition Quote -->
+            <div class="mt-16 text-center max-w-2xl mx-auto">
+                <div class="py-6 border-y border-iraBorderDark bg-white">
+                    <p class="font-serif text-lg italic text-neutral-800">
+                        "Ce n'est pas un manque de talent. C'est un manque d'outil."
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="solution" class="relative py-20 lg:py-28 border-b border-iraBorderDark bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 relative">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold">Une offre clé en main</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-black">
+                    Artitude, votre vitrine numérique gérée pour vous.
+                </h2>
+                <div class="w-12 h-[1px] bg-black mx-auto my-6"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Step 1 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark flex flex-col justify-between h-full min-h-[220px]">
+                    <div class="space-y-4">
+                        <div class="text-[10px] uppercase tracking-widest text-iraTextMuted font-mono">01 // INSCRIPTION</div>
+                        <h4 class="font-serif text-xl text-black">Vous vous inscrivez (2 min)</h4>
+                        <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                            Remplissez vos informations d'atelier en 2 minutes chrono. Pas de processus complexe, nous récupérons uniquement l'essentiel.
+                        </p>
+                    </div>
+                    <div class="pt-4 text-[9px] uppercase tracking-wider text-black font-medium">
+                        Temps requis : 2 minutes
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark flex flex-col justify-between h-full min-h-[220px]">
+                    <div class="space-y-4">
+                        <div class="text-[10px] uppercase tracking-widest text-iraTextMuted font-mono">02 // OPTIMISATION</div>
+                        <h4 class="font-serif text-xl text-black">On optimise votre fiche Google</h4>
+                        <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                            Nos experts structurent votre fiche d'atelier Google : intégration esthétique de vos photos, définition de mots-clés de l'artisanat d'art et configuration des horaires.
+                        </p>
+                    </div>
+                    <div class="pt-4 text-[9px] uppercase tracking-wider text-black font-medium">
+                        Délai : sous 48 Heures
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-iraLightGray p-8 border border-iraBorderDark flex flex-col justify-between h-full min-h-[220px]">
+                    <div class="space-y-4">
+                        <div class="text-[10px] uppercase tracking-widest text-iraTextMuted font-mono">03 // EXPOSITION</div>
+                        <h4 class="font-serif text-xl text-black">Vous êtes visible sur Maps & l'Index</h4>
+                        <p class="text-xs text-iraTextMuted leading-relaxed font-light">
+                            Votre atelier devient repérable sur Google Search, Google Maps, et rejoint instantanément notre propre Index des Ateliers pour capter une audience d'esthètes.
+                        </p>
+                    </div>
+                    <div class="pt-4 text-[9px] uppercase tracking-wider text-black font-medium">
+                        Visibilité Google + InRealArt
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Free Monthly Update Badge -->
+            <div class="mt-12 flex justify-center">
+                <div class="inline-flex items-center gap-3 bg-iraLightGray border border-iraBorderDark px-6 py-3">
+                    <span class="text-xs text-black font-medium">Mise à jour mensuelle gratuite incluse</span>
+                    <span class="h-1.5 w-1.5 bg-iraTextMuted rounded-full"></span>
+                    <span class="text-[11px] text-iraTextMuted">Modifiez vos photos, horaires ou actualités en 1 clic</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="index" class="relative py-20 lg:py-28 bg-white border-b border-iraBorderDark">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-6 text-left">
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold">Bénéfice différenciant</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-light text-black leading-tight">
+                        Et votre atelier rejoint aussi <br>notre Index des Ateliers.
+                    </h2>
+                    <div class="w-12 h-[1px] bg-black my-4"></div>
+                    <p class="text-iraTextMuted text-xs leading-relaxed font-light">
+                        Chaque artiste référencé sur Artitude apparaît automatiquement dans l'Index des Ateliers IRA — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs et clients du site InRealArt. Vous ne profitez plus seulement du trafic Google : vous profitez aussi du nôtre.
+                    </p>
+
+                    <!-- Interactive Counter widget -->
+                    <div class="p-6 bg-iraLightGray border border-iraBorderDark flex items-center gap-5">
+                        <div class="h-10 w-10 border border-iraBorderDark flex items-center justify-center text-black font-mono font-semibold">
+                            ✦
+                        </div>
+                        <div>
+                            <div class="text-2xl font-serif font-light text-black tracking-tight">+ de 45 000</div>
+                            <div class="text-[10px] uppercase tracking-wider text-iraTextMuted font-light">Visiteurs uniques par mois sur le site InRealArt</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="scrollToForm()" class="text-[11px] font-semibold uppercase tracking-wider text-black hover:underline flex items-center gap-2">
+                            <span>Voir un exemple de fiche dans l'Index</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Live Map Simulator Widget -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white border border-iraBorderDark overflow-hidden shadow-sm">
+                        <!-- Simulated Interactive Map Header -->
+                        <div class="bg-iraLightGray px-6 py-4 border-b border-iraBorderDark flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="flex h-2 w-2 bg-black animate-pulse"></span>
+                                <span class="text-[10px] uppercase tracking-widest text-iraTextMuted font-semibold">Index Interactif (Démonstration)</span>
+                            </div>
+                            <div class="text-[9px] uppercase tracking-wider text-iraTextMuted font-mono">Cliquez pour explorer les ateliers</div>
+                        </div>
+
+                        <!-- Map Visual Canvas Simulated with Light Theme Elements -->
+                        <div class="relative bg-iraLightGray h-96 p-6 overflow-hidden flex items-center justify-center">
+                            <!-- Minimalist Map Grid Lines -->
+                            <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 24px 24px;"></div>
+                            
+                            <svg class="absolute inset-0 w-full h-full text-black/10 pointer-events-none" fill="none" viewBox="0 0 600 400">
+                                <path d="M50,150 Q120,50 300,100 T550,250" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M100,350 Q220,180 400,280 T500,50" stroke="currentColor" stroke-width="1"/>
+                                <circle cx="200" cy="180" r="100" stroke="currentColor" stroke-width="1" stroke-dasharray="3"/>
+                            </svg>
+
+                            <!-- Interactive Pins -->
+                            <!-- Pin 1 -->
+                            <button onclick="selectAtelier('ronan')" id="pin-ronan" class="absolute top-[35%] left-[25%] group flex flex-col items-center">
+                                <div class="h-6 w-6 bg-black border border-white flex items-center justify-center transform transition-transform group-hover:scale-110 shadow">
+                                    <span class="text-[9px] font-bold text-white">01</span>
+                                </div>
+                                <span class="absolute h-6 w-6 bg-black/10 rounded-none -z-10 animate-ping"></span>
+                            </button>
+
+                            <!-- Pin 2 -->
+                            <button onclick="selectAtelier('senechal')" id="pin-senechal" class="absolute top-[60%] left-[55%] group flex flex-col items-center">
+                                <div class="h-6 w-6 bg-black border border-white flex items-center justify-center transform transition-transform group-hover:scale-110 shadow">
+                                    <span class="text-[9px] font-bold text-white">02</span>
+                                </div>
+                            </button>
+
+                            <!-- Pin 3 -->
+                            <button onclick="selectAtelier('boyer')" id="pin-boyer" class="absolute top-[45%] left-[75%] group flex flex-col items-center">
+                                <div class="h-6 w-6 bg-black border border-white flex items-center justify-center transform transition-transform group-hover:scale-110 shadow">
+                                    <span class="text-[9px] font-bold text-white">03</span>
+                                </div>
+                            </button>
+
+                            <!-- Dynamic Sliding Card on the map (Noir & Blanc Light) -->
+                            <div id="atelier-preview-card" class="absolute bottom-4 left-4 right-4 bg-white border border-iraBorderDark p-4 shadow-xl backdrop-blur-sm transition-all duration-300 transform translate-y-0 opacity-100">
+                                <div class="flex gap-4 items-center">
+                                    <img id="preview-image" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=150&auto=format&fit=crop" 
+                                         alt="Atelier d'art contemporain" 
+                                         class="w-16 h-16 object-cover border border-iraBorderDark grayscale">
+                                    <div class="flex-1 space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <h4 id="preview-title" class="font-serif font-bold text-black text-sm">Atelier Catherine Sénéchal</h4>
+                                            <span id="preview-tag" class="border border-iraBorderDark text-black text-[8px] uppercase tracking-widest px-2 py-0.5 font-medium">Peinture</span>
+                                        </div>
+                                        <p id="preview-desc" class="text-[10px] text-iraTextMuted font-light line-clamp-1">Visites d'atelier régulières et expositions temporaires de peintures abstraites.</p>
+                                        <div class="flex items-center justify-between pt-1">
+                                            <span id="preview-loc" class="text-[9px] text-iraTextMuted uppercase tracking-wider">📍 Lyon, France</span>
+                                            <a href="#register" class="text-[9px] text-black hover:underline tracking-wider font-semibold uppercase">Rejoindre l'index</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card switcher script logic integration -->
+                        <script>
+                            const ateliers = {
+                                ronan: {
+                                    title: "Atelier Ronan Martin",
+                                    desc: "Espace de création contemporaine de résines d'art et d'œuvres lumineuses.",
+                                    tag: "Résines",
+                                    loc: "Paris, France",
+                                    img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=150&auto=format&fit=crop"
+                                },
+                                senechal: {
+                                    title: "Atelier Catherine Sénéchal",
+                                    desc: "Visites d'atelier régulières et expositions temporaires de peintures abstraites.",
+                                    tag: "Peinture",
+                                    loc: "Lyon, France",
+                                    img: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=150&auto=format&fit=crop"
+                                },
+                                boyer: {
+                                    title: "Atelier Jean-Paul Boyer",
+                                    desc: "Sculptures contemporaines en bois nobles et métaux de récupération.",
+                                    tag: "Sculpture",
+                                    loc: "Nice, France",
+                                    img: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?q=80&w=150&auto=format&fit=crop"
+                                }
+                            };
+
+                            function selectAtelier(key) {
+                                const data = ateliers[key];
+                                if (!data) return;
+
+                                const card = document.getElementById('atelier-preview-card');
+                                card.style.transform = "translateY(5px)";
+                                card.style.opacity = "0";
+
+                                setTimeout(() => {
+                                    document.getElementById('preview-title').innerText = data.title;
+                                    document.getElementById('preview-desc').innerText = data.desc;
+                                    document.getElementById('preview-tag').innerText = data.tag;
+                                    document.getElementById('preview-loc').innerText = "📍 " + data.loc;
+                                    document.getElementById('preview-image').src = data.img;
+
+                                    card.style.transform = "translateY(0)";
+                                    card.style.opacity = "1";
+                                }, 150);
+                            }
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="relative py-20 lg:py-28 border-b border-iraBorderDark bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 relative">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold font-mono">Preuves par les chiffres</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-black">
+                    Les chiffres ne mentent pas.
+                </h2>
+                <div class="w-12 h-[1px] bg-black mx-auto my-6"></div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+                
+                <!-- Stat 1 -->
+                <div class="bg-iraLightGray p-6 border border-iraBorderDark flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-iraTextMuted">+131% de recherches</span>
+                        <div class="text-4xl font-serif font-light text-black tracking-tight mt-2" id="stat-1">0</div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-[11px] text-iraTextMuted">Progression des ateliers référencés après optimisation de leur fiche.</p>
+                        <div class="w-full bg-neutral-200 h-[1px]">
+                            <div class="bg-black h-[1px] transition-all duration-1000" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="bg-iraLightGray p-6 border border-iraBorderDark flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-iraTextMuted">+116% de vues</span>
+                        <div class="text-4xl font-serif font-light text-black tracking-tight mt-2" id="stat-2">0</div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-[11px] text-iraTextMuted">Visibilité moyenne accrue sur Google Maps et l'Index IRA.</p>
+                        <div class="w-full bg-neutral-200 h-[1px]">
+                            <div class="bg-black h-[1px] transition-all duration-1000" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="bg-iraLightGray p-6 border border-iraBorderDark flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-iraTextMuted">Actions générées</span>
+                        <div class="text-4xl font-serif font-light text-black tracking-tight mt-2" id="stat-3">0</div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-[11px] text-iraTextMuted">Appels directes, demandes d'itinéraires et clics vers sites web.</p>
+                        <div class="w-full bg-neutral-200 h-[1px]">
+                            <div class="bg-black h-[1px] transition-all duration-1000" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="bg-iraLightGray p-6 border border-iraBorderDark flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-iraTextMutedNote">Note Google Moyenne</span>
+                        <div class="text-4xl font-serif font-light text-black tracking-tight mt-2" id="stat-4">0</div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-[11px] text-iraTextMuted">Évaluation moyenne des ateliers accompagnés par notre réseau.</p>
+                        <div class="w-full bg-neutral-200 h-[1px]">
+                            <div class="bg-black h-[1px] transition-all duration-1000" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Double Testimonials B&W -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto pt-8 border-t border-iraBorderDark">
+                
+                <!-- Testimonial 1 -->
+                <div class="flex flex-col sm:flex-row gap-6 items-start">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" 
+                         alt="Charlotte Dupuis" 
+                         class="w-16 h-16 object-cover grayscale rounded-none border border-iraBorderDark flex-shrink-0"
+                         onerror="this.src='https://placehold.co/200x200/F5F5F7/000000?text=Charlotte'">
+                    <div class="space-y-2">
+                        <div class="flex text-black text-xs">★ ★ ★ ★ ★</div>
+                        <p class="text-xs italic text-neutral-800 font-light">"Mes visites d'atelier physiques à Lyon ont doublé en trois mois. Mes collectionneurs me trouvent directement via Google Maps."</p>
+                        <span class="block text-[10px] uppercase tracking-wider text-black font-semibold">— Charlotte D., Artiste Peintre</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="flex flex-col sm:flex-row gap-6 items-start">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" 
+                         alt="Pierre-Antoine" 
+                         class="w-16 h-16 object-cover grayscale rounded-none border border-iraBorderDark flex-shrink-0"
+                         onerror="this.src='https://placehold.co/200x200/F5F5F7/000000?text=Pierre'">
+                    <div class="space-y-2">
+                        <div class="flex text-black text-xs">★ ★ ★ ★ ★</div>
+                        <p class="text-xs italic text-neutral-800 font-light">"Je n'avais pas le temps de m'en occuper. L'équipe d'Artitude a tout structuré pour moi en 48h. C'est simple, efficace et totalement transparent."</p>
+                        <span class="block text-[10px] uppercase tracking-wider text-black font-semibold">— Pierre-Antoine M., Sculpteur</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="catalog" class="relative py-20 lg:py-28 border-b border-iraBorderDark bg-white">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold">Notre Accompagnement</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-black">
+                    L'Équipe & Vos Services Structurés
+                </h2>
+                <div class="w-12 h-[1px] bg-black mx-auto my-6"></div>
+                <p class="text-xs text-iraTextMuted max-w-lg mx-auto font-light">
+                    Notre catalogue d'artistes principaux est complet, mais notre équipe d'experts est à votre disposition pour vous aider à structurer et propulser votre carrière d'artiste indépendant.
+                </p>
+            </div>
+
+            <!-- Grids of 4 columns, keeping the same structure of the block -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Column 1 -->
+                <div class="bg-iraLightGray border border-iraBorderDark p-6 flex flex-col justify-between h-full">
+                    <div class="space-y-6">
+                        <!-- Gray/White Portrait Frame with 2 lines exactly -->
+                        <div class="border-b border-iraBorderDark pb-4 space-y-4">
+                            <div class="aspect-square w-full bg-neutral-200 overflow-hidden border border-iraBorderDark">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop" 
+                                     alt="Thomas Laurent" 
+                                     class="w-full h-full object-cover grayscale brightness-[0.95]"
+                                     onerror="this.src='https://placehold.co/300x300/CCCCCC/000000?text=Thomas'">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-base text-black">Thomas Laurent</h4>
+                                <p class="text-[10px] uppercase tracking-wider text-iraTextMuted">Directeur Juridique & Propriété Intellectuelle</p>
+                            </div>
+                        </div>
+
+                        <!-- Specific service content -->
+                        <div class="space-y-3">
+                            <h5 class="text-xs uppercase tracking-widest text-black font-semibold">Service Dédié :</h5>
+                            <p class="text-sm font-serif italic text-black font-semibold">Kit juridique pour structurer sa carrière</p>
+                            <p class="text-[11px] text-iraTextMuted font-light leading-relaxed">
+                                Statuts d'artiste, contrats types de galerie, gestion du droit de suite et de la propriété intellectuelle.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="bg-iraLightGray border border-iraBorderDark p-6 flex flex-col justify-between h-full">
+                    <div class="space-y-6">
+                        <!-- Gray/White Portrait Frame with 2 lines exactly -->
+                        <div class="border-b border-iraBorderDark pb-4 space-y-4">
+                            <div class="aspect-square w-full bg-neutral-200 overflow-hidden border border-iraBorderDark">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop" 
+                                     alt="Sophie Dumont" 
+                                     class="w-full h-full object-cover grayscale brightness-[0.95]"
+                                     onerror="this.src='https://placehold.co/300x300/CCCCCC/000000?text=Sophie'">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-base text-black">Sophie Dumont</h4>
+                                <p class="text-[10px] uppercase tracking-wider text-iraTextMuted">Consultante en Stratégie de Carrière d'Artistes</p>
+                            </div>
+                        </div>
+
+                        <!-- Specific service content -->
+                        <div class="space-y-3">
+                            <h5 class="text-xs uppercase tracking-widest text-black font-semibold">Service Dédié :</h5>
+                            <p class="text-sm font-serif italic text-black font-semibold">Kit Audit et structuration de carrière</p>
+                            <p class="text-[11px] text-iraTextMuted font-light leading-relaxed">
+                                Analyse globale de votre positionnement, audit de pricing d'ateliers et plan d'actions stratégiques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="bg-iraLightGray border border-iraBorderDark p-6 flex flex-col justify-between h-full">
+                    <div class="space-y-6">
+                        <!-- Gray/White Portrait Frame with 2 lines exactly -->
+                        <div class="border-b border-iraBorderDark pb-4 space-y-4">
+                            <div class="aspect-square w-full bg-neutral-200 overflow-hidden border border-iraBorderDark">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop" 
+                                     alt="Marc-Antoine Becker" 
+                                     class="w-full h-full object-cover grayscale brightness-[0.95]"
+                                     onerror="this.src='https://placehold.co/300x300/CCCCCC/000000?text=Marc-Antoine'">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-base text-black">Marc-Antoine Becker</h4>
+                                <p class="text-[10px] uppercase tracking-wider text-iraTextMuted">Mentor Artistique & Curateur Principal</p>
+                            </div>
+                        </div>
+
+                        <!-- Specific service content -->
+                        <div class="space-y-3">
+                            <h5 class="text-xs uppercase tracking-widest text-black font-semibold">Service Dédié :</h5>
+                            <p class="text-sm font-serif italic text-black font-semibold">Accompagnement personnalisé</p>
+                            <p class="text-[11px] text-iraTextMuted font-light leading-relaxed">
+                                Suivi individuel récurrent pour développer votre signature, votre catalogue et optimiser vos relations collectionneurs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="bg-iraLightGray border border-iraBorderDark p-6 flex flex-col justify-between h-full">
+                    <div class="space-y-6">
+                        <!-- Gray/White Portrait Frame with 2 lines exactly -->
+                        <div class="border-b border-iraBorderDark pb-4 space-y-4">
+                            <div class="aspect-square w-full bg-neutral-200 overflow-hidden border border-iraBorderDark">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop" 
+                                     alt="Elena Rostova" 
+                                     class="w-full h-full object-cover grayscale brightness-[0.95]"
+                                     onerror="this.src='https://placehold.co/300x300/CCCCCC/000000?text=Elena'">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-base text-black">Elena Rostova</h4>
+                                <p class="text-[10px] uppercase tracking-wider text-iraTextMuted">Scénographe & Directrice d'Expositions</p>
+                            </div>
+                        </div>
+
+                        <!-- Specific service content -->
+                        <div class="space-y-3">
+                            <h5 class="text-xs uppercase tracking-widest text-black font-semibold">Service Dédié :</h5>
+                            <p class="text-sm font-serif italic text-black font-semibold">Accompagnement expo</p>
+                            <p class="text-[11px] text-iraTextMuted font-light leading-relaxed">
+                                Préparation logistique de vos vernissages, conception de catalogues de ventes d'exposition et scénographie d'espace.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Perfect call-to-action button, keeping the previous structure -->
+            <div class="mt-16 text-center">
+                <a href="#register" class="btn-shimmer inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-black text-white font-semibold uppercase tracking-[0.15em] text-xs transition-all duration-300 border border-black">
+                    <span>Solliciter un accompagnement professionnel</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="register" class="relative py-20 lg:py-28 bg-white border-b border-iraBorderDark">
+        <div class="max-w-3xl mx-auto px-6">
+            
+            <div class="bg-[#FCFAF6] border border-iraBorderDark p-8 sm:p-12 shadow-sm space-y-8 relative">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-iraTextMuted font-mono">DÉMARRER AUJOURD'HUI</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-light text-black">Activez votre Artitude, gratuitement.</h2>
+                    <p class="text-xs text-iraTextMuted max-w-md mx-auto font-light">
+                        Remplissez ce formulaire d'inscription rapide. Notre équipe d'experts prendra en charge l'optimisation de votre profil sous 48 heures.
+                    </p>
+                </div>
+
+                <form id="artitude-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] uppercase tracking-wider text-black font-semibold">Nom & Prénom *</label>
+                            <input type="text" required class="w-full bg-white border border-iraBorderDark focus:border-black outline-none px-4 py-3 text-xs text-black" placeholder="Jean-Luc Boyer">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] uppercase tracking-wider text-black font-semibold">Adresse Email *</label>
+                            <input type="email" required class="w-full bg-white border border-iraBorderDark focus:border-black outline-none px-4 py-3 text-xs text-black" placeholder="jeanluc@boyer.com">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] uppercase tracking-wider text-black font-semibold">Nom de l'atelier / Activité *</label>
+                            <input type="text" required class="w-full bg-white border border-iraBorderDark focus:border-black outline-none px-4 py-3 text-xs text-black" placeholder="Atelier Boyer Art">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] uppercase tracking-wider text-black font-semibold">Ville de l'atelier *</label>
+                            <input type="text" required class="w-full bg-white border border-iraBorderDark focus:border-black outline-none px-4 py-3 text-xs text-black" placeholder="Nice, France">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-[10px] uppercase tracking-wider text-black font-semibold">Médium artistique principal *</label>
+                        <select required class="w-full bg-white border border-iraBorderDark focus:border-black outline-none px-4 py-3 text-xs text-black">
+                            <option value="">Sélectionnez votre discipline...</option>
+                            <option value="peinture">Peinture / Dessin</option>
+                            <option value="sculpture">Sculpture / Céramique</option>
+                            <option value="photographie">Photographie</option>
+                            <option value="art_digital">Art Numérique / Nouveaux Médias</option>
+                            <option value="autre">Autre discipline d'artisanat d'art</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" checked class="mt-1 h-4 w-4 border-iraBorderDark rounded-none accent-black">
+                            <span class="text-[11px] text-neutral-600 font-light leading-snug">
+                                Je souhaite recevoir les actualités InRealArt pour activer mon compte Artitude et être alerté des opportunités de services d'accompagnement.
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full btn-shimmer bg-black text-white font-semibold text-[11px] uppercase tracking-[0.2em] py-4 border border-black transition-all duration-300">
+                            Activer mon Artitude gratuit
+                        </button>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <span class="text-[9px] text-iraTextMuted tracking-wider block">
+                            🔒 Vos données ne sont jamais revendues. Désinscription en un clic de notre lettre d'information.
+                        </span>
+                    </div>
+                </form>
+
+                <!-- Custom Overlay Message on Success -->
+                <div id="form-success-overlay" class="absolute inset-0 bg-white/95 flex flex-col items-center justify-center p-8 text-center space-y-6 hidden">
+                    <div class="h-14 w-14 border border-black flex items-center justify-center text-black text-2xl">
+                        ✓
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-serif text-2xl text-black">Demande d'inscription reçue.</h3>
+                        <p class="text-xs text-iraTextMuted max-w-md mx-auto">
+                            Merci d'avoir activé votre profil. Un membre de l'équipe d'InRealArt va procéder à l'évaluation et la configuration de votre atelier sous 48 heures.
+                        </p>
+                    </div>
+                    <button onclick="resetSuccessForm()" class="text-[9px] uppercase tracking-wider text-black font-semibold border-b border-black pb-0.5">
+                        Inscrire un autre atelier
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="relative py-20 lg:py-28 border-b border-iraBorderDark bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-iraTextMuted font-semibold">Des Réponses Claires</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-black">
+                    Les questions qu'on nous pose le plus.
+                </h2>
+                <div class="w-12 h-[1px] bg-black mx-auto my-6"></div>
+            </div>
+
+            <!-- Accordions Container -->
+            <div class="space-y-4">
+                
+                <!-- FAQ 1 -->
+                <div class="border border-iraBorderDark bg-iraLightGray transition-all duration-300">
+                    <button onclick="toggleFaq('faq-1')" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-serif text-base sm:text-lg text-black font-semibold">C'est vraiment gratuit ?</span>
+                        <span id="faq-1-icon" class="text-base text-black transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="faq-1" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-6 text-xs text-iraTextMuted leading-relaxed font-light">
+                            Oui, l'inscription et la création de votre profil Artitude sont gratuites à 100%, aujourd'hui et demain. Aucune carte bancaire n'est requise. Ce service est offert par InRealArt pour soutenir la visibilité numérique des ateliers d'artistes locaux.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-iraBorderDark bg-iraLightGray transition-all duration-300">
+                    <button onclick="toggleFaq('faq-2')" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-serif text-base sm:text-lg text-black font-semibold">Je n'ai pas de site internet, ça fonctionne quand même ?</span>
+                        <span id="faq-2-icon" class="text-base text-black transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="faq-2" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-6 text-xs text-iraTextMuted leading-relaxed font-light">
+                            Oui absolument. C'est tout l'intérêt d'Artitude. Vous n'avez pas besoin d'un site web lourd et complexe : nous configurons votre fiche de façon optimale directement sur Google et au sein de notre Index des Ateliers.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-iraBorderDark bg-iraLightGray transition-all duration-300">
+                    <button onclick="toggleFaq('faq-3')" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-serif text-base sm:text-lg text-black font-semibold">Qu'est-ce que l'Index des Ateliers exactement ?</span>
+                        <span id="faq-3-icon" class="text-base text-black transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="faq-3" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-6 text-xs text-iraTextMuted leading-relaxed font-light">
+                            C'est un annuaire interactif public intégré au site InRealArt. Il regroupe l'ensemble des créateurs référencés par notre réseau et affiche votre atelier sur notre propre carte pour vous faire profiter de notre audience d'esthètes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-iraBorderDark bg-iraLightGray transition-all duration-300">
+                    <button onclick="toggleFaq('faq-4')" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-serif text-base sm:text-lg text-black font-semibold">Combien de temps avant de voir des résultats ?</span>
+                        <span id="faq-4-icon" class="text-base text-black transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="faq-4" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-6 text-xs text-iraTextMuted leading-relaxed font-light">
+                            Les premiers résultats en recherche locale sur Google et Google Maps sont visibles dès l'activation de la fiche (environ 48 heures). L'impact réel et les contacts d'esthètes via l'Index d'Ateliers se manifestent dans les semaines suivantes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="border border-iraBorderDark bg-iraLightGray transition-all duration-300">
+                    <button onclick="toggleFaq('faq-5')" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-serif text-base sm:text-lg text-black font-semibold">Dois-je m'occuper de la mise à jour de ma fiche ?</span>
+                        <span id="faq-5-icon" class="text-base text-black transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="faq-5" class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="px-6 pb-6 text-xs text-iraTextMuted leading-relaxed font-light">
+                            Non. Dans le cadre de notre offre gratuite, vous bénéficiez de mises à jour mensuelles incluses. Il vous suffit d'envoyer vos nouvelles œuvres d'ateliers ou changements d'horaires à nos équipes, et nous faisons le nécessaire.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-iraBorderDark py-16 text-black">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Footer Brand Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-none border border-black flex items-center justify-center bg-black">
+                            <span class="text-white font-serif font-light text-sm">I</span>
+                        </div>
+                        <span class="font-serif text-md tracking-[0.2em] font-light">INREALART</span>
+                    </div>
+                    <p class="text-[11px] text-iraTextMuted leading-relaxed font-light">
+                        Artitude est un écosystème créé par InRealArt pour dynamiser la mise en avant locale et l'optimisation des ateliers d'art de manière indépendante.
+                    </p>
+                </div>
+
+                <!-- Quick Navigation Links -->
+                <div class="space-y-4">
+                    <h5 class="text-[10px] uppercase tracking-widest font-semibold text-black">Découvrir</h5>
+                    <ul class="space-y-2 text-[11px] text-iraTextMuted">
+                        <li><a href="#problem" class="hover:text-black transition-colors">Le Défi de l'Artiste</a></li>
+                        <li><a href="#solution" class="hover:text-black transition-colors">La Solution Artitude</a></li>
+                        <li><a href="#index" class="hover:text-black transition-colors font-medium">L'Index des Ateliers</a></li>
+                        <li><a href="#catalog" class="hover:text-black transition-colors">Offres d'Accompagnement</a></li>
+                    </ul>
+                </div>
+
+                <!-- Ecosystem Navigation -->
+                <div class="space-y-4">
+                    <h5 class="text-[10px] uppercase tracking-widest font-semibold text-black font-mono">Ecosystem IRA</h5>
+                    <ul class="space-y-2 text-[11px] text-iraTextMuted">
+                        <li><a href="https://www.inrealart.com" class="hover:text-black transition-colors flex items-center gap-1.5">
+                            Site principal InRealArt
+                            <span class="text-[9px]">↗</span>
+                        </a></li>
+                        <li><a href="#register" class="hover:text-black transition-colors">Candidatez aux Services d'Ateliers</a></li>
+                        <li><a href="#register" class="hover:text-black transition-colors">Référencer un Atelier</a></li>
+                    </ul>
+                </div>
+
+                <!-- Socials Channels -->
+                <div class="space-y-4">
+                    <h5 class="text-[10px] uppercase tracking-widest font-semibold text-black">Suivre</h5>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-xs text-iraTextMuted hover:text-black transition-colors uppercase tracking-widest font-semibold">Instagram</a>
+                        <a href="#" class="text-xs text-iraTextMuted hover:text-black transition-colors uppercase tracking-widest font-semibold">LinkedIn</a>
+                    </div>
+                    <p class="text-[9px] text-iraTextMuted font-light pt-2">
+                        Artitude by InRealArt. Tous droits réservés. © 2026.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Bottom Disclaimer Fineprint -->
+            <div class="pt-8 border-t border-iraBorderDark flex flex-col sm:flex-row justify-between gap-4 text-[9px] text-iraTextMuted uppercase tracking-widest font-light">
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-black transition-colors">Mentions Légales</a>
+                    <a href="#" class="hover:text-black transition-colors">Données Personnelles</a>
+                </div>
+                <div>
+                    Créé par et pour des artistes indépendants.
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling helper for dynamic button actions
+        function scrollToForm() {
+            document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle clean customized success screen instead of native alerts
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('form-success-overlay').classList.remove('hidden');
+        }
+
+        function resetSuccessForm() {
+            document.getElementById('artitude-form').reset();
+            document.getElementById('form-success-overlay').classList.add('hidden');
+        }
+
+        // Accordion collapsing and rotating visual icon helpers
+        function toggleFaq(id) {
+            const container = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            
+            if (container.style.maxHeight === "0px" || !container.style.maxHeight) {
+                container.style.maxHeight = container.scrollHeight + "px";
+                icon.style.transform = "rotate(45deg)";
+            } else {
+                container.style.maxHeight = "0px";
+                icon.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // Live smooth counters simulation
+        function animateValue(obj, start, end, duration, suffix = "") {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentVal = (progress * (end - start)) + start;
+                
+                // Formats for numbers
+                if (end % 1 === 0) {
+                    obj.innerHTML = Math.floor(currentVal).toLocaleString() + suffix;
+                } else {
+                    obj.innerHTML = currentVal.toFixed(1) + suffix;
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Trigger animations when the counters scroll into view
+        window.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateValue(document.getElementById('stat-1'), 0, 131, 1500, "%");
+                        animateValue(document.getElementById('stat-2'), 0, 116, 1500, "%");
+                        animateValue(document.getElementById('stat-3'), 0, 816418, 1800, "");
+                        animateValue(document.getElementById('stat-4'), 0, 4.9, 1200, " / 5");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+
+            // Initialize custom first interactive pin as active
+            selectAtelier('senechal');
+        });
+    </script>
+</body>
+</html>
