@@ -1,0 +1,241 @@
+{
+  "lang": "en",
+  "nav": {
+    "problem": "The Challenge",
+    "solution": "The Solution",
+    "index": "The Index",
+    "catalog": "Accompaniment Services",
+    "faq": "FAQ",
+    "cta": "Sign Up"
+  },
+  "announcement": {
+    "text": "📢 Main artist catalog is full.",
+    "highlight": "Artitude remains free and open to all creators."
+  },
+  "hero": {
+    "badge": "Studio Support Initiative 2026",
+    "title": "Your talent deserves",
+    "titleItalic": "to be found.",
+    "description": "Our main artist catalog is currently closed. That's why we offer",
+    "brand": "Artitude",
+    "descriptionEnd": ": a free tool to list your studio on Google and join our interactive map in 2 minutes.",
+    "badges": ["100% Free", "No Commitment", "Live in 48h"],
+    "cta": "Join Artitude for Free",
+    "social": "Already",
+    "socialCount": "420 studios",
+    "socialEnd": "listed.",
+    "widgetBadge": "ARTITUDE OPTIMISED",
+    "widgetName": "Catherine Sénéchal Studio",
+    "widgetSubtitle": "Painting & Visual Art • Lyon",
+    "widgetActions": ["Call", "Directions", "Website"]
+  },
+  "problem": {
+    "eyebrow": "The artist's challenge",
+    "title": "Your clients are searching.",
+    "titleItalic": "They can't find you.",
+    "quote": "It's not a lack of talent. It's a lack of tools.",
+    "items": [
+      {
+        "icon": "🔍",
+        "title": "You don't have an up-to-date Google profile",
+        "desc": "Without an optimised presence on Maps and Search, you remain invisible to 85% of local art lovers looking for nearby galleries."
+      },
+      {
+        "icon": "⏱️",
+        "title": "You don't have time to handle it",
+        "desc": "SEO keywords, updates, review management... Properly listing your work takes complex hours you'd rather spend creating."
+      },
+      {
+        "icon": "📍",
+        "title": "Your competitors are visible",
+        "desc": "Other creators instantly capture the attention of urban collectors simply because they position themselves strategically in local searches."
+      }
+    ]
+  },
+  "solution": {
+    "eyebrow": "A turnkey offer",
+    "title": "Artitude, your digital showcase managed for you.",
+    "badge1": "Free monthly update included",
+    "badge2": "Edit your photos, hours or news in 1 click",
+    "steps": [
+      {
+        "number": "01",
+        "label": "REGISTRATION",
+        "title": "You sign up (2 min)",
+        "desc": "Fill in your studio information in 2 minutes. No complex process — we only collect what's essential.",
+        "meta": "Time required: 2 minutes"
+      },
+      {
+        "number": "02",
+        "label": "OPTIMISATION",
+        "title": "We optimise your Google profile",
+        "desc": "Our experts structure your Google studio profile: aesthetic integration of your photos, keyword definition and schedule configuration.",
+        "meta": "Turnaround: within 48 hours"
+      },
+      {
+        "number": "03",
+        "label": "EXPOSURE",
+        "title": "You're visible on Maps & the Index",
+        "desc": "Your studio becomes discoverable on Google Search, Google Maps, and instantly joins our Studio Index to reach an audience of art enthusiasts.",
+        "meta": "Google + InRealArt visibility"
+      }
+    ]
+  },
+  "index": {
+    "eyebrow": "A key differentiator",
+    "title": "Your studio also joins our Studio Index.",
+    "description": "Every artist listed on Artitude automatically appears in the IRA Studio Index — our online directory with an interactive map, visited by InRealArt website visitors.",
+    "statNumber": "45,000+",
+    "statLabel": "Unique visitors per month on the InRealArt website",
+    "mapLabel": "Interactive Index (Demo)",
+    "mapHint": "Click to explore",
+    "joinIndex": "Join the index",
+    "ateliers": {
+      "ronan": {
+        "title": "Ronan Martin Studio",
+        "desc": "Contemporary creation space for art resins and luminous works.",
+        "tag": "Resins",
+        "loc": "Paris, France"
+      },
+      "senechal": {
+        "title": "Catherine Sénéchal Studio",
+        "desc": "Regular studio visits and temporary exhibitions of abstract paintings.",
+        "tag": "Painting",
+        "loc": "Lyon, France"
+      },
+      "boyer": {
+        "title": "Jean-Paul Boyer Studio",
+        "desc": "Contemporary sculptures in noble woods and reclaimed metals.",
+        "tag": "Sculpture",
+        "loc": "Nice, France"
+      }
+    }
+  },
+  "stats": {
+    "eyebrow": "Proof in numbers",
+    "title": "Numbers don't lie.",
+    "items": [
+      { "label": "+131% searches", "description": "Growth in listed studios after their profile was optimised." },
+      { "label": "+116% views", "description": "Average visibility increase on Google Maps and the IRA Index." },
+      { "label": "Actions generated", "description": "Direct calls, direction requests and website clicks." },
+      { "label": "Average Google Rating", "description": "Average rating of studios supported by our network." }
+    ],
+    "testimonials": [
+      {
+        "quote": "My physical studio visits in Lyon doubled in three months. My collectors find me directly on Google Maps.",
+        "name": "Charlotte D., Painter"
+      },
+      {
+        "quote": "I didn't have time to manage it. The Artitude team structured everything for me in 48h. Simple, effective, and completely transparent.",
+        "name": "Pierre-Antoine M., Sculptor"
+      }
+    ]
+  },
+  "catalog": {
+    "eyebrow": "Our Support",
+    "title": "The Team & Your Structured Services",
+    "subtitle": "Our main artist catalog is full, but our expert team is available to help you structure and propel your independent artist career.",
+    "cta": "Request professional support",
+    "team": [
+      {
+        "name": "Thomas Laurent",
+        "role": "Legal Director & Intellectual Property",
+        "service": "Legal kit to structure your career",
+        "description": "Artist status, standard gallery contracts, resale rights management and intellectual property."
+      },
+      {
+        "name": "Sophie Dumont",
+        "role": "Artist Career Strategy Consultant",
+        "service": "Audit & career structuring kit",
+        "description": "Global positioning analysis, studio pricing audit and strategic action plan."
+      },
+      {
+        "name": "Marc-Antoine Becker",
+        "role": "Artistic Mentor & Lead Curator",
+        "service": "Personalised mentoring",
+        "description": "Recurring individual support to develop your signature, your catalog and optimise your collector relationships."
+      },
+      {
+        "name": "Elena Rostova",
+        "role": "Scenographer & Exhibition Director",
+        "service": "Exhibition support",
+        "description": "Logistical preparation of your openings, exhibition sale catalog design and space scenography."
+      }
+    ]
+  },
+  "register": {
+    "eyebrow": "Free registration",
+    "subtitle": "Join the 420 studios already listed",
+    "formEyebrow": "GET STARTED TODAY",
+    "formTitle": "Activate your Artitude, for free.",
+    "formSubtitle": "Fill in this quick registration form. Our expert team will handle the optimisation of your profile within 48 hours.",
+    "fieldName": "Full Name *",
+    "fieldNamePlaceholder": "Jean-Luc Boyer",
+    "fieldEmail": "Email Address *",
+    "fieldEmailPlaceholder": "jeanluc@boyer.com",
+    "fieldAtelier": "Studio / Activity Name *",
+    "fieldAtelierPlaceholder": "Boyer Art Studio",
+    "fieldCity": "Studio City *",
+    "fieldCityPlaceholder": "Nice, France",
+    "fieldDiscipline": "Main artistic medium *",
+    "fieldDisciplinePlaceholder": "Select your discipline...",
+    "disciplines": [
+      { "value": "peinture", "label": "Painting / Drawing" },
+      { "value": "sculpture", "label": "Sculpture / Ceramics" },
+      { "value": "photographie", "label": "Photography" },
+      { "value": "art_digital", "label": "Digital Art / New Media" },
+      { "value": "autre", "label": "Other craft discipline" }
+    ],
+    "consent": "I would like to receive InRealArt news to activate my Artitude account and be notified of accompaniment service opportunities.",
+    "submit": "Activate my free Artitude",
+    "privacy": "🔒 Your data is never sold. Unsubscribe in one click.",
+    "successTitle": "Registration request received.",
+    "successDesc": "Thank you for activating your profile. A member of the InRealArt team will evaluate and configure your studio within 48 hours.",
+    "successReset": "Register another studio"
+  },
+  "faq": {
+    "eyebrow": "Clear Answers",
+    "title": "The questions we're asked most.",
+    "items": [
+      {
+        "question": "Is it really free?",
+        "answer": "Yes, signing up and creating your Artitude profile are 100% free, today and always. No credit card required. This service is provided by InRealArt to support the digital visibility of local artists' studios."
+      },
+      {
+        "question": "I don't have a website — does it still work?",
+        "answer": "Absolutely. That's the whole point of Artitude. You don't need a heavy, complex website: we configure your profile optimally directly on Google and within our Studio Index."
+      },
+      {
+        "question": "What exactly is the Studio Index?",
+        "answer": "It's a public interactive directory integrated into the InRealArt website. It brings together all creators listed by our network and displays your studio on our own map, giving you access to our audience of art enthusiasts."
+      },
+      {
+        "question": "How long before I see results?",
+        "answer": "The first results in local Google and Google Maps searches appear as soon as the profile is activated (approximately 48 hours). The real impact and art enthusiast contacts via the Studio Index manifest in the following weeks."
+      },
+      {
+        "question": "Do I need to manage my profile updates myself?",
+        "answer": "No. As part of our free offer, you benefit from included monthly updates. Simply send your new studio works or schedule changes to our team, and we take care of the rest."
+      }
+    ]
+  },
+  "footer": {
+    "discover": "Discover",
+    "ecosystem": "IRA Ecosystem",
+    "follow": "Follow",
+    "links": {
+      "problem": "The Artist's Challenge",
+      "solution": "The Artitude Solution",
+      "index": "The Studio Index",
+      "catalog": "Accompaniment Offers",
+      "mainSite": "InRealArt main website",
+      "services": "Apply for Studio Services",
+      "register": "List a Studio",
+      "legal": "Legal Notice",
+      "privacy": "Personal Data"
+    },
+    "description": "Artitude is an ecosystem created by InRealArt to boost the local visibility and optimisation of independent art studios.",
+    "copyright": "Artitude by InRealArt. All rights reserved. © 2026.",
+    "tagline": "Created by and for independent artists."
+  }
+}

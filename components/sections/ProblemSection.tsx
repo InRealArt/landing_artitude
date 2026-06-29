@@ -3,26 +3,10 @@
 import { useRef } from 'react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { useGsapReveal } from '@/hooks/useGsapReveal'
+import type { Dictionary } from '@/lib/dictionaries'
 
-const problems = [
-  {
-    icon: '🔍',
-    title: 'Vous n\'avez pas de fiche Google à jour',
-    desc: 'Sans présence optimisée sur Maps et Search, vous restez invisible pour 85% des amateurs d\'art locaux recherchant des galeries près de chez eux.',
-  },
-  {
-    icon: '⏱️',
-    title: 'Vous n\'avez pas le temps de vous en occuper',
-    desc: 'Mots-clés SEO, mises à jour, gestion d\'avis... Référencer correctement son travail demande des heures complexes que vous préférez passer à créer.',
-  },
-  {
-    icon: '📍',
-    title: 'Vos concurrents, eux, sont visibles',
-    desc: 'D\'autres créateurs captent l\'attention immédiate des collectionneurs urbains simplement parce qu\'ils se positionnent stratégiquement sur les recherches locales.',
-  },
-]
-
-export default function ProblemSection() {
+export default function ProblemSection({ dict }: { dict: Dictionary }) {
+  const d = dict.problem
   const sectionRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
 
@@ -34,14 +18,14 @@ export default function ProblemSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={sectionRef} className="mb-20">
           <SectionHeader
-            eyebrow="Le défi de l'artiste"
-            title="Vos clients vous cherchent."
-            titleItalic="Ils ne vous trouvent pas."
+            eyebrow={d.eyebrow}
+            title={d.title}
+            titleItalic={d.titleItalic}
           />
         </div>
 
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
-          {problems.map((p) => (
+          {d.items.map((p) => (
             <div
               key={p.title}
               className="advantage-box bg-card p-8 flex flex-col items-center text-center space-y-5 border border-white/10 hover:border-gold transition-all duration-300"
@@ -58,7 +42,7 @@ export default function ProblemSection() {
         <div className="mt-16 text-center max-w-2xl mx-auto">
           <div className="py-6 border-y border-white/10">
             <p className="font-serif text-lg italic text-white/90">
-              &ldquo;Ce n&apos;est pas un manque de talent. C&apos;est un manque d&apos;outil.&rdquo;
+              &ldquo;{d.quote}&rdquo;
             </p>
           </div>
         </div>

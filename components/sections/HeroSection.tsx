@@ -4,8 +4,10 @@ import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { gsap, registerGsap } from '@/lib/gsap'
+import type { Dictionary } from '@/lib/dictionaries'
 
-export default function HeroSection() {
+export default function HeroSection({ dict }: { dict: Dictionary }) {
+  const d = dict.hero
   const contentRef = useRef<HTMLDivElement>(null)
   const widgetRef = useRef<HTMLDivElement>(null)
 
@@ -37,27 +39,23 @@ export default function HeroSection() {
           <div ref={contentRef} className="lg:col-span-7 space-y-8 text-left">
             <div className="hero-animate inline-flex items-center gap-2 border border-borderLight px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-grayText font-display">
               <span className="h-1.5 w-1.5 bg-gold" />
-              Initiative de soutien aux Ateliers 2026
+              {d.badge}
             </div>
 
             <h1 className="hero-animate font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] text-inkBlack">
-              Votre talent mérite <br />
-              <span className="italic text-gold">d&apos;être trouvé.</span>
+              {d.title} <br />
+              <span className="italic text-gold">{d.titleItalic}</span>
             </h1>
 
             <p className="hero-animate text-base sm:text-lg text-grayText font-light leading-relaxed max-w-xl font-sans">
-              Notre catalogue d&apos;artistes principaux est actuellement clos. C&apos;est pourquoi nous offrons{' '}
-              <strong className="text-inkBlack font-semibold">Artitude</strong> : un outil gratuit pour
-              référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.
+              {d.description}{' '}
+              <strong className="text-inkBlack font-semibold">{d.brand}</strong>
+              {d.descriptionEnd}
             </p>
 
             {/* Reassurance band */}
             <div className="hero-animate py-4 border-y border-borderLight max-w-xl grid grid-cols-3 gap-4 text-center sm:text-left">
-              {[
-                '100% Gratuit',
-                'Sans Engagement',
-                'Activé en 48h',
-              ].map((label, i) => (
+              {d.badges.map((label: string, i: number) => (
                 <div
                   key={label}
                   className={`flex flex-col sm:flex-row items-center gap-2 ${i === 1 ? 'border-x border-borderLight px-4' : ''}`}
@@ -73,13 +71,13 @@ export default function HeroSection() {
                 href="#register"
                 className="btn-action inline-flex items-center gap-3 w-full sm:w-auto px-8 py-4 text-xs"
               >
-                <span>Rejoindre Artitude Gratuitement</span>
+                <span>{d.cta}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
               <p className="text-[11px] text-grayText tracking-[0.1em] pl-1 font-light font-sans">
-                Déjà plus de <span className="text-inkBlack font-semibold">420 ateliers</span> référencés.
+                {d.social} <span className="text-inkBlack font-semibold">{d.socialCount}</span> {d.socialEnd}
               </p>
             </div>
           </div>
@@ -100,7 +98,7 @@ export default function HeroSection() {
               <div className="absolute bottom-6 left-5 right-5 bg-canvas text-inkBlack rounded-none p-5 shadow-2xl border border-borderLight">
                 <div className="absolute -top-3 right-4 bg-inkBlack text-gold font-semibold text-[8px] uppercase tracking-[0.25em] px-2.5 py-1 flex items-center gap-1.5 border border-inkBlack">
                   <span className="h-1.5 w-1.5 bg-gold animate-ping" />
-                  OPTIMISÉ ARTITUDE
+                  {d.widgetBadge}
                 </div>
 
                 <div className="flex items-start gap-3">
@@ -111,15 +109,15 @@ export default function HeroSection() {
                   </div>
                   <div className="space-y-1">
                     <h4 className="font-serif font-bold text-base text-inkBlack tracking-wide">
-                      Atelier Catherine Sénéchal
+                      {d.widgetName}
                     </h4>
                     <p className="text-[10px] uppercase tracking-wider text-grayText font-display">
-                      Peinture & Plasticienne • Lyon
+                      {d.widgetSubtitle}
                     </p>
                     <div className="flex items-center gap-1 pt-0.5">
                       <span className="text-inkBlack font-bold text-xs">4.9</span>
                       <div className="flex text-inkBlack text-[10px]">★ ★ ★ ★ ★</div>
-                      <span className="text-[10px] text-grayText font-light">(48 avis)</span>
+                      <span className="text-[10px] text-grayText font-light">(48)</span>
                     </div>
                   </div>
                 </div>
@@ -127,7 +125,7 @@ export default function HeroSection() {
                 <hr className="my-4 border-borderLight" />
 
                 <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-semibold text-grayText uppercase tracking-wider font-display">
-                  {['Appel', 'Adresse', 'Site'].map((label) => (
+                  {d.widgetActions.map((label: string) => (
                     <div
                       key={label}
                       className="py-1 border border-borderLight hover:bg-softGray transition-colors cursor-pointer hover:text-gold"

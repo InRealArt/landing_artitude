@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Montserrat, Unbounded } from 'next/font/google'
-import './globals.css'
+import '../globals.css'
+import { locales, type Locale } from '@/lib/dictionaries'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -24,19 +25,28 @@ const unbounded = Unbounded({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: 'Artitude by InRealArt — L\'élégance de la visibilité',
-  description: 'Référencez votre atelier sur Google et rejoignez la carte interactive InRealArt en 2 minutes. Gratuit, sans engagement.',
+export async function generateStaticParams() {
+  return locales.map((lang) => ({ lang }))
 }
 
-export default function RootLayout({
+export const metadata: Metadata = {
+  title: "Artitude by InRealArt — L'élégance de la visibilité",
+  description:
+    'Référencez votre atelier sur Google et rejoignez la carte interactive InRealArt en 2 minutes. Gratuit, sans engagement.',
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ lang: string }>
 }) {
+  const { lang } = await params
+
   return (
     <html
-      lang="fr"
+      lang={lang}
       className={`${cormorant.variable} ${montserrat.variable} ${unbounded.variable} scroll-smooth`}
     >
       <body className="bg-background text-white font-sans overflow-x-hidden antialiased">

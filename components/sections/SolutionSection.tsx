@@ -3,32 +3,10 @@
 import { useRef } from 'react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { useGsapReveal } from '@/hooks/useGsapReveal'
+import type { Dictionary } from '@/lib/dictionaries'
 
-const steps = [
-  {
-    number: '01',
-    label: 'INSCRIPTION',
-    title: 'Vous vous inscrivez (2 min)',
-    desc: 'Remplissez vos informations d\'atelier en 2 minutes chrono. Pas de processus complexe, nous récupérons uniquement l\'essentiel.',
-    meta: 'Temps requis : 2 minutes',
-  },
-  {
-    number: '02',
-    label: 'OPTIMISATION',
-    title: 'On optimise votre fiche Google',
-    desc: 'Nos experts structurent votre fiche d\'atelier Google : intégration esthétique de vos photos, définition de mots-clés et configuration des horaires.',
-    meta: 'Délai : sous 48 Heures',
-  },
-  {
-    number: '03',
-    label: 'EXPOSITION',
-    title: 'Vous êtes visible sur Maps & l\'Index',
-    desc: 'Votre atelier devient repérable sur Google Search, Google Maps, et rejoint instantanément notre Index des Ateliers pour capter une audience d\'esthètes.',
-    meta: 'Visibilité Google + InRealArt',
-  },
-]
-
-export default function SolutionSection() {
+export default function SolutionSection({ dict }: { dict: Dictionary }) {
+  const d = dict.solution
   const sectionRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
 
@@ -39,14 +17,11 @@ export default function SolutionSection() {
     <section id="solution" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas text-inkBlack">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={sectionRef} className="mb-20">
-          <SectionHeader
-            eyebrow="Une offre clé en main"
-            title="Artitude, votre vitrine numérique gérée pour vous."
-          />
+          <SectionHeader eyebrow={d.eyebrow} title={d.title} />
         </div>
 
         <div ref={stepsRef} className="grid lg:grid-cols-3 gap-8">
-          {steps.map((s) => (
+          {d.steps.map((s) => (
             <div
               key={s.number}
               className="bg-softGray p-8 border border-borderLight flex flex-col justify-between h-full min-h-[220px] hover:border-gold transition-colors duration-300"
@@ -67,13 +42,9 @@ export default function SolutionSection() {
 
         <div className="mt-12 flex justify-center">
           <div className="inline-flex items-center gap-3 bg-softGray border border-borderLight px-6 py-3">
-            <span className="text-xs text-inkBlack font-medium font-sans">
-              Mise à jour mensuelle gratuite incluse
-            </span>
+            <span className="text-xs text-inkBlack font-medium font-sans">{d.badge1}</span>
             <span className="h-1.5 w-1.5 bg-grayText rounded-full" />
-            <span className="text-[11px] text-grayText font-sans">
-              Modifiez vos photos, horaires ou actualités en 1 clic
-            </span>
+            <span className="text-[11px] text-grayText font-sans">{d.badge2}</span>
           </div>
         </div>
       </div>
