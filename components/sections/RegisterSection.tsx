@@ -13,6 +13,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const [step, setStep] = useState(1)
   const [success, setSuccess] = useState(false)
+  const [excelUrl, setExcelUrl] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
@@ -70,6 +71,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       // The server creates the location and uploads photos without the client
       // ever receiving or supplying the GMB locationName (prevents injection).
       const fd = new FormData()
+      fd.append('name', name)
       fd.append('title', atelierName)
       fd.append('phone', phone)
       fd.append('addressLine', address)
@@ -96,6 +98,8 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
         return
       }
 
+      const { excelUrl: url } = await createRes.json()
+      setExcelUrl(url)
       setSuccess(true)
     } catch {
       setErrorMsg(d.errorGeneric)
@@ -106,6 +110,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const handleReset = () => {
     setSuccess(false)
+    setExcelUrl(null)
     setStep(1)
     setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
@@ -311,6 +316,18 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 <h3 className="font-serif text-2xl text-inkBlack">{d.successTitle}</h3>
                 <p className="text-xs text-grayText max-w-md mx-auto font-sans">{d.successDesc}</p>
               </div>
+              {excelUrl && (
+                <a
+                  href={excelUrl}
+                  download="gmb-import.xlsx"
+                  className="btn-action justify-center py-3 text-[11px]"
+                >
+                  {(d as any).successDownload}
+                </a>
+              )}
+              <p className="text-[10px] text-grayText max-w-sm mx-auto font-sans leading-relaxed">
+                {(d as any).successInstructions}
+              </p>
               <button onClick={handleReset} className="btn-mag">{d.successReset}</button>
             </div>
           )}
