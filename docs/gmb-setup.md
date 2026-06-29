@@ -9,7 +9,6 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 GOOGLE_REFRESH_TOKEN=
 GOOGLE_GMB_ACCOUNT_ID=
-GMB_API_SECRET=
 ```
 
 ---
@@ -150,18 +149,6 @@ Copier la valeur de `name` (ex: `accounts/123456789`) → `GOOGLE_GMB_ACCOUNT_ID
 
 ---
 
-## Étape 6 — Générer le secret interne
-
-→ `GMB_API_SECRET`
-
-```bash
-openssl rand -hex 32
-```
-
-Copier la valeur générée → `GMB_API_SECRET` dans `.env.local`
-
----
-
 ## Résultat final — `.env.local`
 
 ```env
@@ -170,9 +157,6 @@ GOOGLE_CLIENT_ID=123456789-xxxx.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=GOCSPX-xxxx
 GOOGLE_REFRESH_TOKEN=1//xxxx
 GOOGLE_GMB_ACCOUNT_ID=accounts/123456789
-
-# Secret interne (généré via openssl rand -hex 32)
-GMB_API_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ---
