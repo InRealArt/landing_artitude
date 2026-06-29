@@ -59,7 +59,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const artistName = name // "Jean-Luc Boyer" → folder name as-is for readability
     const storeCode = toSlug(name)
 
     if (!storeCode || !/^[a-z0-9-]+$/.test(storeCode)) {
