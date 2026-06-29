@@ -23,6 +23,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const [atelierName, setAtelierName] = useState('')
   const [website, setWebsite] = useState('')
   const [discipline, setDiscipline] = useState('')
+  const [consent, setConsent] = useState(false)
 
   // Step 2
   const [address, setAddress] = useState('')
@@ -75,6 +76,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       fd.append('postalCode', postalCode)
       fd.append('locality', city)
       fd.append('regionCode', country)
+      fd.append('consent', String(consent))
       if (website) fd.append('websiteUri', website)
       if (description) fd.append('description', description)
       if (openPeriods.length > 0) fd.append('hours', JSON.stringify(openPeriods))
@@ -105,7 +107,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const handleReset = () => {
     setSuccess(false)
     setStep(1)
-    setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline('')
+    setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
     setPhotoInterior(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoOwner(null)
     setErrorMsg(null)
@@ -196,7 +198,12 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 </div>
 
                 <label className="flex items-start gap-3 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="mt-1 h-4 w-4 accent-inkBlack border-borderLight" />
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 h-4 w-4 accent-inkBlack border-borderLight"
+                  />
                   <span className="text-[11px] text-grayText font-light leading-snug font-sans">{d.consent}</span>
                 </label>
               </div>

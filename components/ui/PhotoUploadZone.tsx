@@ -20,8 +20,10 @@ export default function PhotoUploadZone({ label, hint, onChange, value }: PhotoU
   const handleFile = (file: File) => {
     if (!ACCEPTED_TYPES.includes(file.type)) return
     if (file.size > MAX_SIZE_MB * 1024 * 1024) return
-    const url = URL.createObjectURL(file)
-    setPreview(url)
+    setPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev)
+      return URL.createObjectURL(file)
+    })
     onChange(file)
   }
 
@@ -38,7 +40,10 @@ export default function PhotoUploadZone({ label, hint, onChange, value }: PhotoU
   }
 
   const handleRemove = () => {
-    setPreview(null)
+    setPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev)
+      return null
+    })
     onChange(null)
     if (inputRef.current) inputRef.current.value = ''
   }

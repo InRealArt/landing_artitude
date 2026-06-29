@@ -20,7 +20,7 @@ export default function AtelierCard({ name, role, service, description, imageSrc
               width={300}
               height={300}
               className="member-image w-full h-full object-cover brightness-95"
-              unoptimized
+              unoptimized={imageSrc.startsWith('http')}
             />
           </div>
           <div>

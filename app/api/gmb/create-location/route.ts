@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAccessToken } from '@/lib/gmb-client'
 
-const GMB_ACCOUNT_ID = process.env.GOOGLE_GMB_ACCOUNT_ID!
+const GMB_ACCOUNT_ID = process.env.GOOGLE_GMB_ACCOUNT_ID
+if (!GMB_ACCOUNT_ID) throw new Error('GOOGLE_GMB_ACCOUNT_ID env var is required')
+
 const CREATE_URL = `https://mybusinessbusinessinformation.googleapis.com/v1/${GMB_ACCOUNT_ID}/locations`
 
 const VALID_PHOTO_CATEGORIES = ['INTERIOR', 'EXTERIOR', 'OWNER'] as const
@@ -13,7 +15,8 @@ async function uploadPhoto(
   category: PhotoCategory,
   accessToken: string
 ): Promise<void> {
-  const startUploadUrl = `https://mybusiness.googleapis.com/v4/${GMB_ACCOUNT_ID}/${locationName}/media:startUpload`
+  // locationName is the full resource path returned by GMB (e.g. accounts/x/locations/y)
+  const startUploadUrl = `https://mybusiness.googleapis.com/v4/${locationName}/media:startUpload`
   const startRes = await fetch(startUploadUrl, {
     method: 'POST',
     headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
@@ -43,7 +46,7 @@ async function uploadPhoto(
     return
   }
 
-  const mediaRes = await fetch(`https://mybusiness.googleapis.com/v4/${GMB_ACCOUNT_ID}/${locationName}/media`, {
+  const mediaRes = await fetch(`https://mybusiness.googleapis.com/v4/${locationName}/media`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -103,10 +106,16 @@ export async function POST(req: NextRequest) {
     if (websiteUri) locationPayload.websiteUri = websiteUri
     if (description) locationPayload.profile = { description }
     if (hoursRaw) {
-      const hours = JSON.parse(hoursRaw) as Array<{
-        openDay: string; closeDay: string; openTime: string; closeTime: string
-      }>
-      if (hours.length > 0) locationPayload.regularHours = { periods: hours }
+      try {
+        const hours = JSON.parse(hoursRaw) as Array<{
+          openDay: string; closeDay: string; openTime: string; closeTime: string
+        }>
+        if (Array.isArray(hours) && hours.length > 0) {
+          locationPayload.regularHours = { periods: hours }
+        }
+      } catch {
+        return NextResponse.json({ error: 'Invalid hours format' }, { status: 400 })
+      }
     }
 
     const res = await fetch(CREATE_URL, {
