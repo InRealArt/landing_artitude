@@ -25,7 +25,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
                 { href: '#problem', label: d.links.problem },
                 { href: '#solution', label: d.links.solution },
                 { href: '#index', label: d.links.index },
-                { href: '#catalog', label: d.links.catalog },
+                { href: '#team', label: d.links.team },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-[11px] text-grayText hover:text-gold transition-colors duration-200 font-sans">{l.label}</Link>

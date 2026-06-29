@@ -8,7 +8,7 @@ import ProblemSection from '@/components/sections/ProblemSection'
 import SolutionSection from '@/components/sections/SolutionSection'
 import IndexSection from '@/components/sections/IndexSection'
 import StatsSection from '@/components/sections/StatsSection'
-import CatalogSection from '@/components/sections/CatalogSection'
+import TeamSection from '@/components/sections/TeamSection'
 import RegisterSection from '@/components/sections/RegisterSection'
 import FaqSection from '@/components/sections/FaqSection'
 
@@ -29,7 +29,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <SolutionSection dict={dict} />
         <IndexSection dict={dict} />
         <StatsSection dict={dict} />
-        <CatalogSection dict={dict} />
+        <TeamSection dict={dict} />
         <RegisterSection dict={dict} />
         <FaqSection dict={dict} />
       </main>

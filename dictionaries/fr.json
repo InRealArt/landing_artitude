@@ -4,7 +4,7 @@
     "problem": "Le Défi",
     "solution": "La Solution",
     "index": "L'Index",
-    "catalog": "Services Accompagnement",
+    "team": "Notre Équipe",
     "faq": "FAQ",
     "cta": "S'inscrire"
   },
@@ -131,12 +131,12 @@
       }
     ]
   },
-  "catalog": {
-    "eyebrow": "Notre Accompagnement",
-    "title": "L'Équipe & Vos Services Structurés",
-    "subtitle": "Notre catalogue d'artistes principaux est complet, mais notre équipe d'experts est à votre disposition pour vous aider à structurer et propulser votre carrière d'artiste indépendant.",
+  "team": {
+    "eyebrow": "Notre Équipe",
+    "title": "Des experts à votre service.",
+    "subtitle": "Six spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
     "cta": "Solliciter un accompagnement professionnel",
-    "team": [
+    "members": [
       {
         "name": "Thomas Laurent",
         "role": "Directeur Juridique & Propriété Intellectuelle",
@@ -160,6 +160,18 @@
         "role": "Scénographe & Directrice d'Expositions",
         "service": "Accompagnement expo",
         "description": "Préparation logistique de vos vernissages, conception de catalogues de ventes d'exposition et scénographie d'espace."
+      },
+      {
+        "name": "Camille Mercier",
+        "role": "Responsable Communication & Réseaux Sociaux",
+        "service": "Kit visibilité digitale",
+        "description": "Stratégie de contenu Instagram et LinkedIn adaptée aux artistes, création de visuels éditoriaux et planning éditorial mensuel."
+      },
+      {
+        "name": "Julien Favre",
+        "role": "Expert Financement & Mécénat Artistique",
+        "service": "Kit financement de projets",
+        "description": "Identification de financements publics et privés, montage de dossiers de subvention et mise en relation avec des mécènes culturels."
       }
     ]
   },
@@ -227,7 +239,7 @@
       "problem": "Le Défi de l'Artiste",
       "solution": "La Solution Artitude",
       "index": "L'Index des Ateliers",
-      "catalog": "Offres d'Accompagnement",
+      "team": "Notre Équipe d'Experts",
       "mainSite": "Site principal InRealArt",
       "services": "Candidatez aux Services d'Ateliers",
       "register": "Référencer un Atelier",

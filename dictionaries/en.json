@@ -4,7 +4,7 @@
     "problem": "The Challenge",
     "solution": "The Solution",
     "index": "The Index",
-    "catalog": "Accompaniment Services",
+    "team": "Our Team",
     "faq": "FAQ",
     "cta": "Sign Up"
   },
@@ -131,12 +131,12 @@
       }
     ]
   },
-  "catalog": {
-    "eyebrow": "Our Support",
-    "title": "The Team & Your Structured Services",
-    "subtitle": "Our main artist catalog is full, but our expert team is available to help you structure and propel your independent artist career.",
+  "team": {
+    "eyebrow": "Our Team",
+    "title": "Experts at your service.",
+    "subtitle": "Six specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
     "cta": "Request professional support",
-    "team": [
+    "members": [
       {
         "name": "Thomas Laurent",
         "role": "Legal Director & Intellectual Property",
@@ -160,6 +160,18 @@
         "role": "Scenographer & Exhibition Director",
         "service": "Exhibition support",
         "description": "Logistical preparation of your openings, exhibition sale catalog design and space scenography."
+      },
+      {
+        "name": "Camille Mercier",
+        "role": "Communications & Social Media Manager",
+        "service": "Digital visibility kit",
+        "description": "Instagram and LinkedIn content strategy tailored for artists, editorial visual creation and monthly content planning."
+      },
+      {
+        "name": "Julien Favre",
+        "role": "Funding & Arts Patronage Expert",
+        "service": "Project funding kit",
+        "description": "Identification of public and private funding sources, grant application support and introduction to cultural patrons."
       }
     ]
   },
@@ -227,7 +239,7 @@
       "problem": "The Artist's Challenge",
       "solution": "The Artitude Solution",
       "index": "The Studio Index",
-      "catalog": "Accompaniment Offers",
+      "team": "Our Expert Team",
       "mainSite": "InRealArt main website",
       "services": "Apply for Studio Services",
       "register": "List a Studio",

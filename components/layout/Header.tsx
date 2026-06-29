@@ -21,7 +21,7 @@ export default function Header({ dict, lang }: { dict: Dictionary; lang: string 
     { href: '#problem', label: d.problem },
     { href: '#solution', label: d.solution },
     { href: '#index', label: d.index },
-    { href: '#catalog', label: d.catalog },
+    { href: '#team', label: d.team },
     { href: '#faq', label: d.faq },
   ]
 
