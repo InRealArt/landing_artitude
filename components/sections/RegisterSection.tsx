@@ -29,9 +29,15 @@ export default function RegisterSection() {
   }
 
   return (
-    <section id="register" className="relative py-20 lg:py-28 bg-canvas border-b border-borderLight">
+    <section id="register" className="relative py-20 lg:py-28 bg-background border-b border-white/10 text-white">
       <div className="max-w-3xl mx-auto px-6">
-        <div ref={sectionRef} className="bg-[#FCFAF6] border border-borderLight p-8 sm:p-12 shadow-sm space-y-8 relative">
+        <div className="text-center mb-10 space-y-2">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-gold font-display block">
+            Inscription gratuite
+          </span>
+          <p className="text-white/50 text-xs font-light font-sans">Rejoignez les 420 ateliers déjà référencés</p>
+        </div>
+        <div ref={sectionRef} className="bg-canvas border border-borderLight p-8 sm:p-12 shadow-2xl space-y-8 relative text-inkBlack">
 
           {/* Header */}
           <div className="text-center space-y-3">

@@ -29,30 +29,30 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[calc(100vh-120px)] flex items-center justify-center py-16 lg:py-28 overflow-hidden border-b border-white/10 bg-background">
+    <section className="relative min-h-[calc(100vh-120px)] flex items-center justify-center py-16 lg:py-28 overflow-hidden border-b border-borderLight bg-canvas text-inkBlack">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* Left: Content */}
           <div ref={contentRef} className="lg:col-span-7 space-y-8 text-left">
-            <div className="hero-animate inline-flex items-center gap-2 border border-white/10 px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-grayText font-display">
+            <div className="hero-animate inline-flex items-center gap-2 border border-borderLight px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-grayText font-display">
               <span className="h-1.5 w-1.5 bg-gold" />
               Initiative de soutien aux Ateliers 2026
             </div>
 
-            <h1 className="hero-animate font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] text-white">
+            <h1 className="hero-animate font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] text-inkBlack">
               Votre talent mérite <br />
               <span className="italic text-gold">d&apos;être trouvé.</span>
             </h1>
 
             <p className="hero-animate text-base sm:text-lg text-grayText font-light leading-relaxed max-w-xl font-sans">
               Notre catalogue d&apos;artistes principaux est actuellement clos. C&apos;est pourquoi nous offrons{' '}
-              <strong className="text-white font-semibold">Artitude</strong> : un outil gratuit pour
+              <strong className="text-inkBlack font-semibold">Artitude</strong> : un outil gratuit pour
               référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.
             </p>
 
             {/* Reassurance band */}
-            <div className="hero-animate py-4 border-y border-white/10 max-w-xl grid grid-cols-3 gap-4 text-center sm:text-left">
+            <div className="hero-animate py-4 border-y border-borderLight max-w-xl grid grid-cols-3 gap-4 text-center sm:text-left">
               {[
                 '100% Gratuit',
                 'Sans Engagement',
@@ -60,7 +60,7 @@ export default function HeroSection() {
               ].map((label, i) => (
                 <div
                   key={label}
-                  className={`flex flex-col sm:flex-row items-center gap-2 ${i === 1 ? 'border-x border-white/10 px-4' : ''}`}
+                  className={`flex flex-col sm:flex-row items-center gap-2 ${i === 1 ? 'border-x border-borderLight px-4' : ''}`}
                 >
                   <span className="text-gold text-base">✦</span>
                   <span className="text-[9px] uppercase tracking-[0.2em] text-grayText font-display">{label}</span>
@@ -79,26 +79,26 @@ export default function HeroSection() {
                 </svg>
               </Link>
               <p className="text-[11px] text-grayText tracking-[0.1em] pl-1 font-light font-sans">
-                Déjà plus de <span className="text-white font-semibold">420 ateliers</span> référencés.
+                Déjà plus de <span className="text-inkBlack font-semibold">420 ateliers</span> référencés.
               </p>
             </div>
           </div>
 
           {/* Right: Google Mock Widget */}
           <div ref={widgetRef} className="lg:col-span-5 relative w-full flex items-center justify-center">
-            <div className="relative w-full max-w-md aspect-[4/5] bg-[#1a1a1a] border border-white/10 overflow-hidden shadow-2xl">
+            <div className="relative w-full max-w-md aspect-[4/5] bg-softGray border border-borderLight overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600&auto=format&fit=crop"
                 alt="Atelier d'artiste"
                 fill
-                className="object-cover grayscale brightness-75"
+                className="object-cover grayscale brightness-90"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-canvas/95 via-transparent to-transparent" />
 
               {/* Widget Google */}
               <div className="absolute bottom-6 left-5 right-5 bg-canvas text-inkBlack rounded-none p-5 shadow-2xl border border-borderLight">
-                <div className="absolute -top-3 right-4 bg-background text-gold font-semibold text-[8px] uppercase tracking-[0.25em] px-2.5 py-1 flex items-center gap-1.5 border border-white/10">
+                <div className="absolute -top-3 right-4 bg-inkBlack text-gold font-semibold text-[8px] uppercase tracking-[0.25em] px-2.5 py-1 flex items-center gap-1.5 border border-inkBlack">
                   <span className="h-1.5 w-1.5 bg-gold animate-ping" />
                   OPTIMISÉ ARTITUDE
                 </div>

@@ -45,7 +45,7 @@ export default function CatalogSection() {
   useGsapReveal(gridRef as React.RefObject<HTMLElement>, { stagger: 0.12, delay: 0.15 })
 
   return (
-    <section id="catalog" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas">
+    <section id="catalog" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas text-inkBlack">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={headerRef} className="mb-20">
           <SectionHeader

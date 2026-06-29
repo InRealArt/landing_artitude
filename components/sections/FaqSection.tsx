@@ -36,7 +36,7 @@ export default function FaqSection() {
   useGsapReveal(faqsRef as React.RefObject<HTMLElement>, { stagger: 0.1, delay: 0.1 })
 
   return (
-    <section id="faq" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas">
+    <section id="faq" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas text-inkBlack">
       <div className="max-w-4xl mx-auto px-6">
         <div ref={headerRef} className="mb-20">
           <SectionHeader

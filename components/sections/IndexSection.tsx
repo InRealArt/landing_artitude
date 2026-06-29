@@ -74,7 +74,7 @@ export default function IndexSection() {
   const data = ateliers[active]
 
   return (
-    <section id="index" className="relative py-20 lg:py-28 bg-canvas border-b border-borderLight">
+    <section id="index" className="relative py-20 lg:py-28 bg-[#0f0f0f] border-b border-white/10 text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
@@ -90,13 +90,13 @@ export default function IndexSection() {
               — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs du site InRealArt.
             </p>
 
-            <div className="p-6 bg-softGray border border-borderLight flex items-center gap-5">
-              <div className="h-10 w-10 border border-borderLight flex items-center justify-center text-gold font-mono font-semibold">
+            <div className="p-6 bg-card border border-white/10 flex items-center gap-5">
+              <div className="h-10 w-10 border border-white/10 flex items-center justify-center text-gold font-mono font-semibold">
                 ✦
               </div>
               <div>
-                <div className="text-2xl font-serif font-light text-inkBlack tracking-tight">+ de 45 000</div>
-                <div className="text-[10px] uppercase tracking-wider text-grayText font-light font-display">
+                <div className="text-2xl font-serif font-light text-white tracking-tight">+ de 45 000</div>
+                <div className="text-[10px] uppercase tracking-wider text-white/50 font-light font-display">
                   Visiteurs uniques par mois sur le site InRealArt
                 </div>
               </div>
@@ -105,31 +105,31 @@ export default function IndexSection() {
 
           {/* Right: Map */}
           <div className="lg:col-span-7">
-            <div className="bg-canvas border border-borderLight overflow-hidden shadow-sm">
-              <div className="bg-softGray px-6 py-4 border-b border-borderLight flex items-center justify-between">
+            <div className="bg-card border border-white/10 overflow-hidden shadow-2xl">
+              <div className="bg-[#1a1a1a] px-6 py-4 border-b border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <span className="flex h-2 w-2 bg-gold animate-pulse" />
-                  <span className="text-[10px] uppercase tracking-widest text-grayText font-semibold font-display">
+                  <span className="text-[10px] uppercase tracking-widest text-white/50 font-semibold font-display">
                     Index Interactif (Démonstration)
                   </span>
                 </div>
-                <div className="text-[9px] uppercase tracking-wider text-grayText font-display">
+                <div className="text-[9px] uppercase tracking-wider text-white/30 font-display">
                   Cliquez pour explorer
                 </div>
               </div>
 
-              <div className="relative bg-softGray h-96 p-6 overflow-hidden">
+              <div className="relative bg-[#1a1a1a] h-96 p-6 overflow-hidden">
                 {/* Grid dots */}
                 <div
-                  className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                  className="absolute inset-0 opacity-[0.08] pointer-events-none"
                   style={{
-                    backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
+                    backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
                     backgroundSize: '24px 24px',
                   }}
                 />
 
                 {/* SVG lines */}
-                <svg className="absolute inset-0 w-full h-full text-inkBlack/10 pointer-events-none" fill="none" viewBox="0 0 600 400">
+                <svg className="absolute inset-0 w-full h-full text-white/10 pointer-events-none" fill="none" viewBox="0 0 600 400">
                   <path d="M50,150 Q120,50 300,100 T550,250" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M100,350 Q220,180 400,280 T500,50" stroke="currentColor" strokeWidth="1" />
                   <circle cx="200" cy="180" r="100" stroke="currentColor" strokeWidth="1" strokeDasharray="3" />
@@ -155,7 +155,7 @@ export default function IndexSection() {
                 {/* Preview Card */}
                 <div
                   ref={cardRef}
-                  className="absolute bottom-4 left-4 right-4 bg-canvas border border-borderLight p-4 shadow-xl"
+                  className="absolute bottom-4 left-4 right-4 bg-canvas border border-borderLight p-4 shadow-2xl"
                 >
                   <div className="flex gap-4 items-center">
                     <div className="relative w-16 h-16 flex-shrink-0 border border-borderLight overflow-hidden">

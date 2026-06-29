@@ -21,10 +21,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 border border-white/20 flex items-center justify-center bg-white/5">
-                <span className="text-white font-serif font-light text-sm">I</span>
-              </div>
+            <div className="flex items-center gap-2">
               <span className="font-serif text-base tracking-[0.3em] font-light uppercase">InRealArt</span>
             </div>
             <p className="text-[11px] text-grayText leading-relaxed font-light font-sans">

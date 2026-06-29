@@ -30,7 +30,7 @@ export default function ProblemSection() {
   useGsapReveal(cardsRef as React.RefObject<HTMLElement>, { stagger: 0.15, delay: 0.2 })
 
   return (
-    <section id="problem" className="relative py-20 lg:py-28 bg-canvas border-b border-borderLight">
+    <section id="problem" className="relative py-20 lg:py-28 bg-background border-b border-white/10 text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={sectionRef} className="mb-20">
           <SectionHeader
@@ -44,20 +44,20 @@ export default function ProblemSection() {
           {problems.map((p) => (
             <div
               key={p.title}
-              className="advantage-box bg-softGray p-8 flex flex-col items-center text-center space-y-5 border border-borderLight hover:border-gold transition-all duration-300"
+              className="advantage-box bg-card p-8 flex flex-col items-center text-center space-y-5 border border-white/10 hover:border-gold transition-all duration-300"
             >
-              <div className="h-12 w-12 border border-borderLight flex items-center justify-center text-inkBlack text-xl">
+              <div className="h-12 w-12 border border-white/10 flex items-center justify-center text-white text-xl">
                 {p.icon}
               </div>
-              <h3 className="font-serif text-lg text-inkBlack font-medium">{p.title}</h3>
-              <p className="text-xs text-grayText leading-relaxed font-light font-sans">{p.desc}</p>
+              <h3 className="font-serif text-lg text-white font-medium">{p.title}</h3>
+              <p className="text-xs text-white/60 leading-relaxed font-light font-sans">{p.desc}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-16 text-center max-w-2xl mx-auto">
-          <div className="py-6 border-y border-borderLight bg-canvas">
-            <p className="font-serif text-lg italic text-inkBlack">
+          <div className="py-6 border-y border-white/10">
+            <p className="font-serif text-lg italic text-white/90">
               &ldquo;Ce n&apos;est pas un manque de talent. C&apos;est un manque d&apos;outil.&rdquo;
             </p>
           </div>

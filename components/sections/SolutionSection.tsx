@@ -36,7 +36,7 @@ export default function SolutionSection() {
   useGsapReveal(stepsRef as React.RefObject<HTMLElement>, { stagger: 0.15, delay: 0.2 })
 
   return (
-    <section id="solution" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas">
+    <section id="solution" className="relative py-20 lg:py-28 border-b border-borderLight bg-canvas text-inkBlack">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={sectionRef} className="mb-20">
           <SectionHeader
