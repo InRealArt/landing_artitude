@@ -134,44 +134,50 @@
   "team": {
     "eyebrow": "Notre Équipe",
     "title": "Des experts à votre service.",
-    "subtitle": "Six spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
+    "subtitle": "Sept spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
     "cta": "Solliciter un accompagnement professionnel",
     "members": [
       {
         "name": "Timothée",
-        "role": "Directeur Juridique & Propriété Intellectuelle",
-        "service": "Kit juridique pour structurer sa carrière",
-        "description": "Statuts d'artiste, contrats types de galerie, gestion du droit de suite et de la propriété intellectuelle."
+        "role": "AGENT D'ARTISTES & STRATÉGIE GLOBAL",
+        "service": "Pilotage de carrière 360°",
+        "description": "Management au quotidien, coordination des experts de l'équipe et stratégie globale de développement pour pérenniser votre activité artistique."
       },
       {
         "name": "Maxime",
-        "role": "Consultante en Stratégie de Carrière d'Artistes",
-        "service": "Kit Audit et structuration de carrière",
-        "description": "Analyse globale de votre positionnement, audit de pricing d'ateliers et plan d'actions stratégiques."
+        "role": "STRATÈGE MARKETING & GROWTH",
+        "service": "Accélération d'audience et de visibilité",
+        "description": "Déploiement de stratégies de croissance numérique, optimisation de vos leviers de conversion et acquisition de nouveaux publics qualifiés pour vos œuvres."
+      },
+      {
+        "name": "Anna",
+        "role": "AGENT & ACCOMPAGNEMENT ÉVÉNEMENTIEL",
+        "service": "Production, programmation et événementiel",
+        "description": "Direction artistique de vos projets, logistique de vos événements et mise en avant de votre travail auprès des acteurs clés du milieu."
+      },
+      {
+        "name": "Clara",
+        "role": "AGENT & ACCOMPAGNEMENT JURIDIQUE",
+        "service": "Sécurisation légale, agence et gestion de projets",
+        "description": "Gestion de vos projets sur tous les fronts : sécurisation de vos contrats, suivi de votre développement artistique et coordination de vos temps forts."
       },
       {
         "name": "Gilles",
-        "role": "Mentor Artistique & Curateur Principal",
-        "service": "Accompagnement personnalisé",
-        "description": "Suivi individuel récurrent pour développer votre signature, votre catalogue et optimiser vos relations collectionneurs."
+        "role": "DÉVELOPPEUR WEB",
+        "service": "Vitrine web haute performance et optimisation SEO",
+        "description": "Conception et optimisation technique de votre site internet ou portfolio en ligne pour garantir une plateforme robuste, rapide et parfaitement référencée."
       },
       {
         "name": "Allegra",
-        "role": "Scénographe & Directrice d'Expositions",
-        "service": "Accompagnement expo",
-        "description": "Préparation logistique de vos vernissages, conception de catalogues de ventes d'exposition et scénographie d'espace."
+        "role": "AGENT & ACCOMPAGNEMENT MÉDIA",
+        "service": "Relations médias et direction de création",
+        "description": "Développement de vos relations presse, élaboration de vos éléments de langage et conseil stratégique sur l'alignement visuel de votre image de marque."
       },
       {
         "name": "Lauranne",
-        "role": "Responsable Communication & Réseaux Sociaux",
-        "service": "Kit visibilité digitale",
-        "description": "Stratégie de contenu Instagram et LinkedIn adaptée aux artistes, création de visuels éditoriaux et planning éditorial mensuel."
-      },
-      {
-        "name": "Julien",
-        "role": "Expert Financement & Mécénat Artistique",
-        "service": "Kit financement de projets",
-        "description": "Identification de financements publics et privés, montage de dossiers de subvention et mise en relation avec des mécènes culturels."
+        "role": "EXPERT COMMUNICATION, COACHING & MARKETING",
+        "service": "Stratégie de communication et kits marketing",
+        "description": "Relations médias spécialisés, préparation à vos prises de parole publiques, direction artistique de vos supports et création de vos outils de communication dédiés."
       }
     ]
   },
@@ -204,6 +210,8 @@
     "successTitle": "Demande d'inscription reçue.",
     "successDesc": "Merci d'avoir activé votre profil. Un membre de l'équipe d'InRealArt va procéder à l'évaluation et la configuration de votre atelier sous 48 heures.",
     "successReset": "Inscrire un autre atelier",
+    "successDownload": "Télécharger ma fiche Google (Excel)",
+    "successInstructions": "Importez ce fichier dans Google Business Profile : business.google.com → Établissements → Importer des établissements. Vos photos sont déjà hébergées et référencées dans le fichier.",
     "stepLabels": ["Informations", "Localisation & Horaires", "Photos"],
     "fieldPhone": "Téléphone *",
     "fieldPhonePlaceholder": "+33 6 00 00 00 00",

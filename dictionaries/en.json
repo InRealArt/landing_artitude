@@ -134,44 +134,50 @@
   "team": {
     "eyebrow": "Our Team",
     "title": "Experts at your service.",
-    "subtitle": "Six specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
+    "subtitle": "Seven specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
     "cta": "Request professional support",
     "members": [
       {
         "name": "Timothée",
-        "role": "Legal Director & Intellectual Property",
-        "service": "Legal kit to structure your career",
-        "description": "Artist status, standard gallery contracts, resale rights management and intellectual property."
+        "role": "ARTIST AGENT & GLOBAL STRATEGY",
+        "service": "360° career management",
+        "description": "Day-to-day management, coordination of the team's experts and global development strategy to sustain your artistic activity."
       },
       {
         "name": "Maxime",
-        "role": "Artist Career Strategy Consultant",
-        "service": "Audit & career structuring kit",
-        "description": "Global positioning analysis, studio pricing audit and strategic action plan."
+        "role": "MARKETING STRATEGIST & GROWTH",
+        "service": "Audience and visibility acceleration",
+        "description": "Deployment of digital growth strategies, optimisation of your conversion levers and acquisition of new qualified audiences for your works."
+      },
+      {
+        "name": "Anna",
+        "role": "AGENT & EVENT SUPPORT",
+        "service": "Production, programming and events",
+        "description": "Artistic direction of your projects, logistics of your events and promotion of your work to key players in the field."
+      },
+      {
+        "name": "Clara",
+        "role": "AGENT & LEGAL SUPPORT",
+        "service": "Legal security, agency and project management",
+        "description": "Managing your projects on all fronts: securing your contracts, monitoring your artistic development and coordinating your key milestones."
       },
       {
         "name": "Gilles",
-        "role": "Artistic Mentor & Lead Curator",
-        "service": "Personalised mentoring",
-        "description": "Recurring individual support to develop your signature, your catalog and optimise your collector relationships."
+        "role": "WEB DEVELOPER",
+        "service": "High-performance web showcase and SEO",
+        "description": "Technical design and optimisation of your website or online portfolio to guarantee a robust, fast and perfectly referenced platform."
       },
       {
         "name": "Allegra",
-        "role": "Scenographer & Exhibition Director",
-        "service": "Exhibition support",
-        "description": "Logistical preparation of your openings, exhibition sale catalog design and space scenography."
+        "role": "AGENT & MEDIA SUPPORT",
+        "service": "Media relations and creative direction",
+        "description": "Development of your press relations, crafting your key messages and strategic advice on the visual alignment of your brand image."
       },
       {
         "name": "Lauranne",
-        "role": "Communications & Social Media Manager",
-        "service": "Digital visibility kit",
-        "description": "Instagram and LinkedIn content strategy tailored for artists, editorial visual creation and monthly content planning."
-      },
-      {
-        "name": "Julien",
-        "role": "Funding & Arts Patronage Expert",
-        "service": "Project funding kit",
-        "description": "Identification of public and private funding sources, grant application support and introduction to cultural patrons."
+        "role": "COMMUNICATIONS, COACHING & MARKETING EXPERT",
+        "service": "Communication strategy and marketing kits",
+        "description": "Specialist media relations, public speaking preparation, artistic direction of your materials and creation of dedicated communication tools."
       }
     ]
   },
@@ -204,6 +210,8 @@
     "successTitle": "Registration request received.",
     "successDesc": "Thank you for activating your profile. A member of the InRealArt team will evaluate and configure your studio within 48 hours.",
     "successReset": "Register another studio",
+    "successDownload": "Download my Google listing (Excel)",
+    "successInstructions": "Import this file in Google Business Profile: business.google.com → Businesses → Import businesses. Your photos are already hosted and referenced in the file.",
     "stepLabels": ["Information", "Location & Hours", "Photos"],
     "fieldPhone": "Phone *",
     "fieldPhonePlaceholder": "+1 555 000 0000",
