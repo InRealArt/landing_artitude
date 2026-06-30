@@ -23,7 +23,7 @@ export async function addContactToBrevo(email: string, language: string): Promis
       listIds: [listId],
       attributes: {
         LANGUAGE: language.toUpperCase(),
-        SOURCE: 'artitude-newsletter',
+        SOURCE: 'Website Newsletter Popup',
       },
     }),
   })

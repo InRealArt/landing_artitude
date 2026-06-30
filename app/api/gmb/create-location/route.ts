@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
     const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
 
     const brevoPayload = {
-      sender: { name: 'Artitude', email: 'noreply@inrealart.com' },
+      sender: { name: 'Artitude', email: 'teaminrealart@7786982.brevosend.com' },
       to: [{ email: RECIPIENT_EMAIL, name: 'Team InRealArt' }],
       subject: emailSubject,
       htmlContent: `<p>Bonjour,</p>
