@@ -79,10 +79,29 @@ export async function POST(req: NextRequest) {
       { file: photoOwner, label: 'Propriétaire' },
     ]
 
+    const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp'])
+
     for (const { file, label } of photos) {
       if (file.size > MAX_PHOTO_SIZE) {
         return NextResponse.json(
           { error: `Photo "${label}" dépasse 1 Mo (${(file.size / 1024 / 1024).toFixed(1)} Mo)` },
+          { status: 400 }
+        )
+      }
+      // Validate magic bytes (first 4 bytes) — file.type is browser-controlled and spoofable
+      const header = Buffer.from(await file.slice(0, 4).arrayBuffer())
+      const isJpeg = header[0] === 0xff && header[1] === 0xd8
+      const isPng  = header[0] === 0x89 && header[1] === 0x50 && header[2] === 0x4e && header[3] === 0x47
+      const isWebp = header.toString('ascii', 0, 4) === 'RIFF'
+      if (!isJpeg && !isPng && !isWebp) {
+        return NextResponse.json(
+          { error: `Photo "${label}" : seuls JPEG, PNG et WebP sont acceptés` },
+          { status: 400 }
+        )
+      }
+      if (!ALLOWED_MIME.has(file.type)) {
+        return NextResponse.json(
+          { error: `Photo "${label}" : type de fichier non autorisé` },
           { status: 400 }
         )
       }
@@ -144,7 +163,7 @@ export async function POST(req: NextRequest) {
     const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
 
     const brevoPayload = {
-      sender: { name: 'Artitude', email: 'teaminrealart@7786982.brevosend.com' },
+      sender: { name: 'Artitude', email: 'teaminrealart@gmail.com' },
       to: [{ email: RECIPIENT_EMAIL, name: 'Team InRealArt' }],
       subject: emailSubject,
       htmlContent: `<p>Bonjour,</p>

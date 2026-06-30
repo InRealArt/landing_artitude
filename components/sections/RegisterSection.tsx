@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useGsapReveal } from '@/hooks/useGsapReveal'
 import type { Dictionary } from '@/lib/dictionaries'
 import HoursGrid, { defaultHours, DayHours } from '@/components/ui/HoursGrid'
@@ -110,17 +111,60 @@ function ProgressModal({
   onClose?: () => void
   dict: Dictionary['register']
 }) {
+  const [mounted, setMounted] = useState(false)
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => { setMounted(true) }, [])
+
+  // Focus the dialog on open
+  useEffect(() => {
+    if (mounted) dialogRef.current?.focus()
+  }, [mounted])
+
+  // Escape key closes the modal (only when closeable)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && onClose) onClose()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
+  // Focus trap: keep Tab/Shift+Tab within the dialog
+  useEffect(() => {
+    const el = dialogRef.current
+    if (!el) return
+    const focusable = el.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+      if (focusable.length === 0) { e.preventDefault(); return }
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last?.focus() }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first?.focus() }
+      }
+    }
+    el.addEventListener('keydown', trap)
+    return () => el.removeEventListener('keydown', trap)
+  }, [mounted])
+
   const allDone = steps.every((s) => s.status === 'done')
   const hasError = steps.some((s) => s.status === 'error')
 
-  return (
+  const content = (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={dict.progressTitle}
-      className="fixed inset-0 z-[200] bg-canvas/97 flex flex-col items-center justify-center p-8 text-center"
+      tabIndex={-1}
+      className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-8 outline-none"
     >
-      <div className="w-full max-w-sm space-y-8">
+      <div className="bg-canvas w-full max-w-sm p-10 shadow-2xl space-y-8 text-center">
         <div className="space-y-1">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-display">
             {allDone ? dict.progressDoneEyebrow : dict.progressEyebrow}
@@ -180,6 +224,9 @@ function ProgressModal({
       </div>
     </div>
   )
+
+  if (!mounted) return null
+  return createPortal(content, document.body)
 }
 
 export default function RegisterSection({ dict }: { dict: Dictionary }) {
@@ -189,7 +236,10 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const [step, setStep] = useState(1)
   const [success, setSuccess] = useState(false)
+  const [clientMounted, setClientMounted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+
+  useEffect(() => { setClientMounted(true) }, [])
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
 
@@ -393,6 +443,10 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
         const body = await res.json().catch(() => ({ error: d.errorGeneric }))
         const msg = (body as { error?: string }).error ?? d.errorGeneric
         setProgressSteps((prev) => {
+          if (timerFired) {
+            const s1 = updateStep(prev, 'email', 'error')
+            return updateStep(s1, 'excel', 'error')
+          }
           const current = prev.find((s) => s.status === 'running')
           if (!current) return prev
           return updateStep(prev, current.id, 'error')
@@ -408,6 +462,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       })
 
       await new Promise((r) => setTimeout(r, 600))
+      setShowProgress(false)
       setSuccess(true)
     } catch {
       setProgressSteps((prev) => {
@@ -436,10 +491,13 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const handleProgressClose = () => {
     const hasError = progressSteps.some((s) => s.status === 'error')
+    const allDone = progressSteps.every((s) => s.status === 'done')
     if (hasError) {
       setShowProgress(false)
       setProgressSteps([])
       setProgressError(null)
+    } else if (allDone) {
+      setShowProgress(false)
     }
   }
 
@@ -657,15 +715,18 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
           )}
 
           {/* Success overlay */}
-          {success && (
-            <div className="absolute inset-0 bg-canvas/95 flex flex-col items-center justify-center p-8 text-center space-y-6">
-              <div className="h-14 w-14 border border-inkBlack flex items-center justify-center text-inkBlack text-2xl">✓</div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-2xl text-inkBlack">{d.successTitle}</h3>
-                <p className="text-xs text-grayText max-w-md mx-auto font-sans">{d.successDesc}</p>
+          {success && clientMounted && createPortal(
+            <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
+              <div className="bg-canvas w-full max-w-sm p-10 shadow-2xl flex flex-col items-center text-center space-y-6">
+                <div className="h-14 w-14 border border-inkBlack flex items-center justify-center text-inkBlack text-2xl">✓</div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl text-inkBlack">{d.successTitle}</h3>
+                  <p className="text-xs text-grayText max-w-md mx-auto font-sans">{d.successDesc}</p>
+                </div>
+                <button onClick={handleReset} className="btn-mag">{d.successReset}</button>
               </div>
-              <button onClick={handleReset} className="btn-mag">{d.successReset}</button>
-            </div>
+            </div>,
+            document.body
           )}
         </div>
       </div>
