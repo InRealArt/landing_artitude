@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateGmbExcel, GmbExcelData } from '@/lib/gmb-excel'
+import { uploadToR2 } from '@/lib/r2-client'
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 const RECIPIENT_EMAIL = 'teaminrealart@gmail.com'
@@ -26,6 +27,23 @@ function toSlug(name: string): string {
 async function fileToBase64(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer()
   return Buffer.from(arrayBuffer).toString('base64')
+}
+
+async function geocode(addressLine: string, postalCode: string, locality: string, regionCode: string): Promise<{ lat: number; lng: number } | null> {
+  const q = encodeURIComponent(`${addressLine}, ${postalCode} ${locality}, ${regionCode}`)
+  const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1`
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'Artitude/1.0 (teaminrealart@gmail.com)' },
+      signal: AbortSignal.timeout(5000),
+    })
+    if (!res.ok) return null
+    const data = await res.json() as Array<{ lat: string; lon: string }>
+    if (!data.length) return null
+    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) }
+  } catch {
+    return null
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -124,7 +142,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
     }
 
-    // Generate Excel
+    // Upload photos to R2 and geocode in parallel
+    const getExt = (file: File) => ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[file.type] ?? 'jpg')
+
+    const toBuffer = async (file: File) => Buffer.from(await file.arrayBuffer())
+
+    const [
+      interiorBuf, exterior1Buf, exterior2Buf, ownerBuf,
+      coords,
+    ] = await Promise.all([
+      toBuffer(photoInterior),
+      toBuffer(photoExterior1),
+      toBuffer(photoExterior2),
+      toBuffer(photoOwner),
+      geocode(addressLine, postalCode, locality, regionCode),
+    ])
+
+    const [photoInteriorUrl, photoExterior1Url, photoExterior2Url, photoOwnerUrl] = await Promise.all([
+      uploadToR2({ key: `gmb/${storeCode}/interior.${getExt(photoInterior)}`, body: interiorBuf, contentType: photoInterior.type }),
+      uploadToR2({ key: `gmb/${storeCode}/exterior-1.${getExt(photoExterior1)}`, body: exterior1Buf, contentType: photoExterior1.type }),
+      uploadToR2({ key: `gmb/${storeCode}/exterior-2.${getExt(photoExterior2)}`, body: exterior2Buf, contentType: photoExterior2.type }),
+      uploadToR2({ key: `gmb/${storeCode}/owner.${getExt(photoOwner)}`, body: ownerBuf, contentType: photoOwner.type }),
+    ])
+
+    // Generate Excel with real photo URLs, lat/lng and correct hours
     const excelData: GmbExcelData = {
       storeCode,
       businessName: title,
@@ -135,30 +176,24 @@ export async function POST(req: NextRequest) {
       phone,
       websiteUri: websiteUri || undefined,
       hours,
-      photoLogoUrl: '',
-      photoCoverUrl: '',
-      photoOtherUrls: '',
+      latitude: coords?.lat,
+      longitude: coords?.lng,
+      photoCoverUrl: photoExterior1Url,
+      photoOtherUrls: [photoInteriorUrl, photoExterior2Url, photoOwnerUrl].join(','),
     }
 
     const excelBuffer = await generateGmbExcel(excelData)
     const excelBase64 = excelBuffer.toString('base64')
 
-    // Convert photos to base64
-    const [interiorB64, exterior1B64, exterior2B64, ownerB64] = await Promise.all([
-      fileToBase64(photoInterior),
-      fileToBase64(photoExterior1),
-      fileToBase64(photoExterior2),
-      fileToBase64(photoOwner),
-    ])
+    // Convert photos to base64 for email attachments
+    const [interiorB64, exterior1B64, exterior2B64, ownerB64] = [
+      interiorBuf.toString('base64'),
+      exterior1Buf.toString('base64'),
+      exterior2Buf.toString('base64'),
+      ownerBuf.toString('base64'),
+    ]
 
-    const getExt = (file: File) => {
-      const mime: Record<string, string> = {
-        'image/jpeg': 'jpg',
-        'image/png': 'png',
-        'image/webp': 'webp',
-      }
-      return mime[file.type] ?? 'jpg'
-    }
+
 
     const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
 

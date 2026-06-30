@@ -164,7 +164,19 @@ function ProgressModal({
       tabIndex={-1}
       className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-8 outline-none"
     >
-      <div className="bg-canvas w-full max-w-sm p-10 shadow-2xl space-y-8 text-center">
+      <div className="relative bg-canvas w-full max-w-sm p-10 shadow-2xl space-y-8 text-center">
+        {(allDone || hasError) && onClose && (
+          <button
+            onClick={onClose}
+            aria-label="Fermer"
+            className="absolute top-4 right-4 h-7 w-7 flex items-center justify-center text-grayText hover:text-inkBlack transition-colors duration-200 group"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
+              <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
+            </svg>
+          </button>
+        )}
         <div className="space-y-1">
           <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-display">
             {allDone ? dict.progressDoneEyebrow : dict.progressEyebrow}
@@ -369,15 +381,6 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       setProgressSteps((prev) => updateStep(prev, 'validate', 'running'))
       await new Promise((r) => setTimeout(r, 400))
 
-      const openPeriods = hours
-        .filter((h) => h.open)
-        .map((h) => ({
-          openDay: h.day,
-          closeDay: h.day,
-          openTime: h.openTime,
-          closeTime: h.closeTime,
-        }))
-
       const fd = new FormData()
       fd.append('name', name)
       fd.append('title', atelierName)
@@ -389,7 +392,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       fd.append('consent', String(consent))
       if (website) fd.append('websiteUri', website)
       if (description) fd.append('description', description)
-      if (openPeriods.length > 0) fd.append('hours', JSON.stringify(openPeriods))
+      fd.append('hours', JSON.stringify(hours))
       fd.append('photoInterior', photoInterior)
       fd.append('photoExterior1', photoExterior1)
       fd.append('photoExterior2', photoExterior2)

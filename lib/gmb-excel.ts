@@ -12,7 +12,8 @@ export interface GmbExcelData {
   phone: string
   websiteUri?: string
   hours: Array<{ day: string; open: boolean; openTime: string; closeTime: string }>
-  photoLogoUrl: string
+  latitude?: number
+  longitude?: number
   photoCoverUrl: string
   photoOtherUrls: string
 }
@@ -53,6 +54,8 @@ export async function generateGmbExcel(data: GmbExcelData): Promise<Buffer> {
   row.getCell('I').value = data.locality
   row.getCell('K').value = data.regionCode
   row.getCell('L').value = data.postalCode
+  if (data.latitude != null) row.getCell('M').value = data.latitude
+  if (data.longitude != null) row.getCell('N').value = data.longitude
   row.getCell('O').value = data.phone
   if (data.websiteUri) row.getCell('Q').value = data.websiteUri
   row.getCell('R').value = 'gcid:art_studio'
@@ -61,7 +64,6 @@ export async function generateGmbExcel(data: GmbExcelData): Promise<Buffer> {
     row.getCell(DAY_TO_COL[day]).value = formatHours(day, data.hours)
   }
 
-  row.getCell('AD').value = data.photoLogoUrl
   row.getCell('AE').value = data.photoCoverUrl
   row.getCell('AF').value = data.photoOtherUrls
 
