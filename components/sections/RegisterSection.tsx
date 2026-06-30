@@ -118,7 +118,7 @@ function ProgressModal({
       role="dialog"
       aria-modal="true"
       aria-label={dict.progressTitle}
-      className="absolute inset-0 z-50 bg-canvas/97 flex flex-col items-center justify-center p-8 text-center"
+      className="fixed inset-0 z-[200] bg-canvas/97 flex flex-col items-center justify-center p-8 text-center"
     >
       <div className="w-full max-w-sm space-y-8">
         <div className="space-y-1">
