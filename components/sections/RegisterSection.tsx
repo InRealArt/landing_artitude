@@ -8,6 +8,59 @@ import PhotoUploadZone from '@/components/ui/PhotoUploadZone'
 
 const MAX_PHOTO_SIZE = 1 * 1024 * 1024 // 1 MB
 
+// ── Validators ──────────────────────────────────────────────────────────────
+
+const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+const RE_PHONE = /^[+]?(?=(?:[\s\-().]*\d){7})[\d\s\-().]{7,20}$/
+const RE_POSTAL = /^\d{4,6}$/
+const RE_ADDRESS = /\d/
+
+interface Step1Msgs {
+  validationName: string; validationEmail: string; validationPhone: string
+  validationAtelier: string; validationDiscipline: string; validationWebsite: string; validationConsent: string
+}
+
+interface Step2Msgs {
+  validationAddress: string; validationPostalCode: string; validationCity: string
+}
+
+function validateStep1(
+  values: { name: string; email: string; phone: string; atelierName: string; discipline: string; website: string; consent: boolean },
+  msgs: Step1Msgs
+): Record<string, string> {
+  const errors: Record<string, string> = {}
+  if (values.name.trim().length < 2) errors.name = msgs.validationName
+  if (!RE_EMAIL.test(values.email.trim())) errors.email = msgs.validationEmail
+  if (!RE_PHONE.test(values.phone.trim())) errors.phone = msgs.validationPhone
+  if (values.atelierName.trim().length < 2) errors.atelierName = msgs.validationAtelier
+  if (!values.discipline) errors.discipline = msgs.validationDiscipline
+  if (values.website && !isValidUrl(values.website)) errors.website = msgs.validationWebsite
+  if (!values.consent) errors.consent = msgs.validationConsent
+  return errors
+}
+
+function validateStep2(
+  values: { address: string; postalCode: string; city: string },
+  msgs: Step2Msgs
+): Record<string, string> {
+  const errors: Record<string, string> = {}
+  if (values.address.trim().length < 5 || !RE_ADDRESS.test(values.address)) errors.address = msgs.validationAddress
+  if (!RE_POSTAL.test(values.postalCode.trim())) errors.postalCode = msgs.validationPostalCode
+  if (values.city.trim().length < 1) errors.city = msgs.validationCity
+  return errors
+}
+
+function isValidUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url)
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
+// ── Types ────────────────────────────────────────────────────────────────────
+
 type ProgressStep = {
   id: string
   labelKey: string
@@ -19,6 +72,11 @@ const INITIAL_STEPS = (d: Record<string, string>): ProgressStep[] => [
   { id: 'excel', labelKey: d.progressExcel, status: 'pending' },
   { id: 'email', labelKey: d.progressEmail, status: 'pending' },
 ]
+
+function FieldError({ msg }: { msg?: string }) {
+  if (!msg) return null
+  return <p className="text-[10px] text-red-500 font-sans mt-1">{msg}</p>
+}
 
 function ProgressModal({
   steps,
@@ -112,6 +170,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const [success, setSuccess] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
 
   const [progressSteps, setProgressSteps] = useState<ProgressStep[]>([])
   const [progressError, setProgressError] = useState<string | null>(null)
@@ -143,8 +202,30 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const inputCls = 'w-full bg-white border border-borderLight focus:border-inkBlack outline-none px-4 py-3 text-xs text-inkBlack font-sans transition-colors'
   const labelCls = 'block text-[10px] uppercase tracking-wider text-inkBlack font-semibold font-display'
 
-  const handleNext = () => setStep((s) => Math.min(s + 1, 3))
-  const handlePrev = () => setStep((s) => Math.max(s - 1, 1))
+  const handleNext = () => {
+    setFieldErrors({})
+    if (step === 1) {
+      const msgs = {
+        validationName: d.validationName, validationEmail: d.validationEmail,
+        validationPhone: d.validationPhone, validationAtelier: d.validationAtelier,
+        validationDiscipline: d.validationDiscipline, validationWebsite: d.validationWebsite,
+        validationConsent: d.validationConsent,
+      }
+      const errors = validateStep1({ name, email, phone, atelierName, discipline, website, consent }, msgs)
+      if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
+    }
+    if (step === 2) {
+      const msgs = {
+        validationAddress: d.validationAddress, validationPostalCode: d.validationPostalCode,
+        validationCity: d.validationCity,
+      }
+      const errors = validateStep2({ address, postalCode, city }, msgs)
+      if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
+    }
+    setStep((s) => Math.min(s + 1, 3))
+  }
+
+  const handlePrev = () => { setFieldErrors({}); setStep((s) => Math.max(s - 1, 1)) }
 
   const updateStep = (
     steps: ProgressStep[],
@@ -156,6 +237,30 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMsg(null)
+
+    // Re-validate step 1 & 2 defensively — covers any direct state manipulation
+    const step1Msgs = {
+      validationName: d.validationName, validationEmail: d.validationEmail,
+      validationPhone: d.validationPhone, validationAtelier: d.validationAtelier,
+      validationDiscipline: d.validationDiscipline, validationWebsite: d.validationWebsite,
+      validationConsent: d.validationConsent,
+    }
+    const step1Errors = validateStep1({ name, email, phone, atelierName, discipline, website, consent }, step1Msgs)
+    if (Object.keys(step1Errors).length > 0) {
+      setFieldErrors(step1Errors)
+      setStep(1)
+      return
+    }
+    const step2Msgs = {
+      validationAddress: d.validationAddress, validationPostalCode: d.validationPostalCode,
+      validationCity: d.validationCity,
+    }
+    const step2Errors = validateStep2({ address, postalCode, city }, step2Msgs)
+    if (Object.keys(step2Errors).length > 0) {
+      setFieldErrors(step2Errors)
+      setStep(2)
+      return
+    }
 
     if (!photoInterior || !photoExterior1 || !photoExterior2 || !photoOwner) {
       setErrorMsg(d.errorPhotos)
@@ -224,12 +329,13 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       // Step 2 — Excel generation (server-side, signaled via timing)
       setProgressSteps((prev) => updateStep(prev, 'excel', 'running'))
 
-      // Step 3 — Email sending
       // Both Excel generation and email sending happen in one API call.
-      // We transition to 'email' after a brief delay to show the Excel step.
-      let emailStartTimer: ReturnType<typeof setTimeout> | undefined
-
-      emailStartTimer = setTimeout(() => {
+      // The timer animates the Excel→Email transition in the progress modal.
+      // timerFired tracks whether the timer ran before fetch settled,
+      // so the error handler can reset both steps accurately.
+      let timerFired = false
+      const emailStartTimer = setTimeout(() => {
+        timerFired = true
         setProgressSteps((prev) => {
           const updated = updateStep(prev, 'excel', 'done')
           return updateStep(updated, 'email', 'running')
@@ -245,6 +351,12 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       } catch {
         clearTimeout(emailStartTimer)
         setProgressSteps((prev) => {
+          // If timer already fired, both excel(done) and email(running) are set —
+          // reset to the real failing step (excel was never truly done)
+          if (timerFired) {
+            const s1 = updateStep(prev, 'email', 'error')
+            return updateStep(s1, 'excel', 'error')
+          }
           const current = prev.find((s) => s.status === 'running')
           if (!current) return prev
           return updateStep(prev, current.id, 'error')
@@ -298,6 +410,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
     setPhotoInterior(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoOwner(null)
     setErrorMsg(null)
+    setFieldErrors({})
   }
 
   const handleProgressClose = () => {
@@ -358,50 +471,59 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldName}</label>
-                    <input type="text" required className={inputCls} placeholder={d.fieldNamePlaceholder} value={name} onChange={(e) => setName(e.target.value)} />
+                    <input type="text" className={`${inputCls} ${fieldErrors.name ? 'border-red-400' : ''}`} placeholder={d.fieldNamePlaceholder} value={name} onChange={(e) => setName(e.target.value)} />
+                    <FieldError msg={fieldErrors.name} />
                   </div>
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldEmail}</label>
-                    <input type="email" required className={inputCls} placeholder={d.fieldEmailPlaceholder} value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" className={`${inputCls} ${fieldErrors.email ? 'border-red-400' : ''}`} placeholder={d.fieldEmailPlaceholder} value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <FieldError msg={fieldErrors.email} />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldAtelier}</label>
-                    <input type="text" required className={inputCls} placeholder={d.fieldAtelierPlaceholder} value={atelierName} onChange={(e) => setAtelierName(e.target.value)} />
+                    <input type="text" className={`${inputCls} ${fieldErrors.atelierName ? 'border-red-400' : ''}`} placeholder={d.fieldAtelierPlaceholder} value={atelierName} onChange={(e) => setAtelierName(e.target.value)} />
+                    <FieldError msg={fieldErrors.atelierName} />
                   </div>
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldPhone}</label>
-                    <input type="tel" required className={inputCls} placeholder={d.fieldPhonePlaceholder} value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <input type="tel" className={`${inputCls} ${fieldErrors.phone ? 'border-red-400' : ''}`} placeholder={d.fieldPhonePlaceholder} value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <FieldError msg={fieldErrors.phone} />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldDiscipline}</label>
-                    <select required className={inputCls} value={discipline} onChange={(e) => setDiscipline(e.target.value)}>
+                    <select className={`${inputCls} ${fieldErrors.discipline ? 'border-red-400' : ''}`} value={discipline} onChange={(e) => setDiscipline(e.target.value)}>
                       <option value="">{d.fieldDisciplinePlaceholder}</option>
                       {d.disciplines.map((disc: { value: string; label: string }) => (
                         <option key={disc.value} value={disc.value}>{disc.label}</option>
                       ))}
                     </select>
+                    <FieldError msg={fieldErrors.discipline} />
                   </div>
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldWebsite}</label>
-                    <input type="url" className={inputCls} placeholder={d.fieldWebsitePlaceholder} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                    <input type="url" className={`${inputCls} ${fieldErrors.website ? 'border-red-400' : ''}`} placeholder={d.fieldWebsitePlaceholder} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                    <FieldError msg={fieldErrors.website} />
                   </div>
                 </div>
 
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-1 h-4 w-4 accent-inkBlack border-borderLight"
-                  />
-                  <span className="text-[11px] text-grayText font-light leading-snug font-sans">{d.consent}</span>
-                </label>
+                <div>
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className="mt-1 h-4 w-4 accent-inkBlack border-borderLight"
+                    />
+                    <span className="text-[11px] text-grayText font-light leading-snug font-sans">{d.consent}</span>
+                  </label>
+                  <FieldError msg={fieldErrors.consent} />
+                </div>
               </div>
             )}
 
@@ -411,15 +533,18 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2 sm:col-span-2">
                     <label className={labelCls}>{d.fieldAddress}</label>
-                    <input type="text" required className={inputCls} placeholder={d.fieldAddressPlaceholder} value={address} onChange={(e) => setAddress(e.target.value)} />
+                    <input type="text" className={`${inputCls} ${fieldErrors.address ? 'border-red-400' : ''}`} placeholder={d.fieldAddressPlaceholder} value={address} onChange={(e) => setAddress(e.target.value)} />
+                    <FieldError msg={fieldErrors.address} />
                   </div>
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldPostalCode}</label>
-                    <input type="text" required className={inputCls} placeholder={d.fieldPostalCodePlaceholder} value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
+                    <input type="text" className={`${inputCls} ${fieldErrors.postalCode ? 'border-red-400' : ''}`} placeholder={d.fieldPostalCodePlaceholder} value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
+                    <FieldError msg={fieldErrors.postalCode} />
                   </div>
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldCity}</label>
-                    <input type="text" required className={inputCls} placeholder={d.fieldCityPlaceholder} value={city} onChange={(e) => setCity(e.target.value)} />
+                    <input type="text" className={`${inputCls} ${fieldErrors.city ? 'border-red-400' : ''}`} placeholder={d.fieldCityPlaceholder} value={city} onChange={(e) => setCity(e.target.value)} />
+                    <FieldError msg={fieldErrors.city} />
                   </div>
                 </div>
 

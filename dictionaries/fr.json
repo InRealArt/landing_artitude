@@ -142,12 +142,12 @@
     ],
     "testimonials": [
       {
-        "quote": "Mes visites d'atelier physiques à Lyon ont doublé en trois mois. Mes collectionneurs me trouvent directement via Google Maps.",
-        "name": "Charlotte D., Artiste Peintre"
+        "quote": "Mes visites d'atelier physiques à Paris ont doublé en trois mois. Mes collectionneurs me trouvent directement via Google Maps.",
+        "name": "Catherine Sénéchal, Artiste Peintre"
       },
       {
         "quote": "Je n'avais pas le temps de m'en occuper. L'équipe d'Artitude a tout structuré pour moi en 48h. C'est simple, efficace et totalement transparent.",
-        "name": "Pierre-Antoine M., Sculpteur"
+        "name": "Jean-Paul Boyer, Sculpteur"
       }
     ]
   },
@@ -319,7 +319,17 @@
     "progressExcel": "Génération du fichier Excel",
     "progressEmail": "Envoi de l'email à l'équipe",
     "progressDoneBtn": "Fermer",
-    "progressRetryBtn": "Réessayer"
+    "progressRetryBtn": "Réessayer",
+    "validationName": "Veuillez entrer votre nom et prénom (2 caractères minimum).",
+    "validationEmail": "Adresse email invalide.",
+    "validationPhone": "Numéro de téléphone invalide. Exemple : +33 6 00 00 00 00",
+    "validationAtelier": "Le nom de l'atelier doit contenir au moins 2 caractères.",
+    "validationDiscipline": "Veuillez sélectionner une discipline.",
+    "validationAddress": "Adresse invalide. Indiquez le numéro et le nom de la rue.",
+    "validationPostalCode": "Code postal invalide (4 à 6 chiffres).",
+    "validationCity": "Veuillez indiquer la ville.",
+    "validationWebsite": "URL invalide. Exemple : https://monatelier.fr",
+    "validationConsent": "Veuillez accepter les conditions pour continuer."
   },
   "faq": {
     "eyebrow": "Des Réponses Claires",

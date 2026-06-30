@@ -142,12 +142,12 @@
     ],
     "testimonials": [
       {
-        "quote": "My physical studio visits in Lyon doubled in three months. My collectors find me directly on Google Maps.",
-        "name": "Charlotte D., Painter"
+        "quote": "My physical studio visits in Paris doubled in three months. My collectors find me directly on Google Maps.",
+        "name": "Catherine Sénéchal, Painter"
       },
       {
         "quote": "I didn't have time to manage it. The Artitude team structured everything for me in 48h. Simple, effective, and completely transparent.",
-        "name": "Pierre-Antoine M., Sculptor"
+        "name": "Jean-Paul Boyer, Sculptor"
       }
     ]
   },
@@ -319,7 +319,17 @@
     "progressExcel": "Generating Excel file",
     "progressEmail": "Sending email to the team",
     "progressDoneBtn": "Close",
-    "progressRetryBtn": "Retry"
+    "progressRetryBtn": "Retry",
+    "validationName": "Please enter your full name (at least 2 characters).",
+    "validationEmail": "Invalid email address.",
+    "validationPhone": "Invalid phone number. Example: +1 555 000 0000",
+    "validationAtelier": "Studio name must be at least 2 characters.",
+    "validationDiscipline": "Please select a discipline.",
+    "validationAddress": "Invalid address. Please include a street number and name.",
+    "validationPostalCode": "Invalid postal code (4 to 6 digits).",
+    "validationCity": "Please enter the city.",
+    "validationWebsite": "Invalid URL. Example: https://mystudio.com",
+    "validationConsent": "Please accept the terms to continue."
   },
   "faq": {
     "eyebrow": "Clear Answers",

@@ -11,12 +11,12 @@ const statsMeta = [
   { target: 131, suffix: '%', barWidth: 75 },
   { target: 116, suffix: '%', barWidth: 68 },
   { target: 816418, suffix: '', barWidth: 90 },
-  { target: 4.9, suffix: ' / 5', barWidth: 98 },
+  { target: 5, suffix: ' / 5', barWidth: 98 },
 ]
 
 const testimonialImgs = [
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
+  '/images/testimonials/senechal.avif',
+  '/images/testimonials/boyer.avif',
 ]
 
 export default function StatsSection({ dict }: { dict: Dictionary }) {
@@ -51,7 +51,7 @@ export default function StatsSection({ dict }: { dict: Dictionary }) {
           {d.testimonials.map((t, i) => (
             <div key={t.name} className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="relative w-16 h-16 flex-shrink-0 border border-white/10 overflow-hidden">
-                <Image src={testimonialImgs[i]} alt={t.name} fill className="object-cover grayscale" unoptimized />
+                <Image src={testimonialImgs[i]} alt={t.name} fill className="object-cover grayscale" />
               </div>
               <div className="space-y-2">
                 <div className="flex text-gold text-xs">★ ★ ★ ★ ★</div>
