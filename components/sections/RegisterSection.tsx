@@ -720,7 +720,17 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
           {/* Success overlay */}
           {success && clientMounted && createPortal(
             <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
-              <div className="bg-canvas w-full max-w-sm p-10 shadow-2xl flex flex-col items-center text-center space-y-6">
+              <div className="relative bg-canvas w-full max-w-sm p-10 shadow-2xl flex flex-col items-center text-center space-y-6">
+                <button
+                  onClick={handleReset}
+                  aria-label="Fermer"
+                  className="absolute top-4 right-4 h-7 w-7 flex items-center justify-center text-grayText hover:text-inkBlack transition-colors duration-200"
+                >
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
+                    <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
+                  </svg>
+                </button>
                 <div className="h-14 w-14 border border-inkBlack flex items-center justify-center text-inkBlack text-2xl">✓</div>
                 <div className="space-y-2">
                   <h3 className="font-serif text-2xl text-inkBlack">{d.successTitle}</h3>

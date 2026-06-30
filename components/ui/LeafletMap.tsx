@@ -31,6 +31,29 @@ function createPinIcon(num: string, isActive: boolean) {
   })
 }
 
+// Zoom controls: must be inside MapContainer to access useMap()
+function ZoomControls() {
+  const map = useMap()
+  return (
+    <div className="absolute top-4 right-4 z-[1000] flex flex-col border border-white/20 shadow-lg overflow-hidden">
+      <button
+        aria-label="Zoom in"
+        onClick={() => map.zoomIn()}
+        className="w-8 h-8 flex items-center justify-center bg-canvas/90 hover:bg-canvas text-inkBlack text-base leading-none transition-colors duration-150 border-b border-white/20"
+      >
+        +
+      </button>
+      <button
+        aria-label="Zoom out"
+        onClick={() => map.zoomOut()}
+        className="w-8 h-8 flex items-center justify-center bg-canvas/90 hover:bg-canvas text-inkBlack text-base leading-none transition-colors duration-150"
+      >
+        −
+      </button>
+    </div>
+  )
+}
+
 // Inner component: runs inside MapContainer so useMap() works
 function MapContent({
   locations,
@@ -135,6 +158,7 @@ export default function LeafletMap({ locations, joinLabel }: LeafletMapProps) {
         doubleClickZoom={false}
       >
         <MapContent locations={locations} active={active} onSelect={handleSelect} />
+        <ZoomControls />
       </MapContainer>
 
       {/* Info card overlay */}
