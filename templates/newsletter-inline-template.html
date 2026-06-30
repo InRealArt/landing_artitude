@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter Inline — In Real Art</title>
+
+  <!-- Google Fonts (replace with your font loader if needed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ─── Design tokens ────────────────────────────────── */
+    :root {
+      --background:        #ffffff;
+      --background-grey:   #fbfbfb;
+      --text:              #000000;
+      --gray-text:         #666666;
+      --border-color:      #eeeeee;
+      --gold-accent:       #b89c72;
+      --ink-black:         #000000;
+    }
+
+    [data-theme="dark"] {
+      --background:        #131313;
+      --background-grey:   #1a1a1a;
+      --text:              #ffffff;
+      --gray-text:         #9ca3af;
+      --border-color:      rgba(255, 255, 255, 0.1);
+      --ink-black:         #ffffff;
+    }
+
+    /* ─── Reset ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+
+    /* ─── Typography helpers ────────────────────────────── */
+    .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .montserrat {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+
+    /* ─── Utility classes ───────────────────────────────── */
+    .section-number {
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-cta {
+      padding: 0.9rem 1.8rem;
+      border: 1px solid var(--ink-black);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 1.5rem;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .btn-cta:hover {
+      background: var(--ink-black);
+      color: var(--background);
+    }
+    .btn-cta:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ─── Section wrapper ───────────────────────────────── */
+    .newsletter-section {
+      width: 100%;
+      background: var(--background-grey);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 6rem 0;
+    }
+
+    .newsletter-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 640px)  { .newsletter-inner { padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .newsletter-inner { padding: 0 4rem;   } }
+
+    /* ─── Grid ──────────────────────────────────────────── */
+    .newsletter-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .newsletter-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+      }
+    }
+
+    /* ─── Left column — image ───────────────────────────── */
+    .newsletter-image-col {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    @media (min-width: 1024px) {
+      .newsletter-image-col { height: 480px; }
+    }
+
+    .newsletter-image-col img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Radial vignette */
+    .newsletter-vignette-radial {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.60) 100%);
+    }
+
+    /* Bottom fade */
+    .newsletter-vignette-bottom {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      height: 40%;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+    }
+
+    /* Decorative gold frames */
+    .newsletter-frame-outer {
+      position: absolute;
+      inset: 1.25rem;
+      border: 1px solid rgba(184, 156, 114, 0.25);
+      pointer-events: none;
+    }
+    .newsletter-frame-inner {
+      position: absolute;
+      inset: 2.25rem;
+      border: 1px solid rgba(184, 156, 114, 0.12);
+      pointer-events: none;
+    }
+
+    /* Corner accents */
+    .corner-h { position: absolute; width: 2.5rem; height: 1px; background: rgba(184,156,114,0.6); }
+    .corner-v { position: absolute; width: 1px; height: 2.5rem; background: rgba(184,156,114,0.6); }
+    .corner-bl-h { bottom: 1.25rem; left: 1.25rem; }
+    .corner-bl-v { bottom: 1.25rem; left: 1.25rem; }
+    .corner-tr-h { top: 1.25rem; right: 1.25rem; }
+    .corner-tr-v { top: 1.25rem; right: 1.25rem; }
+
+    /* ─── Right column — copy + form ───────────────────── */
+    .newsletter-copy-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .newsletter-title {
+      font-size: clamp(2rem, 4vw, 3.75rem);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .newsletter-title-accent {
+      font-style: normal;
+      color: var(--gold-accent);
+    }
+
+    .newsletter-subtitle {
+      font-size: 0.8125rem;
+      color: var(--gray-text);
+      line-height: 2;
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    .newsletter-description {
+      font-size: 0.6875rem;
+      color: var(--gray-text);
+      line-height: 2;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    /* ─── Form ──────────────────────────────────────────── */
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .newsletter-input-wrap {
+      position: relative;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+      transition: border-color 0.3s ease;
+    }
+    .newsletter-input-wrap:focus-within {
+      border-color: var(--gold-accent);
+    }
+
+    .newsletter-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1rem 0.75rem 0;
+      color: var(--text);
+      font-size: 0.8125rem;
+      font-weight: 300;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .newsletter-input::placeholder {
+      color: var(--gray-text);
+    }
+
+    /* ─── State: pending ────────────────────────────────── */
+    .newsletter-form[data-pending="true"] .newsletter-input,
+    .newsletter-form[data-pending="true"] .btn-cta {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ─── Toast (simple, no library needed) ────────────── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      font-size: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.05em;
+      border: 1px solid currentColor;
+      animation: toast-in 0.3s ease, toast-out 0.3s ease 3.7s forwards;
+      z-index: 9999;
+    }
+    .toast--success { color: var(--gold-accent); background: var(--background); }
+    .toast--error   { color: #e53e3e;             background: var(--background); }
+
+    @keyframes toast-in  { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+    @keyframes toast-out { to   { opacity:0; transform:translateY(8px); } }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NEWSLETTER INLINE SECTION
+     Replace the <img> src and all text content as needed.
+     ═══════════════════════════════════════════════════════ -->
+<section class="newsletter-section" aria-label="Newsletter subscription">
+  <div class="newsletter-inner">
+    <div class="newsletter-grid">
+
+      <!-- ── Left: image ─────────────────────────────── -->
+      <div class="newsletter-image-col" aria-hidden="true">
+        <!--
+          Replace src with your own image.
+          Ideal ratio: portrait (4:5 or 2:3), min 800×960px.
+        -->
+        <img
+          src="/images/newsletter/newsletter.webp"
+          alt="Coupole baroque dorée — In Real Art"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <div class="newsletter-vignette-radial"></div>
+        <div class="newsletter-vignette-bottom"></div>
+
+        <div class="newsletter-frame-outer"></div>
+        <div class="newsletter-frame-inner"></div>
+
+        <!-- Bottom-left corner -->
+        <div class="corner-h corner-bl-h"></div>
+        <div class="corner-v corner-bl-v"></div>
+        <!-- Top-right corner -->
+        <div class="corner-h corner-tr-h"></div>
+        <div class="corner-v corner-tr-v"></div>
+      </div>
+
+      <!-- ── Right: copy + form ──────────────────────── -->
+      <div class="newsletter-copy-col">
+
+        <!-- Eyebrow label -->
+        <span class="section-number montserrat">Newsletter — In Real Art</span>
+
+        <!-- Headline -->
+        <h2 class="serif italic newsletter-title">
+          Restez connecté à
+          <em class="newsletter-title-accent">l'art vivant</em>
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="montserrat newsletter-subtitle">
+          Actualités exclusives, artistes émergents, ventes privées et analyses du marché.
+        </p>
+
+        <!-- Description / GDPR note -->
+        <p class="montserrat newsletter-description">
+          En vous inscrivant, vous acceptez de recevoir nos communications. Désinscription possible à tout moment.
+        </p>
+
+        <!-- Form -->
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <input type="hidden" name="language" value="fr" />
+
+          <div class="newsletter-input-wrap">
+            <input
+              type="email"
+              name="email"
+              id="newsletter-email"
+              placeholder="Votre adresse e-mail"
+              class="newsletter-input montserrat"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div>
+            <button type="submit" class="btn-cta" id="newsletter-submit">
+              <span id="newsletter-btn-label">S'inscrire</span>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div><!-- /.newsletter-grid -->
+  </div><!-- /.newsletter-inner -->
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     MINIMAL FORM HANDLER — replace with your own API call
+     ═══════════════════════════════════════════════════════ -->
+<script>
+  (function () {
+    const form    = document.getElementById('newsletter-form');
+    const input   = document.getElementById('newsletter-email');
+    const btnLabel = document.getElementById('newsletter-btn-label');
+
+    function showToast(message, type) {
+      const el = document.createElement('div');
+      el.className = 'toast toast--' + type;
+      el.textContent = message;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const email = input.value.trim();
+      if (!email) return;
+
+      // ── Pending state ──
+      form.dataset.pending = 'true';
+      btnLabel.textContent = 'Inscription en cours…';
+
+      try {
+        /*
+          ── Replace this block with your own API call ──
+
+          Example with a Next.js server action proxy or REST endpoint:
+
+          const res = await fetch('/api/newsletter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, language: 'fr' }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || 'Erreur serveur');
+
+          showToast(data.message || 'Inscription confirmée !', 'success');
+        */
+
+        // Placeholder success (remove when wiring real API)
+        await new Promise(r => setTimeout(r, 800));
+        showToast('Inscription confirmée — bienvenue !', 'success');
+        input.value = '';
+
+      } catch (err) {
+        showToast(err.message || 'Une erreur est survenue.', 'error');
+      } finally {
+        form.dataset.pending = 'false';
+        btnLabel.textContent = 'S\'inscrire';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

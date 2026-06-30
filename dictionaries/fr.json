@@ -1,379 +1,404 @@
 {
-  "lang": "fr",
-  "nav": {
-    "problem": "Le Défi",
-    "solution": "La Solution",
-    "index": "L'Index",
-    "team": "Notre Équipe",
-    "faq": "FAQ",
-    "cta": "S'inscrire"
-  },
-  "announcement": {
-    "text": "📢 Catalogue d'artistes principaux complet.",
-    "highlight": "Artitude reste ouvert gratuitement à tous les créateurs."
-  },
-  "hero": {
-    "badge": "Initiative de soutien aux Ateliers 2026",
-    "title": "Votre talent mérite",
-    "titleItalic": "d'être trouvé.",
-    "description": "Notre catalogue d'artistes principaux est actuellement clos. C'est pourquoi nous offrons",
-    "brand": "Artitude",
-    "descriptionEnd": ": un outil gratuit pour référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.",
-    "badges": [
-      "100% Gratuit",
-      "Sans Engagement",
-      "Activé en 48h"
-    ],
-    "cta": "Rejoindre Artitude Gratuitement",
-    "social": "Déjà plus de",
-    "socialCount": "420 ateliers",
-    "socialEnd": "référencés.",
-    "widgetBadge": "OPTIMISÉ ARTITUDE",
-    "widgetName": "Atelier Catherine Sénéchal",
-    "widgetSubtitle": "Peinture & Plasticienne • Lyon",
-    "widgetActions": [
-      "Appel",
-      "Adresse",
-      "Site"
-    ]
-  },
-  "problem": {
-    "eyebrow": "Le défi de l'artiste",
-    "title": "Vos clients vous cherchent.",
-    "titleItalic": "Ils ne vous trouvent pas.",
-    "quote": "Ce n'est pas un manque de talent. C'est un manque d'outil.",
-    "items": [
-      {
-        "icon": "🔍",
-        "title": "Vous n'avez pas de fiche Google à jour",
-        "desc": "Sans présence optimisée sur Maps et Search, vous restez invisible pour 85% des amateurs d'art locaux recherchant des galeries près de chez eux."
-      },
-      {
-        "icon": "⏱️",
-        "title": "Vous n'avez pas le temps de vous en occuper",
-        "desc": "Mots-clés SEO, mises à jour, gestion d'avis... Référencer correctement son travail demande des heures complexes que vous préférez passer à créer."
-      },
-      {
-        "icon": "📍",
-        "title": "Vos concurrents, eux, sont visibles",
-        "desc": "D'autres créateurs captent l'attention immédiate des collectionneurs urbains simplement parce qu'ils se positionnent stratégiquement sur les recherches locales."
-      }
-    ]
-  },
-  "solution": {
-    "eyebrow": "Une offre clé en main",
-    "title": "Artitude, votre vitrine numérique gérée pour vous.",
-    "badge1": "Mise à jour mensuelle gratuite incluse",
-    "badge2": "Modifiez vos photos, horaires ou actualités en 1 clic",
-    "steps": [
-      {
-        "number": "01",
-        "label": "INSCRIPTION",
-        "title": "Vous vous inscrivez (2 min)",
-        "desc": "Remplissez vos informations d'atelier en 2 minutes chrono. Pas de processus complexe, nous récupérons uniquement l'essentiel.",
-        "meta": "Temps requis : 2 minutes"
-      },
-      {
-        "number": "02",
-        "label": "OPTIMISATION",
-        "title": "On optimise votre fiche Google",
-        "desc": "Nos experts structurent votre fiche d'atelier Google : intégration esthétique de vos photos, définition de mots-clés et configuration des horaires.",
-        "meta": "Délai : sous 48 Heures"
-      },
-      {
-        "number": "03",
-        "label": "EXPOSITION",
-        "title": "Vous êtes visible sur Maps & l'Index",
-        "desc": "Votre atelier devient repérable sur Google Search, Google Maps, et rejoint instantanément notre Index des Ateliers pour capter une audience d'esthètes.",
-        "meta": "Visibilité Google + InRealArt"
-      }
-    ]
-  },
-  "index": {
-    "eyebrow": "Bénéfice différenciant",
-    "title": "Et votre atelier rejoint aussi notre Index des Ateliers.",
-    "description": "Chaque artiste référencé sur Artitude apparaît automatiquement dans l'Index des Ateliers IRA — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs du site InRealArt.",
-    "statNumber": "+ de 45 000",
-    "statLabel": "Visiteurs uniques par mois sur le site InRealArt",
-    "mapLabel": "Index Interactif (Démonstration)",
-    "mapHint": "Cliquez pour explorer",
-    "joinIndex": "Rejoindre l'index",
-    "ateliers": {
-      "ronan": {
-        "title": "Atelier Ronan Martin",
-        "desc": "Espace de création contemporaine de résines d'art et d'œuvres lumineuses.",
-        "tag": "Résines",
-        "loc": "Paris, France"
-      },
-      "senechal": {
-        "title": "Atelier Catherine Sénéchal",
-        "desc": "Visites d'atelier régulières et expositions temporaires de peintures abstraites.",
-        "tag": "Peinture",
-        "loc": "Lyon, France"
-      },
-      "boyer": {
-        "title": "Atelier Jean-Paul Boyer",
-        "desc": "Sculptures contemporaines en bois nobles et métaux de récupération.",
-        "tag": "Sculpture",
-        "loc": "Nice, France"
-      }
+    "lang": "fr",
+    "nav": {
+        "problem": "Le Défi",
+        "solution": "La Solution",
+        "index": "L'Index",
+        "team": "Notre Équipe",
+        "faq": "FAQ",
+        "cta": "S'inscrire"
+    },
+    "announcement": {
+        "text": "📢 Catalogue d'artistes principaux complet.",
+        "highlight": "Artitude reste ouvert gratuitement à tous les créateurs."
+    },
+    "hero": {
+        "badge": "Initiative de soutien aux Ateliers 2026",
+        "title": "Votre talent mérite",
+        "titleItalic": "d'être trouvé.",
+        "description": "Notre catalogue d'artistes principaux est actuellement clos. C'est pourquoi nous offrons",
+        "brand": "Artitude",
+        "descriptionEnd": ": un outil gratuit pour référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.",
+        "badges": [
+            "100% Gratuit",
+            "Sans Engagement",
+            "Activé en 48h"
+        ],
+        "cta": "Rejoindre Artitude Gratuitement",
+        "social": "Déjà plus de",
+        "socialCount": "420 ateliers",
+        "socialEnd": "référencés.",
+        "widgetBadge": "OPTIMISÉ ARTITUDE",
+        "widgetName": "Atelier Catherine Sénéchal",
+        "widgetSubtitle": "Peinture & Plasticienne • Lyon",
+        "widgetActions": [
+            "Appel",
+            "Adresse",
+            "Site"
+        ]
+    },
+    "problem": {
+        "eyebrow": "Le défi de l'artiste",
+        "title": "Vos clients vous cherchent.",
+        "titleItalic": "Ils ne vous trouvent pas.",
+        "quote": "Ce n'est pas un manque de talent. C'est un manque d'outil.",
+        "items": [
+            {
+                "icon": "🔍",
+                "title": "Vous n'avez pas de fiche Google à jour",
+                "desc": "Sans présence optimisée sur Maps et Search, vous restez invisible pour 85% des amateurs d'art locaux recherchant des galeries près de chez eux."
+            },
+            {
+                "icon": "⏱️",
+                "title": "Vous n'avez pas le temps de vous en occuper",
+                "desc": "Mots-clés SEO, mises à jour, gestion d'avis... Référencer correctement son travail demande des heures complexes que vous préférez passer à créer."
+            },
+            {
+                "icon": "📍",
+                "title": "Vos concurrents, eux, sont visibles",
+                "desc": "D'autres créateurs captent l'attention immédiate des collectionneurs urbains simplement parce qu'ils se positionnent stratégiquement sur les recherches locales."
+            }
+        ]
+    },
+    "solution": {
+        "eyebrow": "Une offre clé en main",
+        "title": "Artitude, votre vitrine numérique gérée pour vous.",
+        "badge1": "Mise à jour mensuelle gratuite incluse",
+        "badge2": "Modifiez vos photos, horaires ou actualités en 1 clic",
+        "steps": [
+            {
+                "number": "01",
+                "label": "INSCRIPTION",
+                "title": "Vous vous inscrivez (2 min)",
+                "desc": "Remplissez vos informations d'atelier en 2 minutes chrono. Pas de processus complexe, nous récupérons uniquement l'essentiel.",
+                "meta": "Temps requis : 2 minutes"
+            },
+            {
+                "number": "02",
+                "label": "OPTIMISATION",
+                "title": "On optimise votre fiche Google",
+                "desc": "Nos experts structurent votre fiche d'atelier Google : intégration esthétique de vos photos, définition de mots-clés et configuration des horaires.",
+                "meta": "Délai : sous 48 Heures"
+            },
+            {
+                "number": "03",
+                "label": "EXPOSITION",
+                "title": "Vous êtes visible sur Maps & l'Index",
+                "desc": "Votre atelier devient repérable sur Google Search, Google Maps, et rejoint instantanément notre Index des Ateliers pour capter une audience d'esthètes.",
+                "meta": "Visibilité Google + InRealArt"
+            }
+        ]
+    },
+    "index": {
+        "eyebrow": "Bénéfice différenciant",
+        "title": "Et votre atelier rejoint aussi notre Index des Ateliers.",
+        "description": "Chaque artiste référencé sur Artitude apparaît automatiquement dans l'Index des Ateliers IRA — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs du site InRealArt.",
+        "statNumber": "+ de 45 000",
+        "statLabel": "Visiteurs uniques par mois sur le site InRealArt",
+        "mapLabel": "Index Interactif (Démonstration)",
+        "mapHint": "Cliquez pour explorer",
+        "joinIndex": "Rejoindre l'index",
+        "ateliers": {
+            "ronan": {
+                "title": "Atelier Ronan Martin",
+                "desc": "Espace de création contemporaine de résines d'art et d'œuvres lumineuses.",
+                "tag": "Résines",
+                "loc": "Paris, France"
+            },
+            "senechal": {
+                "title": "Atelier Catherine Sénéchal",
+                "desc": "Visites d'atelier régulières et expositions temporaires de peintures abstraites.",
+                "tag": "Peinture",
+                "loc": "Lyon, France"
+            },
+            "boyer": {
+                "title": "Atelier Jean-Paul Boyer",
+                "desc": "Sculptures contemporaines en bois nobles et métaux de récupération.",
+                "tag": "Sculpture",
+                "loc": "Nice, France"
+            }
+        },
+        "artists": {
+            "florence-autelin": {
+                "title": "Atelier Florence Autelin",
+                "category": "Peintre & Photographe",
+                "description": "Florence Autelin est une photographe dont le travail explore l'instant, l'intime et le mouvement. Marquée par plus de vingt ans de voyages, sa pratique repose sur l'observation et la capture de ce qui surgit dans l'urgence du réel. À la photographie s'ajoute une recherche picturale plus intérieure, centrée sur l'émotion et l'expérience vécue. Ces deux approches composent une œuvre sensible, faite de fragments et de résonances. Représentée par InRealArt, son travail s'inscrit dans une démarche de reconnaissance symbolique et de transmission patrimoniale. InRealArt permet aux dirigeants et chefs d'entreprise d'acquérir ses œuvres grâce à des solutions de leasing artistique."
+            },
+            "catherine-senechal": {
+                "title": "Atelier Catherine Sénéchal",
+                "category": "Peintre",
+                "description": "Catherine Sénéchal est une artiste autodidacte issue d'une famille de peintres et de musiciens. Elle peint depuis l'âge de 15 ans et expose depuis plus de 25 ans dans les grands salons parisiens et sur des galeries en ligne reconnues. Son travail, guidé par l'instinct et la sensibilité, naît d'un jeu libre de couleurs et de papiers, sans sujet prédéfini, ouvrant sur un univers poétique. Représentée par InRealArt, son œuvre s'inscrit dans une démarche de reconnaissance symbolique et de transmission patrimoniale. InRealArt permet aux dirigeants et chefs d'entreprise d'acquérir ses œuvres grâce à des solutions de leasing artistique."
+            }
+        }
+    },
+    "stats": {
+        "eyebrow": "Preuves par les chiffres",
+        "title": "Les chiffres ne mentent pas.",
+        "items": [
+            {
+                "label": "+131% de recherches",
+                "description": "Progression des ateliers référencés après optimisation de leur fiche."
+            },
+            {
+                "label": "+116% de vues",
+                "description": "Visibilité moyenne accrue sur Google Maps et l'Index IRA."
+            },
+            {
+                "label": "Actions générées",
+                "description": "Appels directes, demandes d'itinéraires et clics vers sites web."
+            },
+            {
+                "label": "Note Google Moyenne",
+                "description": "Évaluation moyenne des ateliers accompagnés par notre réseau."
+            }
+        ],
+        "testimonials": [
+            {
+                "quote": "Mes visites d'atelier physiques à Paris ont doublé en trois mois. Mes collectionneurs me trouvent directement via Google Maps.",
+                "name": "Catherine Sénéchal, Artiste Peintre"
+            },
+            {
+                "quote": "Je n'avais pas le temps de m'en occuper. L'équipe d'Artitude a tout structuré pour moi en 48h. C'est simple, efficace et totalement transparent.",
+                "name": "Jean-Paul Boyer, Sculpteur"
+            }
+        ]
+    },
+    "team": {
+        "eyebrow": "Notre Équipe",
+        "title": "Des experts à votre service.",
+        "subtitle": "Sept spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
+        "cta": "Solliciter un accompagnement professionnel",
+        "members": [
+            {
+                "name": "Timothée",
+                "role": "AGENT D'ARTISTES & STRATÉGIE GLOBAL",
+                "service": "Pilotage de carrière 360°",
+                "description": "Management au quotidien, coordination des experts de l'équipe et stratégie globale de développement pour pérenniser votre activité artistique."
+            },
+            {
+                "name": "Maxime",
+                "role": "STRATÈGE MARKETING & GROWTH",
+                "service": "Accélération d'audience et de visibilité",
+                "description": "Déploiement de stratégies de croissance numérique, optimisation de vos leviers de conversion et acquisition de nouveaux publics qualifiés pour vos œuvres."
+            },
+            {
+                "name": "Anna",
+                "role": "AGENT & ACCOMPAGNEMENT ÉVÉNEMENTIEL",
+                "service": "Production, programmation et événementiel",
+                "description": "Direction artistique de vos projets, logistique de vos événements et mise en avant de votre travail auprès des acteurs clés du milieu."
+            },
+            {
+                "name": "Clara",
+                "role": "AGENT & ACCOMPAGNEMENT JURIDIQUE",
+                "service": "Sécurisation légale, agence et gestion de projets",
+                "description": "Gestion de vos projets sur tous les fronts : sécurisation de vos contrats, suivi de votre développement artistique et coordination de vos temps forts."
+            },
+            {
+                "name": "Gilles",
+                "role": "CRÉATION WEB & DIGITALE",
+                "service": "Vitrine web haute performance et optimisation SEO",
+                "description": "Conception et optimisation technique de votre site internet ou portfolio en ligne pour garantir une plateforme robuste, rapide et parfaitement référencée."
+            },
+            {
+                "name": "Allegra",
+                "role": "AGENT & ACCOMPAGNEMENT MÉDIA",
+                "service": "Relations médias et direction de création",
+                "description": "Développement de vos relations presse, élaboration de vos éléments de langage et conseil stratégique sur l'alignement visuel de votre image de marque."
+            },
+            {
+                "name": "Lauranne",
+                "role": "EXPERT COMMUNICATION, COACHING & MARKETING",
+                "service": "Stratégie de communication et kits marketing",
+                "description": "Relations médias spécialisés, préparation à vos prises de parole publiques, direction artistique de vos supports et création de vos outils de communication dédiés."
+            }
+        ]
+    },
+    "register": {
+        "eyebrow": "Inscription gratuite",
+        "subtitle": "Rejoignez les 420 ateliers déjà référencés",
+        "formEyebrow": "DÉMARRER AUJOURD'HUI",
+        "formTitle": "Activez votre Artitude, gratuitement.",
+        "formSubtitle": "Remplissez ce formulaire d'inscription rapide. Notre équipe d'experts prendra en charge l'optimisation de votre profil sous 48 heures.",
+        "fieldName": "Nom & Prénom *",
+        "fieldNamePlaceholder": "Jean-Luc Boyer",
+        "fieldEmail": "Adresse Email *",
+        "fieldEmailPlaceholder": "jeanluc@boyer.com",
+        "fieldAtelier": "Nom de l'atelier / Activité *",
+        "fieldAtelierPlaceholder": "Atelier Boyer Art",
+        "fieldCity": "Ville de l'atelier *",
+        "fieldCityPlaceholder": "Nice, France",
+        "fieldDiscipline": "Médium artistique principal *",
+        "fieldDisciplinePlaceholder": "Sélectionnez votre discipline...",
+        "disciplines": [
+            {
+                "value": "peinture",
+                "label": "Peinture / Dessin"
+            },
+            {
+                "value": "sculpture",
+                "label": "Sculpture / Céramique"
+            },
+            {
+                "value": "photographie",
+                "label": "Photographie"
+            },
+            {
+                "value": "art_digital",
+                "label": "Art Numérique / Nouveaux Médias"
+            },
+            {
+                "value": "autre",
+                "label": "Autre discipline d'artisanat d'art"
+            }
+        ],
+        "consent": "Je souhaite recevoir les actualités InRealArt pour activer mon compte Artitude et être alerté des opportunités de services d'accompagnement.",
+        "submit": "Activer mon Artitude gratuit",
+        "privacy": "🔒 Vos données ne sont jamais revendues. Désinscription en un clic.",
+        "successTitle": "Demande envoyée avec succès.",
+        "successDesc": "Votre demande a bien été transmise à notre équipe par email. Un membre d'InRealArt vous contactera sous 48 heures.",
+        "successReset": "Inscrire un autre atelier",
+        "stepLabels": [
+            "Informations",
+            "Localisation & Horaires",
+            "Photos"
+        ],
+        "fieldPhone": "Téléphone *",
+        "fieldPhonePlaceholder": "+33 6 00 00 00 00",
+        "fieldWebsite": "Site web",
+        "fieldWebsitePlaceholder": "https://monatelier.fr",
+        "fieldAddress": "Adresse *",
+        "fieldAddressPlaceholder": "48 rue des Artistes",
+        "fieldPostalCode": "Code postal *",
+        "fieldPostalCodePlaceholder": "06000",
+        "fieldCountry": "Pays *",
+        "fieldDescription": "Description de l'atelier",
+        "fieldDescriptionPlaceholder": "Décrivez votre atelier en quelques mots... (max 750 caractères)",
+        "fieldHours": "Horaires d'ouverture",
+        "hoursLabels": {
+            "monday": "Lun",
+            "tuesday": "Mar",
+            "wednesday": "Mer",
+            "thursday": "Jeu",
+            "friday": "Ven",
+            "saturday": "Sam",
+            "sunday": "Dim",
+            "closed": "Fermé",
+            "openTime": "Ouverture",
+            "closeTime": "Fermeture"
+        },
+        "countries": [
+            {
+                "value": "FR",
+                "label": "France"
+            },
+            {
+                "value": "BE",
+                "label": "Belgique"
+            },
+            {
+                "value": "CH",
+                "label": "Suisse"
+            },
+            {
+                "value": "LU",
+                "label": "Luxembourg"
+            },
+            {
+                "value": "CA",
+                "label": "Canada"
+            }
+        ],
+        "photosTitle": "Photos de votre atelier",
+        "photosSubtitle": "Ces photos seront publiées sur votre fiche Google.",
+        "photoInterior": "Photo intérieur *",
+        "photoExterior1": "Photo extérieur 1 *",
+        "photoExterior2": "Photo extérieur 2 *",
+        "photoOwner": "Photo du propriétaire *",
+        "photoHint": "JPG, PNG ou WebP · max 1 Mo",
+        "btnNext": "Suivant",
+        "btnPrev": "Retour",
+        "btnSubmitting": "Envoi en cours...",
+        "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
+        "errorPhotos": "Veuillez ajouter toutes les photos requises.",
+        "photosSizeWarning": "Chaque photo doit faire 1 Mo maximum",
+        "errorPhotoSize": "La photo \"{label}\" est trop lourde ({size} Mo). Maximum autorisé : 1 Mo.",
+        "progressTitle": "Envoi en cours...",
+        "progressEyebrow": "TRAITEMENT",
+        "progressDoneEyebrow": "TERMINÉ",
+        "progressDoneTitle": "Demande envoyée !",
+        "progressErrorTitle": "Une erreur est survenue",
+        "progressValidate": "Validation des données",
+        "progressExcel": "Génération du fichier Excel",
+        "progressEmail": "Envoi de l'email à l'équipe",
+        "progressDoneBtn": "Fermer",
+        "progressRetryBtn": "Réessayer",
+        "validationName": "Veuillez entrer votre nom et prénom (2 caractères minimum).",
+        "validationEmail": "Adresse email invalide.",
+        "validationPhone": "Numéro de téléphone invalide. Exemple : +33 6 00 00 00 00",
+        "validationAtelier": "Le nom de l'atelier doit contenir au moins 2 caractères.",
+        "validationDiscipline": "Veuillez sélectionner une discipline.",
+        "validationAddress": "Adresse invalide. Indiquez le numéro et le nom de la rue.",
+        "validationPostalCode": "Code postal invalide (4 à 6 chiffres).",
+        "validationCity": "Veuillez indiquer la ville.",
+        "validationWebsite": "URL invalide. Exemple : https://monatelier.fr",
+        "validationConsent": "Veuillez accepter les conditions pour continuer."
+    },
+    "faq": {
+        "eyebrow": "Des Réponses Claires",
+        "title": "Les questions qu'on nous pose le plus.",
+        "items": [
+            {
+                "question": "C'est vraiment gratuit ?",
+                "answer": "Oui, l'inscription et la création de votre profil Artitude sont gratuites à 100%, aujourd'hui et demain. Aucune carte bancaire n'est requise. Ce service est offert par InRealArt pour soutenir la visibilité numérique des ateliers d'artistes locaux."
+            },
+            {
+                "question": "Je n'ai pas de site internet, ça fonctionne quand même ?",
+                "answer": "Oui absolument. C'est tout l'intérêt d'Artitude. Vous n'avez pas besoin d'un site web lourd et complexe : nous configurons votre fiche de façon optimale directement sur Google et au sein de notre Index des Ateliers."
+            },
+            {
+                "question": "Qu'est-ce que l'Index des Ateliers exactement ?",
+                "answer": "C'est un annuaire interactif public intégré au site InRealArt. Il regroupe l'ensemble des créateurs référencés par notre réseau et affiche votre atelier sur notre propre carte pour vous faire profiter de notre audience d'esthètes."
+            },
+            {
+                "question": "Combien de temps avant de voir des résultats ?",
+                "answer": "Les premiers résultats en recherche locale sur Google et Google Maps sont visibles dès l'activation de la fiche (environ 48 heures). L'impact réel et les contacts d'esthètes via l'Index d'Ateliers se manifestent dans les semaines suivantes."
+            },
+            {
+                "question": "Dois-je m'occuper de la mise à jour de ma fiche ?",
+                "answer": "Non. Dans le cadre de notre offre gratuite, vous bénéficiez de mises à jour mensuelles incluses. Il vous suffit d'envoyer vos nouvelles œuvres d'ateliers ou changements d'horaires à nos équipes, et nous faisons le nécessaire."
+            }
+        ]
+    },
+    "newsletter": {
+        "eyebrow": "Newsletter — In Real Art",
+        "title": "Restez connecté à",
+        "titleAccent": "l'art vivant",
+        "subtitle": "Actualités exclusives, artistes émergents, ventes privées et analyses du marché.",
+        "description": "En vous inscrivant, vous acceptez de recevoir nos communications. Désinscription possible à tout moment.",
+        "placeholder": "Votre adresse e-mail",
+        "cta": "S'inscrire",
+        "ctaPending": "Inscription en cours…",
+        "successMsg": "Inscription confirmée — bienvenue !",
+        "alreadyMsg": "Vous êtes déjà abonné à notre newsletter.",
+        "errorMsg": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "footer": {
+        "discover": "Découvrir",
+        "ecosystem": "Ecosystem IRA",
+        "follow": "Suivre",
+        "links": {
+            "problem": "Le Défi de l'Artiste",
+            "solution": "La Solution Artitude",
+            "index": "L'Index des Ateliers",
+            "team": "Notre Équipe d'Experts",
+            "mainSite": "Site principal InRealArt",
+            "services": "Candidatez aux Services d'Ateliers",
+            "register": "Référencer un Atelier",
+            "legal": "Mentions Légales",
+            "privacy": "Données Personnelles"
+        },
+        "description": "Artitude est un écosystème créé par InRealArt pour dynamiser la mise en avant locale et l'optimisation des ateliers d'art de manière indépendante.",
+        "copyright": "Artitude by InRealArt. Tous droits réservés. © 2026.",
+        "tagline": "Créé par et pour des artistes indépendants."
     }
-  },
-  "stats": {
-    "eyebrow": "Preuves par les chiffres",
-    "title": "Les chiffres ne mentent pas.",
-    "items": [
-      {
-        "label": "+131% de recherches",
-        "description": "Progression des ateliers référencés après optimisation de leur fiche."
-      },
-      {
-        "label": "+116% de vues",
-        "description": "Visibilité moyenne accrue sur Google Maps et l'Index IRA."
-      },
-      {
-        "label": "Actions générées",
-        "description": "Appels directes, demandes d'itinéraires et clics vers sites web."
-      },
-      {
-        "label": "Note Google Moyenne",
-        "description": "Évaluation moyenne des ateliers accompagnés par notre réseau."
-      }
-    ],
-    "testimonials": [
-      {
-        "quote": "Mes visites d'atelier physiques à Paris ont doublé en trois mois. Mes collectionneurs me trouvent directement via Google Maps.",
-        "name": "Catherine Sénéchal, Artiste Peintre"
-      },
-      {
-        "quote": "Je n'avais pas le temps de m'en occuper. L'équipe d'Artitude a tout structuré pour moi en 48h. C'est simple, efficace et totalement transparent.",
-        "name": "Jean-Paul Boyer, Sculpteur"
-      }
-    ]
-  },
-  "team": {
-    "eyebrow": "Notre Équipe",
-    "title": "Des experts à votre service.",
-    "subtitle": "Sept spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
-    "cta": "Solliciter un accompagnement professionnel",
-    "members": [
-      {
-        "name": "Timothée",
-        "role": "AGENT D'ARTISTES & STRATÉGIE GLOBAL",
-        "service": "Pilotage de carrière 360°",
-        "description": "Management au quotidien, coordination des experts de l'équipe et stratégie globale de développement pour pérenniser votre activité artistique."
-      },
-      {
-        "name": "Maxime",
-        "role": "STRATÈGE MARKETING & GROWTH",
-        "service": "Accélération d'audience et de visibilité",
-        "description": "Déploiement de stratégies de croissance numérique, optimisation de vos leviers de conversion et acquisition de nouveaux publics qualifiés pour vos œuvres."
-      },
-      {
-        "name": "Anna",
-        "role": "AGENT & ACCOMPAGNEMENT ÉVÉNEMENTIEL",
-        "service": "Production, programmation et événementiel",
-        "description": "Direction artistique de vos projets, logistique de vos événements et mise en avant de votre travail auprès des acteurs clés du milieu."
-      },
-      {
-        "name": "Clara",
-        "role": "AGENT & ACCOMPAGNEMENT JURIDIQUE",
-        "service": "Sécurisation légale, agence et gestion de projets",
-        "description": "Gestion de vos projets sur tous les fronts : sécurisation de vos contrats, suivi de votre développement artistique et coordination de vos temps forts."
-      },
-      {
-        "name": "Gilles",
-        "role": "CRÉATION WEB & DIGITALE",
-        "service": "Vitrine web haute performance et optimisation SEO",
-        "description": "Conception et optimisation technique de votre site internet ou portfolio en ligne pour garantir une plateforme robuste, rapide et parfaitement référencée."
-      },
-      {
-        "name": "Allegra",
-        "role": "AGENT & ACCOMPAGNEMENT MÉDIA",
-        "service": "Relations médias et direction de création",
-        "description": "Développement de vos relations presse, élaboration de vos éléments de langage et conseil stratégique sur l'alignement visuel de votre image de marque."
-      },
-      {
-        "name": "Lauranne",
-        "role": "EXPERT COMMUNICATION, COACHING & MARKETING",
-        "service": "Stratégie de communication et kits marketing",
-        "description": "Relations médias spécialisés, préparation à vos prises de parole publiques, direction artistique de vos supports et création de vos outils de communication dédiés."
-      }
-    ]
-  },
-  "register": {
-    "eyebrow": "Inscription gratuite",
-    "subtitle": "Rejoignez les 420 ateliers déjà référencés",
-    "formEyebrow": "DÉMARRER AUJOURD'HUI",
-    "formTitle": "Activez votre Artitude, gratuitement.",
-    "formSubtitle": "Remplissez ce formulaire d'inscription rapide. Notre équipe d'experts prendra en charge l'optimisation de votre profil sous 48 heures.",
-    "fieldName": "Nom & Prénom *",
-    "fieldNamePlaceholder": "Jean-Luc Boyer",
-    "fieldEmail": "Adresse Email *",
-    "fieldEmailPlaceholder": "jeanluc@boyer.com",
-    "fieldAtelier": "Nom de l'atelier / Activité *",
-    "fieldAtelierPlaceholder": "Atelier Boyer Art",
-    "fieldCity": "Ville de l'atelier *",
-    "fieldCityPlaceholder": "Nice, France",
-    "fieldDiscipline": "Médium artistique principal *",
-    "fieldDisciplinePlaceholder": "Sélectionnez votre discipline...",
-    "disciplines": [
-      {
-        "value": "peinture",
-        "label": "Peinture / Dessin"
-      },
-      {
-        "value": "sculpture",
-        "label": "Sculpture / Céramique"
-      },
-      {
-        "value": "photographie",
-        "label": "Photographie"
-      },
-      {
-        "value": "art_digital",
-        "label": "Art Numérique / Nouveaux Médias"
-      },
-      {
-        "value": "autre",
-        "label": "Autre discipline d'artisanat d'art"
-      }
-    ],
-    "consent": "Je souhaite recevoir les actualités InRealArt pour activer mon compte Artitude et être alerté des opportunités de services d'accompagnement.",
-    "submit": "Activer mon Artitude gratuit",
-    "privacy": "🔒 Vos données ne sont jamais revendues. Désinscription en un clic.",
-    "successTitle": "Demande envoyée avec succès.",
-    "successDesc": "Votre demande a bien été transmise à notre équipe par email. Un membre d'InRealArt vous contactera sous 48 heures.",
-    "successReset": "Inscrire un autre atelier",
-    "stepLabels": [
-      "Informations",
-      "Localisation & Horaires",
-      "Photos"
-    ],
-    "fieldPhone": "Téléphone *",
-    "fieldPhonePlaceholder": "+33 6 00 00 00 00",
-    "fieldWebsite": "Site web",
-    "fieldWebsitePlaceholder": "https://monatelier.fr",
-    "fieldAddress": "Adresse *",
-    "fieldAddressPlaceholder": "48 rue des Artistes",
-    "fieldPostalCode": "Code postal *",
-    "fieldPostalCodePlaceholder": "06000",
-    "fieldCountry": "Pays *",
-    "fieldDescription": "Description de l'atelier",
-    "fieldDescriptionPlaceholder": "Décrivez votre atelier en quelques mots... (max 750 caractères)",
-    "fieldHours": "Horaires d'ouverture",
-    "hoursLabels": {
-      "monday": "Lun",
-      "tuesday": "Mar",
-      "wednesday": "Mer",
-      "thursday": "Jeu",
-      "friday": "Ven",
-      "saturday": "Sam",
-      "sunday": "Dim",
-      "closed": "Fermé",
-      "openTime": "Ouverture",
-      "closeTime": "Fermeture"
-    },
-    "countries": [
-      {
-        "value": "FR",
-        "label": "France"
-      },
-      {
-        "value": "BE",
-        "label": "Belgique"
-      },
-      {
-        "value": "CH",
-        "label": "Suisse"
-      },
-      {
-        "value": "LU",
-        "label": "Luxembourg"
-      },
-      {
-        "value": "CA",
-        "label": "Canada"
-      }
-    ],
-    "photosTitle": "Photos de votre atelier",
-    "photosSubtitle": "Ces photos seront publiées sur votre fiche Google.",
-    "photoInterior": "Photo intérieur *",
-    "photoExterior1": "Photo extérieur 1 *",
-    "photoExterior2": "Photo extérieur 2 *",
-    "photoOwner": "Photo du propriétaire *",
-    "photoHint": "JPG, PNG ou WebP · max 1 Mo",
-    "btnNext": "Suivant",
-    "btnPrev": "Retour",
-    "btnSubmitting": "Envoi en cours...",
-    "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
-    "errorPhotos": "Veuillez ajouter toutes les photos requises.",
-    "photosSizeWarning": "Chaque photo doit faire 1 Mo maximum",
-    "errorPhotoSize": "La photo \"{label}\" est trop lourde ({size} Mo). Maximum autorisé : 1 Mo.",
-    "progressTitle": "Envoi en cours...",
-    "progressEyebrow": "TRAITEMENT",
-    "progressDoneEyebrow": "TERMINÉ",
-    "progressDoneTitle": "Demande envoyée !",
-    "progressErrorTitle": "Une erreur est survenue",
-    "progressValidate": "Validation des données",
-    "progressExcel": "Génération du fichier Excel",
-    "progressEmail": "Envoi de l'email à l'équipe",
-    "progressDoneBtn": "Fermer",
-    "progressRetryBtn": "Réessayer",
-    "validationName": "Veuillez entrer votre nom et prénom (2 caractères minimum).",
-    "validationEmail": "Adresse email invalide.",
-    "validationPhone": "Numéro de téléphone invalide. Exemple : +33 6 00 00 00 00",
-    "validationAtelier": "Le nom de l'atelier doit contenir au moins 2 caractères.",
-    "validationDiscipline": "Veuillez sélectionner une discipline.",
-    "validationAddress": "Adresse invalide. Indiquez le numéro et le nom de la rue.",
-    "validationPostalCode": "Code postal invalide (4 à 6 chiffres).",
-    "validationCity": "Veuillez indiquer la ville.",
-    "validationWebsite": "URL invalide. Exemple : https://monatelier.fr",
-    "validationConsent": "Veuillez accepter les conditions pour continuer."
-  },
-  "faq": {
-    "eyebrow": "Des Réponses Claires",
-    "title": "Les questions qu'on nous pose le plus.",
-    "items": [
-      {
-        "question": "C'est vraiment gratuit ?",
-        "answer": "Oui, l'inscription et la création de votre profil Artitude sont gratuites à 100%, aujourd'hui et demain. Aucune carte bancaire n'est requise. Ce service est offert par InRealArt pour soutenir la visibilité numérique des ateliers d'artistes locaux."
-      },
-      {
-        "question": "Je n'ai pas de site internet, ça fonctionne quand même ?",
-        "answer": "Oui absolument. C'est tout l'intérêt d'Artitude. Vous n'avez pas besoin d'un site web lourd et complexe : nous configurons votre fiche de façon optimale directement sur Google et au sein de notre Index des Ateliers."
-      },
-      {
-        "question": "Qu'est-ce que l'Index des Ateliers exactement ?",
-        "answer": "C'est un annuaire interactif public intégré au site InRealArt. Il regroupe l'ensemble des créateurs référencés par notre réseau et affiche votre atelier sur notre propre carte pour vous faire profiter de notre audience d'esthètes."
-      },
-      {
-        "question": "Combien de temps avant de voir des résultats ?",
-        "answer": "Les premiers résultats en recherche locale sur Google et Google Maps sont visibles dès l'activation de la fiche (environ 48 heures). L'impact réel et les contacts d'esthètes via l'Index d'Ateliers se manifestent dans les semaines suivantes."
-      },
-      {
-        "question": "Dois-je m'occuper de la mise à jour de ma fiche ?",
-        "answer": "Non. Dans le cadre de notre offre gratuite, vous bénéficiez de mises à jour mensuelles incluses. Il vous suffit d'envoyer vos nouvelles œuvres d'ateliers ou changements d'horaires à nos équipes, et nous faisons le nécessaire."
-      }
-    ]
-  },
-  "footer": {
-    "discover": "Découvrir",
-    "ecosystem": "Ecosystem IRA",
-    "follow": "Suivre",
-    "links": {
-      "problem": "Le Défi de l'Artiste",
-      "solution": "La Solution Artitude",
-      "index": "L'Index des Ateliers",
-      "team": "Notre Équipe d'Experts",
-      "mainSite": "Site principal InRealArt",
-      "services": "Candidatez aux Services d'Ateliers",
-      "register": "Référencer un Atelier",
-      "legal": "Mentions Légales",
-      "privacy": "Données Personnelles"
-    },
-    "description": "Artitude est un écosystème créé par InRealArt pour dynamiser la mise en avant locale et l'optimisation des ateliers d'art de manière indépendante.",
-    "copyright": "Artitude by InRealArt. Tous droits réservés. © 2026.",
-    "tagline": "Créé par et pour des artistes indépendants."
-  }
 }

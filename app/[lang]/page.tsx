@@ -10,6 +10,7 @@ import IndexSection from '@/components/sections/IndexSection'
 import StatsSection from '@/components/sections/StatsSection'
 import TeamSection from '@/components/sections/TeamSection'
 import RegisterSection from '@/components/sections/RegisterSection'
+import NewsletterSection from '@/components/sections/NewsletterSection'
 import FaqSection from '@/components/sections/FaqSection'
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -27,10 +28,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <HeroSection dict={dict} />
         <ProblemSection dict={dict} />
         <SolutionSection dict={dict} />
-        <IndexSection dict={dict} />
+        <IndexSection dict={dict} locale={lang} />
         <StatsSection dict={dict} />
         <TeamSection dict={dict} />
         <RegisterSection dict={dict} />
+        <NewsletterSection dict={dict} locale={lang} />
         <FaqSection dict={dict} />
       </main>
       <Footer dict={dict} />
