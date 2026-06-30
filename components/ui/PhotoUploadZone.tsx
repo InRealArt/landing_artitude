@@ -10,16 +10,21 @@ interface PhotoUploadZoneProps {
 }
 
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
-const MAX_SIZE_MB = 10
+const MAX_SIZE_BYTES = 1 * 1024 * 1024 // 1 MB
 
 export default function PhotoUploadZone({ label, hint, onChange, value }: PhotoUploadZoneProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragOver, setDragOver] = useState(false)
   const [preview, setPreview] = useState<string | null>(null)
+  const [sizeError, setSizeError] = useState(false)
 
   const handleFile = (file: File) => {
+    setSizeError(false)
     if (!ACCEPTED_TYPES.includes(file.type)) return
-    if (file.size > MAX_SIZE_MB * 1024 * 1024) return
+    if (file.size > MAX_SIZE_BYTES) {
+      setSizeError(true)
+      return
+    }
     setPreview((prev) => {
       if (prev) URL.revokeObjectURL(prev)
       return URL.createObjectURL(file)
@@ -44,6 +49,7 @@ export default function PhotoUploadZone({ label, hint, onChange, value }: PhotoU
       if (prev) URL.revokeObjectURL(prev)
       return null
     })
+    setSizeError(false)
     onChange(null)
     if (inputRef.current) inputRef.current.value = ''
   }
@@ -82,8 +88,14 @@ export default function PhotoUploadZone({ label, hint, onChange, value }: PhotoU
           `}
         >
           <span className="text-2xl text-grayText">+</span>
-          <span className="text-[10px] text-grayText font-sans text-center px-4">{hint ?? 'JPG, PNG ou WebP · max 10 Mo'}</span>
+          <span className="text-[10px] text-grayText font-sans text-center px-4">{hint ?? `JPG, PNG ou WebP · max ${MAX_SIZE_BYTES / 1024 / 1024} Mo`}</span>
         </div>
+      )}
+
+      {sizeError && (
+        <p className="text-[10px] text-red-500 font-sans">
+          Fichier trop lourd — max 1 Mo
+        </p>
       )}
 
       <input

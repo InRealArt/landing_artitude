@@ -6,6 +6,103 @@ import type { Dictionary } from '@/lib/dictionaries'
 import HoursGrid, { defaultHours, DayHours } from '@/components/ui/HoursGrid'
 import PhotoUploadZone from '@/components/ui/PhotoUploadZone'
 
+const MAX_PHOTO_SIZE = 1 * 1024 * 1024 // 1 MB
+
+type ProgressStep = {
+  id: string
+  labelKey: string
+  status: 'pending' | 'running' | 'done' | 'error'
+}
+
+const INITIAL_STEPS = (d: Record<string, string>): ProgressStep[] => [
+  { id: 'validate', labelKey: d.progressValidate, status: 'pending' },
+  { id: 'excel', labelKey: d.progressExcel, status: 'pending' },
+  { id: 'email', labelKey: d.progressEmail, status: 'pending' },
+]
+
+function ProgressModal({
+  steps,
+  error,
+  onClose,
+  dict,
+}: {
+  steps: ProgressStep[]
+  error: string | null
+  onClose?: () => void
+  dict: Dictionary['register']
+}) {
+  const allDone = steps.every((s) => s.status === 'done')
+  const hasError = steps.some((s) => s.status === 'error')
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={dict.progressTitle}
+      className="absolute inset-0 z-50 bg-canvas/97 flex flex-col items-center justify-center p-8 text-center"
+    >
+      <div className="w-full max-w-sm space-y-8">
+        <div className="space-y-1">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-display">
+            {allDone ? dict.progressDoneEyebrow : dict.progressEyebrow}
+          </p>
+          <h3 className="font-serif text-2xl text-inkBlack">
+            {hasError ? dict.progressErrorTitle : allDone ? dict.progressDoneTitle : dict.progressTitle}
+          </h3>
+        </div>
+
+        <div className="space-y-3">
+          {steps.map((step, i) => (
+            <div key={step.id} className="flex items-center gap-4 text-left">
+              <div
+                className={`
+                  h-6 w-6 flex-shrink-0 flex items-center justify-center border text-[10px] font-display transition-all duration-300
+                  ${step.status === 'done' ? 'bg-inkBlack border-inkBlack text-white' : ''}
+                  ${step.status === 'running' ? 'border-gold bg-gold/10' : ''}
+                  ${step.status === 'pending' ? 'border-borderLight text-grayText' : ''}
+                  ${step.status === 'error' ? 'border-red-400 bg-red-50 text-red-500' : ''}
+                `}
+              >
+                {step.status === 'done' && '✓'}
+                {step.status === 'running' && (
+                  <span className="inline-block h-3 w-3 border border-gold border-t-transparent rounded-full animate-spin" />
+                )}
+                {step.status === 'pending' && i + 1}
+                {step.status === 'error' && '✕'}
+              </div>
+              <span
+                className={`text-xs font-sans transition-colors duration-300
+                  ${step.status === 'done' ? 'text-inkBlack font-medium' : ''}
+                  ${step.status === 'running' ? 'text-inkBlack' : ''}
+                  ${step.status === 'pending' ? 'text-grayText' : ''}
+                  ${step.status === 'error' ? 'text-red-500' : ''}
+                `}
+              >
+                {step.labelKey}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {error && (
+          <p className="text-xs text-red-600 font-sans bg-red-50 border border-red-200 px-4 py-3 text-left">
+            {error}
+          </p>
+        )}
+
+        {(allDone || hasError) && onClose && (
+          <button
+            onClick={onClose}
+            className={allDone ? 'btn-action justify-center py-3 text-[11px]' : 'btn-mag'}
+          >
+            {allDone ? dict.progressDoneBtn : dict.progressRetryBtn}
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const d = dict.register
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -13,9 +110,12 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const [step, setStep] = useState(1)
   const [success, setSuccess] = useState(false)
-  const [excelUrl, setExcelUrl] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  const [progressSteps, setProgressSteps] = useState<ProgressStep[]>([])
+  const [progressError, setProgressError] = useState<string | null>(null)
+  const [showProgress, setShowProgress] = useState(false)
 
   // Step 1
   const [name, setName] = useState('')
@@ -46,6 +146,13 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
   const handleNext = () => setStep((s) => Math.min(s + 1, 3))
   const handlePrev = () => setStep((s) => Math.max(s - 1, 1))
 
+  const updateStep = (
+    steps: ProgressStep[],
+    id: string,
+    status: ProgressStep['status']
+  ): ProgressStep[] =>
+    steps.map((s) => (s.id === id ? { ...s, status } : s))
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorMsg(null)
@@ -55,9 +162,37 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       return
     }
 
+    const photoChecks = [
+      { file: photoInterior, label: d.photoInterior },
+      { file: photoExterior1, label: d.photoExterior1 },
+      { file: photoExterior2, label: d.photoExterior2 },
+      { file: photoOwner, label: d.photoOwner },
+    ]
+
+    for (const { file, label } of photoChecks) {
+      if (file.size > MAX_PHOTO_SIZE) {
+        setErrorMsg(d.errorPhotoSize.replace('{label}', label).replace('{size}', (file.size / 1024 / 1024).toFixed(1)))
+        return
+      }
+    }
+
     setSubmitting(true)
 
+    const initialSteps = INITIAL_STEPS({
+      progressValidate: d.progressValidate,
+      progressExcel: d.progressExcel,
+      progressEmail: d.progressEmail,
+    })
+
+    setProgressSteps(initialSteps)
+    setProgressError(null)
+    setShowProgress(true)
+
     try {
+      // Step 1 — validation
+      setProgressSteps((prev) => updateStep(prev, 'validate', 'running'))
+      await new Promise((r) => setTimeout(r, 400))
+
       const openPeriods = hours
         .filter((h) => h.open)
         .map((h) => ({
@@ -67,9 +202,6 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
           closeTime: h.closeTime,
         }))
 
-      // Send everything as multipart/form-data in one call.
-      // The server creates the location and uploads photos without the client
-      // ever receiving or supplying the GMB locationName (prevents injection).
       const fd = new FormData()
       fd.append('name', name)
       fd.append('title', atelierName)
@@ -87,22 +219,70 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       fd.append('photoExterior2', photoExterior2)
       fd.append('photoOwner', photoOwner)
 
-      const createRes = await fetch('/api/gmb/create-location', {
-        method: 'POST',
-        body: fd,
-      })
+      setProgressSteps((prev) => updateStep(prev, 'validate', 'done'))
 
-      if (!createRes.ok) {
-        setErrorMsg(d.errorGeneric)
+      // Step 2 — Excel generation (server-side, signaled via timing)
+      setProgressSteps((prev) => updateStep(prev, 'excel', 'running'))
+
+      // Step 3 — Email sending
+      // Both Excel generation and email sending happen in one API call.
+      // We transition to 'email' after a brief delay to show the Excel step.
+      let emailStartTimer: ReturnType<typeof setTimeout> | undefined
+
+      emailStartTimer = setTimeout(() => {
+        setProgressSteps((prev) => {
+          const updated = updateStep(prev, 'excel', 'done')
+          return updateStep(updated, 'email', 'running')
+        })
+      }, 800)
+
+      let res: Response
+      try {
+        res = await fetch('/api/gmb/create-location', {
+          method: 'POST',
+          body: fd,
+        })
+      } catch {
+        clearTimeout(emailStartTimer)
+        setProgressSteps((prev) => {
+          const current = prev.find((s) => s.status === 'running')
+          if (!current) return prev
+          return updateStep(prev, current.id, 'error')
+        })
+        setProgressError(d.errorGeneric)
         setSubmitting(false)
         return
       }
 
-      const { excelUrl: url } = await createRes.json()
-      setExcelUrl(url)
+      clearTimeout(emailStartTimer)
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ error: d.errorGeneric }))
+        const msg = (body as { error?: string }).error ?? d.errorGeneric
+        setProgressSteps((prev) => {
+          const current = prev.find((s) => s.status === 'running')
+          if (!current) return prev
+          return updateStep(prev, current.id, 'error')
+        })
+        setProgressError(msg)
+        setSubmitting(false)
+        return
+      }
+
+      setProgressSteps((prev) => {
+        const updated = updateStep(prev, 'excel', 'done')
+        return updateStep(updated, 'email', 'done')
+      })
+
+      await new Promise((r) => setTimeout(r, 600))
       setSuccess(true)
     } catch {
-      setErrorMsg(d.errorGeneric)
+      setProgressSteps((prev) => {
+        const current = prev.find((s) => s.status === 'running')
+        if (!current) return prev
+        return updateStep(prev, current.id, 'error')
+      })
+      setProgressError(d.errorGeneric)
     } finally {
       setSubmitting(false)
     }
@@ -110,12 +290,23 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
   const handleReset = () => {
     setSuccess(false)
-    setExcelUrl(null)
+    setShowProgress(false)
+    setProgressSteps([])
+    setProgressError(null)
     setStep(1)
     setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
     setPhotoInterior(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoOwner(null)
     setErrorMsg(null)
+  }
+
+  const handleProgressClose = () => {
+    const hasError = progressSteps.some((s) => s.status === 'error')
+    if (hasError) {
+      setShowProgress(false)
+      setProgressSteps([])
+      setProgressError(null)
+    }
   }
 
   const stepLabels = d.stepLabels as string[]
@@ -270,6 +461,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 <div className="text-center space-y-1">
                   <h3 className="font-serif text-2xl font-light text-inkBlack">{d.photosTitle}</h3>
                   <p className="text-xs text-grayText font-sans">{d.photosSubtitle}</p>
+                  <p className="text-[10px] text-gold font-display uppercase tracking-wider">{d.photosSizeWarning}</p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
@@ -308,6 +500,16 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
             )}
           </form>
 
+          {/* Progress modal */}
+          {showProgress && !success && (
+            <ProgressModal
+              steps={progressSteps}
+              error={progressError}
+              onClose={handleProgressClose}
+              dict={d}
+            />
+          )}
+
           {/* Success overlay */}
           {success && (
             <div className="absolute inset-0 bg-canvas/95 flex flex-col items-center justify-center p-8 text-center space-y-6">
@@ -316,18 +518,6 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
                 <h3 className="font-serif text-2xl text-inkBlack">{d.successTitle}</h3>
                 <p className="text-xs text-grayText max-w-md mx-auto font-sans">{d.successDesc}</p>
               </div>
-              {excelUrl && (
-                <a
-                  href={excelUrl}
-                  download="gmb-import.xlsx"
-                  className="btn-action justify-center py-3 text-[11px]"
-                >
-                  {d.successDownload}
-                </a>
-              )}
-              <p className="text-[10px] text-grayText max-w-sm mx-auto font-sans leading-relaxed">
-                {d.successInstructions}
-              </p>
               <button onClick={handleReset} className="btn-mag">{d.successReset}</button>
             </div>
           )}

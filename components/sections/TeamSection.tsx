@@ -8,12 +8,13 @@ import { useGsapReveal } from '@/hooks/useGsapReveal'
 import type { Dictionary } from '@/lib/dictionaries'
 
 const teamImgs = [
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=300&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop',
+  '/images/team/tim.webp',
+  '/images/team/max.webp',
+  '/images/team/anna.webp',
+  '/images/team/clara.webp',
+  '/images/team/gilles.webp',
+  '/images/team/allegra.webp',
+  '/images/team/lauranne.webp',
 ]
 
 export default function TeamSection({ dict }: { dict: Dictionary }) {

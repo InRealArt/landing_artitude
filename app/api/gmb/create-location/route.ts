@@ -1,7 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
-import sharp from 'sharp'
-import { uploadToR2 } from '@/lib/r2-client'
 import { generateGmbExcel, GmbExcelData } from '@/lib/gmb-excel'
+
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
+const RECIPIENT_EMAIL = 'teaminrealart@gmail.com'
+const MAX_PHOTO_SIZE = 1 * 1024 * 1024 // 1 MB
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
 
 function toSlug(name: string): string {
   return name
@@ -12,12 +23,9 @@ function toSlug(name: string): string {
     .replace(/^-|-$/g, '')
 }
 
-async function compressImage(file: File): Promise<Buffer> {
+async function fileToBase64(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer()
-  return sharp(Buffer.from(arrayBuffer))
-    .resize(1920, 1920, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 85 })
-    .toBuffer()
+  return Buffer.from(arrayBuffer).toString('base64')
 }
 
 export async function POST(req: NextRequest) {
@@ -39,8 +47,14 @@ export async function POST(req: NextRequest) {
     const photoExterior2 = formData.get('photoExterior2') as File | null
     const photoOwner = formData.get('photoOwner') as File | null
 
+    const consent = formData.get('consent') as string | null
+
     if (!name || !title || !phone || !addressLine || !postalCode || !locality || !regionCode) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    if (consent !== 'true') {
+      return NextResponse.json({ error: 'Consent required' }, { status: 400 })
     }
 
     if (websiteUri) {
@@ -58,6 +72,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'All 4 photos are required' }, { status: 400 })
     }
 
+    const photos = [
+      { file: photoInterior, label: 'Intérieur' },
+      { file: photoExterior1, label: 'Extérieur 1' },
+      { file: photoExterior2, label: 'Extérieur 2' },
+      { file: photoOwner, label: 'Propriétaire' },
+    ]
+
+    for (const { file, label } of photos) {
+      if (file.size > MAX_PHOTO_SIZE) {
+        return NextResponse.json(
+          { error: `Photo "${label}" dépasse 1 Mo (${(file.size / 1024 / 1024).toFixed(1)} Mo)` },
+          { status: 400 }
+        )
+      }
+    }
+
     let hours: GmbExcelData['hours'] = []
     if (hoursRaw) {
       try {
@@ -71,27 +101,9 @@ export async function POST(req: NextRequest) {
     }
 
     const storeCode = toSlug(name)
-
     if (!storeCode || !/^[a-z0-9-]+$/.test(storeCode)) {
       return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
     }
-
-    const r2Prefix = `artitude/ateliers/${storeCode}`
-
-    // Compress and upload photos
-    const [interiorBuf, exterior1Buf, exterior2Buf, ownerBuf] = await Promise.all([
-      compressImage(photoInterior),
-      compressImage(photoExterior1),
-      compressImage(photoExterior2),
-      compressImage(photoOwner),
-    ])
-
-    const [interiorUrl, exterior1Url, exterior2Url, ownerUrl] = await Promise.all([
-      uploadToR2({ key: `${r2Prefix}/interior.webp`, body: interiorBuf, contentType: 'image/webp' }),
-      uploadToR2({ key: `${r2Prefix}/exterior-1.webp`, body: exterior1Buf, contentType: 'image/webp' }),
-      uploadToR2({ key: `${r2Prefix}/exterior-2.webp`, body: exterior2Buf, contentType: 'image/webp' }),
-      uploadToR2({ key: `${r2Prefix}/owner.webp`, body: ownerBuf, contentType: 'image/webp' }),
-    ])
 
     // Generate Excel
     const excelData: GmbExcelData = {
@@ -104,19 +116,92 @@ export async function POST(req: NextRequest) {
       phone,
       websiteUri: websiteUri || undefined,
       hours,
-      photoLogoUrl: ownerUrl,
-      photoCoverUrl: exterior1Url,
-      photoOtherUrls: [interiorUrl, exterior2Url].join(','),
+      photoLogoUrl: '',
+      photoCoverUrl: '',
+      photoOtherUrls: '',
     }
 
     const excelBuffer = await generateGmbExcel(excelData)
-    const excelUrl = await uploadToR2({
-      key: `${r2Prefix}/gmb-import.xlsx`,
-      body: excelBuffer,
-      contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    const excelBase64 = excelBuffer.toString('base64')
+
+    // Convert photos to base64
+    const [interiorB64, exterior1B64, exterior2B64, ownerB64] = await Promise.all([
+      fileToBase64(photoInterior),
+      fileToBase64(photoExterior1),
+      fileToBase64(photoExterior2),
+      fileToBase64(photoOwner),
+    ])
+
+    const getExt = (file: File) => {
+      const mime: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/webp': 'webp',
+      }
+      return mime[file.type] ?? 'jpg'
+    }
+
+    const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
+
+    const brevoPayload = {
+      sender: { name: 'Artitude', email: 'noreply@inrealart.com' },
+      to: [{ email: RECIPIENT_EMAIL, name: 'Team InRealArt' }],
+      subject: emailSubject,
+      htmlContent: `<p>Bonjour,</p>
+<p>Veuillez trouver en pièces jointes les photos de l'atelier ainsi que le fichier Excel formaté pour l'import Google Business Profile.</p>
+<ul>
+  <li><strong>Demandeur :</strong> ${escapeHtml(name)}</li>
+  <li><strong>Atelier :</strong> ${escapeHtml(title)}</li>
+  <li><strong>Téléphone :</strong> ${escapeHtml(phone)}</li>
+  <li><strong>Adresse :</strong> ${escapeHtml(addressLine)}, ${escapeHtml(postalCode)} ${escapeHtml(locality)}</li>
+</ul>
+<p>Cordialement,<br/>Artitude</p>`,
+      attachment: [
+        {
+          content: interiorB64,
+          name: `photo-interieur.${getExt(photoInterior)}`,
+        },
+        {
+          content: exterior1B64,
+          name: `photo-exterieur-1.${getExt(photoExterior1)}`,
+        },
+        {
+          content: exterior2B64,
+          name: `photo-exterieur-2.${getExt(photoExterior2)}`,
+        },
+        {
+          content: ownerB64,
+          name: `photo-proprietaire.${getExt(photoOwner)}`,
+        },
+        {
+          content: excelBase64,
+          name: `gmb-import-${storeCode}.xlsx`,
+        },
+      ],
+    }
+
+    const brevoApiKey = process.env.BREVO_API_KEY
+    if (!brevoApiKey) {
+      return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
+    }
+
+    const brevoRes = await fetch(BREVO_API_URL, {
+      method: 'POST',
+      headers: {
+        'api-key': brevoApiKey,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(brevoPayload),
     })
 
-    return NextResponse.json({ excelUrl })
+    if (!brevoRes.ok) {
+      const brevoError = await brevoRes.text()
+      console.error('Brevo error:', brevoError)
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true })
   } catch (e) {
     console.error('create-location exception:', e)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

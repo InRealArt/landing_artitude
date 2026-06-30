@@ -19,7 +19,11 @@
     "description": "Our main artist catalog is currently closed. That's why we offer",
     "brand": "Artitude",
     "descriptionEnd": ": a free tool to list your studio on Google and join our interactive map in 2 minutes.",
-    "badges": ["100% Free", "No Commitment", "Live in 48h"],
+    "badges": [
+      "100% Free",
+      "No Commitment",
+      "Live in 48h"
+    ],
     "cta": "Join Artitude for Free",
     "social": "Already",
     "socialCount": "420 studios",
@@ -27,7 +31,11 @@
     "widgetBadge": "ARTITUDE OPTIMISED",
     "widgetName": "Catherine Sénéchal Studio",
     "widgetSubtitle": "Painting & Visual Art • Lyon",
-    "widgetActions": ["Call", "Directions", "Website"]
+    "widgetActions": [
+      "Call",
+      "Directions",
+      "Website"
+    ]
   },
   "problem": {
     "eyebrow": "The artist's challenge",
@@ -115,10 +123,22 @@
     "eyebrow": "Proof in numbers",
     "title": "Numbers don't lie.",
     "items": [
-      { "label": "+131% searches", "description": "Growth in listed studios after their profile was optimised." },
-      { "label": "+116% views", "description": "Average visibility increase on Google Maps and the IRA Index." },
-      { "label": "Actions generated", "description": "Direct calls, direction requests and website clicks." },
-      { "label": "Average Google Rating", "description": "Average rating of studios supported by our network." }
+      {
+        "label": "+131% searches",
+        "description": "Growth in listed studios after their profile was optimised."
+      },
+      {
+        "label": "+116% views",
+        "description": "Average visibility increase on Google Maps and the IRA Index."
+      },
+      {
+        "label": "Actions generated",
+        "description": "Direct calls, direction requests and website clicks."
+      },
+      {
+        "label": "Average Google Rating",
+        "description": "Average rating of studios supported by our network."
+      }
     ],
     "testimonials": [
       {
@@ -198,21 +218,38 @@
     "fieldDiscipline": "Main artistic medium *",
     "fieldDisciplinePlaceholder": "Select your discipline...",
     "disciplines": [
-      { "value": "peinture", "label": "Painting / Drawing" },
-      { "value": "sculpture", "label": "Sculpture / Ceramics" },
-      { "value": "photographie", "label": "Photography" },
-      { "value": "art_digital", "label": "Digital Art / New Media" },
-      { "value": "autre", "label": "Other craft discipline" }
+      {
+        "value": "peinture",
+        "label": "Painting / Drawing"
+      },
+      {
+        "value": "sculpture",
+        "label": "Sculpture / Ceramics"
+      },
+      {
+        "value": "photographie",
+        "label": "Photography"
+      },
+      {
+        "value": "art_digital",
+        "label": "Digital Art / New Media"
+      },
+      {
+        "value": "autre",
+        "label": "Other craft discipline"
+      }
     ],
     "consent": "I would like to receive InRealArt news to activate my Artitude account and be notified of accompaniment service opportunities.",
     "submit": "Activate my free Artitude",
     "privacy": "🔒 Your data is never sold. Unsubscribe in one click.",
-    "successTitle": "Registration request received.",
-    "successDesc": "Thank you for activating your profile. A member of the InRealArt team will evaluate and configure your studio within 48 hours.",
+    "successTitle": "Request sent successfully.",
+    "successDesc": "Your request has been sent to our team by email. A member of InRealArt will contact you within 48 hours.",
     "successReset": "Register another studio",
-    "successDownload": "Download my Google listing (Excel)",
-    "successInstructions": "Import this file in Google Business Profile: business.google.com → Businesses → Import businesses. Your photos are already hosted and referenced in the file.",
-    "stepLabels": ["Information", "Location & Hours", "Photos"],
+    "stepLabels": [
+      "Information",
+      "Location & Hours",
+      "Photos"
+    ],
     "fieldPhone": "Phone *",
     "fieldPhonePlaceholder": "+1 555 000 0000",
     "fieldWebsite": "Website",
@@ -238,11 +275,26 @@
       "closeTime": "Close"
     },
     "countries": [
-      { "value": "US", "label": "United States" },
-      { "value": "GB", "label": "United Kingdom" },
-      { "value": "CA", "label": "Canada" },
-      { "value": "AU", "label": "Australia" },
-      { "value": "FR", "label": "France" }
+      {
+        "value": "US",
+        "label": "United States"
+      },
+      {
+        "value": "GB",
+        "label": "United Kingdom"
+      },
+      {
+        "value": "CA",
+        "label": "Canada"
+      },
+      {
+        "value": "AU",
+        "label": "Australia"
+      },
+      {
+        "value": "FR",
+        "label": "France"
+      }
     ],
     "photosTitle": "Studio photos",
     "photosSubtitle": "These photos will be published on your Google listing.",
@@ -250,12 +302,24 @@
     "photoExterior1": "Exterior photo 1 *",
     "photoExterior2": "Exterior photo 2 *",
     "photoOwner": "Owner photo *",
-    "photoHint": "JPG, PNG or WebP · max 10 MB",
+    "photoHint": "JPG, PNG or WebP · max 1 MB",
     "btnNext": "Next",
     "btnPrev": "Back",
-    "btnSubmitting": "Creating listing...",
+    "btnSubmitting": "Sending...",
     "errorGeneric": "An error occurred. Please try again.",
-    "errorPhotos": "Please add all required photos."
+    "errorPhotos": "Please add all required photos.",
+    "photosSizeWarning": "Each photo must be 1 MB maximum",
+    "errorPhotoSize": "Photo \"{label}\" is too large ({size} MB). Maximum allowed: 1 MB.",
+    "progressTitle": "Sending...",
+    "progressEyebrow": "PROCESSING",
+    "progressDoneEyebrow": "COMPLETED",
+    "progressDoneTitle": "Request sent!",
+    "progressErrorTitle": "An error occurred",
+    "progressValidate": "Validating data",
+    "progressExcel": "Generating Excel file",
+    "progressEmail": "Sending email to the team",
+    "progressDoneBtn": "Close",
+    "progressRetryBtn": "Retry"
   },
   "faq": {
     "eyebrow": "Clear Answers",

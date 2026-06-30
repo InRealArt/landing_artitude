@@ -19,7 +19,11 @@
     "description": "Notre catalogue d'artistes principaux est actuellement clos. C'est pourquoi nous offrons",
     "brand": "Artitude",
     "descriptionEnd": ": un outil gratuit pour référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.",
-    "badges": ["100% Gratuit", "Sans Engagement", "Activé en 48h"],
+    "badges": [
+      "100% Gratuit",
+      "Sans Engagement",
+      "Activé en 48h"
+    ],
     "cta": "Rejoindre Artitude Gratuitement",
     "social": "Déjà plus de",
     "socialCount": "420 ateliers",
@@ -27,7 +31,11 @@
     "widgetBadge": "OPTIMISÉ ARTITUDE",
     "widgetName": "Atelier Catherine Sénéchal",
     "widgetSubtitle": "Peinture & Plasticienne • Lyon",
-    "widgetActions": ["Appel", "Adresse", "Site"]
+    "widgetActions": [
+      "Appel",
+      "Adresse",
+      "Site"
+    ]
   },
   "problem": {
     "eyebrow": "Le défi de l'artiste",
@@ -115,10 +123,22 @@
     "eyebrow": "Preuves par les chiffres",
     "title": "Les chiffres ne mentent pas.",
     "items": [
-      { "label": "+131% de recherches", "description": "Progression des ateliers référencés après optimisation de leur fiche." },
-      { "label": "+116% de vues", "description": "Visibilité moyenne accrue sur Google Maps et l'Index IRA." },
-      { "label": "Actions générées", "description": "Appels directes, demandes d'itinéraires et clics vers sites web." },
-      { "label": "Note Google Moyenne", "description": "Évaluation moyenne des ateliers accompagnés par notre réseau." }
+      {
+        "label": "+131% de recherches",
+        "description": "Progression des ateliers référencés après optimisation de leur fiche."
+      },
+      {
+        "label": "+116% de vues",
+        "description": "Visibilité moyenne accrue sur Google Maps et l'Index IRA."
+      },
+      {
+        "label": "Actions générées",
+        "description": "Appels directes, demandes d'itinéraires et clics vers sites web."
+      },
+      {
+        "label": "Note Google Moyenne",
+        "description": "Évaluation moyenne des ateliers accompagnés par notre réseau."
+      }
     ],
     "testimonials": [
       {
@@ -198,21 +218,38 @@
     "fieldDiscipline": "Médium artistique principal *",
     "fieldDisciplinePlaceholder": "Sélectionnez votre discipline...",
     "disciplines": [
-      { "value": "peinture", "label": "Peinture / Dessin" },
-      { "value": "sculpture", "label": "Sculpture / Céramique" },
-      { "value": "photographie", "label": "Photographie" },
-      { "value": "art_digital", "label": "Art Numérique / Nouveaux Médias" },
-      { "value": "autre", "label": "Autre discipline d'artisanat d'art" }
+      {
+        "value": "peinture",
+        "label": "Peinture / Dessin"
+      },
+      {
+        "value": "sculpture",
+        "label": "Sculpture / Céramique"
+      },
+      {
+        "value": "photographie",
+        "label": "Photographie"
+      },
+      {
+        "value": "art_digital",
+        "label": "Art Numérique / Nouveaux Médias"
+      },
+      {
+        "value": "autre",
+        "label": "Autre discipline d'artisanat d'art"
+      }
     ],
     "consent": "Je souhaite recevoir les actualités InRealArt pour activer mon compte Artitude et être alerté des opportunités de services d'accompagnement.",
     "submit": "Activer mon Artitude gratuit",
     "privacy": "🔒 Vos données ne sont jamais revendues. Désinscription en un clic.",
-    "successTitle": "Demande d'inscription reçue.",
-    "successDesc": "Merci d'avoir activé votre profil. Un membre de l'équipe d'InRealArt va procéder à l'évaluation et la configuration de votre atelier sous 48 heures.",
+    "successTitle": "Demande envoyée avec succès.",
+    "successDesc": "Votre demande a bien été transmise à notre équipe par email. Un membre d'InRealArt vous contactera sous 48 heures.",
     "successReset": "Inscrire un autre atelier",
-    "successDownload": "Télécharger ma fiche Google (Excel)",
-    "successInstructions": "Importez ce fichier dans Google Business Profile : business.google.com → Établissements → Importer des établissements. Vos photos sont déjà hébergées et référencées dans le fichier.",
-    "stepLabels": ["Informations", "Localisation & Horaires", "Photos"],
+    "stepLabels": [
+      "Informations",
+      "Localisation & Horaires",
+      "Photos"
+    ],
     "fieldPhone": "Téléphone *",
     "fieldPhonePlaceholder": "+33 6 00 00 00 00",
     "fieldWebsite": "Site web",
@@ -238,11 +275,26 @@
       "closeTime": "Fermeture"
     },
     "countries": [
-      { "value": "FR", "label": "France" },
-      { "value": "BE", "label": "Belgique" },
-      { "value": "CH", "label": "Suisse" },
-      { "value": "LU", "label": "Luxembourg" },
-      { "value": "CA", "label": "Canada" }
+      {
+        "value": "FR",
+        "label": "France"
+      },
+      {
+        "value": "BE",
+        "label": "Belgique"
+      },
+      {
+        "value": "CH",
+        "label": "Suisse"
+      },
+      {
+        "value": "LU",
+        "label": "Luxembourg"
+      },
+      {
+        "value": "CA",
+        "label": "Canada"
+      }
     ],
     "photosTitle": "Photos de votre atelier",
     "photosSubtitle": "Ces photos seront publiées sur votre fiche Google.",
@@ -250,12 +302,24 @@
     "photoExterior1": "Photo extérieur 1 *",
     "photoExterior2": "Photo extérieur 2 *",
     "photoOwner": "Photo du propriétaire *",
-    "photoHint": "JPG, PNG ou WebP · max 10 Mo",
+    "photoHint": "JPG, PNG ou WebP · max 1 Mo",
     "btnNext": "Suivant",
     "btnPrev": "Retour",
-    "btnSubmitting": "Création en cours...",
+    "btnSubmitting": "Envoi en cours...",
     "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
-    "errorPhotos": "Veuillez ajouter toutes les photos requises."
+    "errorPhotos": "Veuillez ajouter toutes les photos requises.",
+    "photosSizeWarning": "Chaque photo doit faire 1 Mo maximum",
+    "errorPhotoSize": "La photo \"{label}\" est trop lourde ({size} Mo). Maximum autorisé : 1 Mo.",
+    "progressTitle": "Envoi en cours...",
+    "progressEyebrow": "TRAITEMENT",
+    "progressDoneEyebrow": "TERMINÉ",
+    "progressDoneTitle": "Demande envoyée !",
+    "progressErrorTitle": "Une erreur est survenue",
+    "progressValidate": "Validation des données",
+    "progressExcel": "Génération du fichier Excel",
+    "progressEmail": "Envoi de l'email à l'équipe",
+    "progressDoneBtn": "Fermer",
+    "progressRetryBtn": "Réessayer"
   },
   "faq": {
     "eyebrow": "Des Réponses Claires",
