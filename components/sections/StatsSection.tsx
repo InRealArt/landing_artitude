@@ -50,8 +50,8 @@ export default function StatsSection({ dict }: { dict: Dictionary }) {
         <div ref={testimonialsRef} className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto pt-8 border-t border-white/10">
           {d.testimonials.map((t, i) => (
             <div key={t.name} className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="relative w-16 h-16 flex-shrink-0 border border-white/10 overflow-hidden">
-                <Image src={testimonialImgs[i]} alt={t.name} fill className="object-cover grayscale" />
+              <div className="relative w-14 h-14 flex-shrink-0 rounded-full border border-white/20 overflow-hidden ring-2 ring-gold/30 self-start">
+                <Image src={testimonialImgs[i]} alt={t.name} fill className="object-cover object-top grayscale" />
               </div>
               <div className="space-y-2">
                 <div className="flex text-gold text-xs">★ ★ ★ ★ ★</div>

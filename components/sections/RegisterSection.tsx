@@ -12,8 +12,29 @@ const MAX_PHOTO_SIZE = 1 * 1024 * 1024 // 1 MB
 
 const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const RE_PHONE = /^[+]?(?=(?:[\s\-().]*\d){7})[\d\s\-().]{7,20}$/
-const RE_POSTAL = /^\d{4,6}$/
 const RE_ADDRESS = /\d/
+
+// Postal code patterns per country code
+const POSTAL_PATTERNS: Record<string, RegExp> = {
+  FR: /^\d{5}$/,                              // France — 75001
+  BE: /^\d{4}$/,                              // Belgique — 1000
+  CH: /^\d{4}$/,                              // Suisse — 1200
+  LU: /^\d{4}$/,                              // Luxembourg — 1234
+  DE: /^\d{5}$/,                              // Allemagne — 10115
+  ES: /^\d{5}$/,                              // Espagne — 28001
+  IT: /^\d{5}$/,                              // Italie — 00100
+  PT: /^\d{4}-\d{3}$/,                        // Portugal — 1000-001 (tiret obligatoire)
+  NL: /^\d{4}\s?[A-Z]{2}$/,                   // Pays-Bas — 1234 AB (uppercase strict)
+  GB: /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i, // UK — SW1A 1AA
+  CA: /^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/,          // Canada — K1A 0B1 (uppercase strict)
+  US: /^\d{5}(-\d{4})?$/,                     // USA — 90210 ou 90210-1234
+}
+const POSTAL_FALLBACK = /^[A-Z0-9][A-Z0-9\s\-]{1,8}[A-Z0-9]$/i
+
+function isValidPostalCode(postalCode: string, country: string): boolean {
+  const pattern = POSTAL_PATTERNS[country] ?? POSTAL_FALLBACK
+  return pattern.test(postalCode.trim())
+}
 
 interface Step1Msgs {
   validationName: string; validationEmail: string; validationPhone: string
@@ -40,12 +61,12 @@ function validateStep1(
 }
 
 function validateStep2(
-  values: { address: string; postalCode: string; city: string },
+  values: { address: string; postalCode: string; city: string; country: string },
   msgs: Step2Msgs
 ): Record<string, string> {
   const errors: Record<string, string> = {}
   if (values.address.trim().length < 5 || !RE_ADDRESS.test(values.address)) errors.address = msgs.validationAddress
-  if (!RE_POSTAL.test(values.postalCode.trim())) errors.postalCode = msgs.validationPostalCode
+  if (!isValidPostalCode(values.postalCode, values.country)) errors.postalCode = msgs.validationPostalCode
   if (values.city.trim().length < 1) errors.city = msgs.validationCity
   return errors
 }
@@ -219,7 +240,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
         validationAddress: d.validationAddress, validationPostalCode: d.validationPostalCode,
         validationCity: d.validationCity,
       }
-      const errors = validateStep2({ address, postalCode, city }, msgs)
+      const errors = validateStep2({ address, postalCode, city, country }, msgs)
       if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
     }
     setStep((s) => Math.min(s + 1, 3))
@@ -255,7 +276,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
       validationAddress: d.validationAddress, validationPostalCode: d.validationPostalCode,
       validationCity: d.validationCity,
     }
-    const step2Errors = validateStep2({ address, postalCode, city }, step2Msgs)
+    const step2Errors = validateStep2({ address, postalCode, city, country }, step2Msgs)
     if (Object.keys(step2Errors).length > 0) {
       setFieldErrors(step2Errors)
       setStep(2)
@@ -550,7 +571,7 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
                 <div className="space-y-2">
                   <label className={labelCls}>{d.fieldCountry}</label>
-                  <select required className={inputCls} value={country} onChange={(e) => setCountry(e.target.value)}>
+                  <select required className={inputCls} value={country} onChange={(e) => { setCountry(e.target.value); setPostalCode('') }}>
                     {(d.countries as Array<{ value: string; label: string }>).map((c) => (
                       <option key={c.value} value={c.value}>{c.label}</option>
                     ))}
