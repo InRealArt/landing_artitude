@@ -1,15 +1,43 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import Image from 'next/image'
+import { useRef, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { gsap, registerGsap } from '@/lib/gsap'
 import type { Dictionary } from '@/lib/dictionaries'
+import type { GmbLocation } from '@/types/gmb'
 
-export default function HeroSection({ dict }: { dict: Dictionary }) {
+const LeafletMap = dynamic(() => import('@/components/ui/LeafletMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <span className="text-white/20 text-[10px] uppercase tracking-widest font-display animate-pulse">
+        Chargement…
+      </span>
+    </div>
+  ),
+})
+
+export default function HeroSection({ dict, locale }: { dict: Dictionary; locale: string }) {
   const d = dict.hero
+  const di = dict.index
   const contentRef = useRef<HTMLDivElement>(null)
   const widgetRef = useRef<HTMLDivElement>(null)
+  const [locations, setLocations] = useState<GmbLocation[]>([])
+  const [fetchError, setFetchError] = useState(false)
+
+  useEffect(() => {
+    setFetchError(false)
+    const url = new URL('/api/gmb/locations', window.location.origin)
+    url.searchParams.set('locale', locale)
+    fetch(url)
+      .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json() })
+      .then((data: { locations: GmbLocation[] }) => {
+        if (!Array.isArray(data.locations)) throw new Error('bad shape')
+        setLocations(data.locations)
+      })
+      .catch(() => setFetchError(true))
+  }, [locale])
 
   useEffect(() => {
     registerGsap()
@@ -37,28 +65,21 @@ export default function HeroSection({ dict }: { dict: Dictionary }) {
 
           {/* Left: Content */}
           <div ref={contentRef} className="lg:col-span-7 space-y-8 text-left">
-            <div className="hero-animate inline-flex items-center gap-2 border border-borderLight px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-grayText font-display">
-              <span className="h-1.5 w-1.5 bg-gold" />
-              {d.badge}
-            </div>
-
             <h1 className="hero-animate font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] text-inkBlack">
-              {d.title} <br />
-              <span className="italic text-gold">{d.titleItalic}</span>
+              {d.brand}, <span className="italic text-gold">{d.titleItalic}</span>
             </h1>
 
             <p className="hero-animate text-base sm:text-lg text-grayText font-light leading-relaxed max-w-xl font-sans">
-              {d.description}{' '}
-              <strong className="text-inkBlack font-semibold">{d.brand}</strong>
-              {d.descriptionEnd}
+              {d.title} <br />
+              {d.description}
             </p>
 
             {/* Reassurance band */}
-            <div className="hero-animate py-4 border-y border-borderLight max-w-xl grid grid-cols-3 gap-4 text-center sm:text-left">
+            <div className="hero-animate py-4 border-y border-borderLight max-w-xl grid grid-cols-2 gap-4 text-center sm:text-left">
               {d.badges.map((label: string, i: number) => (
                 <div
                   key={label}
-                  className={`flex flex-col sm:flex-row items-center gap-2 ${i === 1 ? 'border-x border-borderLight px-4' : ''}`}
+                  className={`flex flex-col sm:flex-row items-center gap-2 ${i === 1 ? 'border-l border-borderLight pl-4' : ''}`}
                 >
                   <span className="text-gold text-base">✦</span>
                   <span className="text-[9px] uppercase tracking-[0.2em] text-grayText font-display">{label}</span>
@@ -82,58 +103,39 @@ export default function HeroSection({ dict }: { dict: Dictionary }) {
             </div>
           </div>
 
-          {/* Right: Google Mock Widget */}
+          {/* Right: Interactive Index Map */}
           <div ref={widgetRef} className="lg:col-span-5 relative w-full flex items-center justify-center">
-            <div className="relative w-full max-w-md aspect-[4/5] bg-softGray border border-borderLight overflow-hidden shadow-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600&auto=format&fit=crop"
-                alt="Atelier d'artiste"
-                fill
-                className="object-cover grayscale brightness-90"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-canvas/95 via-transparent to-transparent" />
+            <div className="relative w-full max-w-md bg-card border border-white/10 overflow-hidden shadow-2xl">
 
-              {/* Widget Google */}
-              <div className="absolute bottom-6 left-5 right-5 bg-canvas text-inkBlack rounded-none p-5 shadow-2xl border border-borderLight">
-                <div className="absolute -top-3 right-4 bg-inkBlack text-gold font-semibold text-[8px] uppercase tracking-[0.25em] px-2.5 py-1 flex items-center gap-1.5 border border-inkBlack">
-                  <span className="h-1.5 w-1.5 bg-gold animate-ping" />
-                  {d.widgetBadge}
+              {/* Header */}
+              <div className="bg-[#1a1a1a] px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-2 w-2 bg-gold animate-pulse" />
+                  <span className="text-[10px] uppercase tracking-widest text-white/50 font-semibold font-display">{di.mapLabel}</span>
                 </div>
+                <div className="text-[9px] uppercase tracking-wider text-white/30 font-display">{di.mapHint}</div>
+              </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="bg-softGray p-2 border border-borderLight">
-                    <svg className="w-6 h-6 fill-current text-inkBlack" viewBox="0 0 24 24">
-                      <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.986 0-.74-.08-1.3-.176-1.855H12.24z" />
-                    </svg>
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-serif font-bold text-base text-inkBlack tracking-wide">
-                      {d.widgetName}
-                    </h4>
-                    <p className="text-[10px] uppercase tracking-wider text-grayText font-display">
-                      {d.widgetSubtitle}
-                    </p>
-                    <div className="flex items-center gap-1 pt-0.5">
-                      <span className="text-inkBlack font-bold text-xs">4.9</span>
-                      <div className="flex text-inkBlack text-[10px]">★ ★ ★ ★ ★</div>
-                      <span className="text-[10px] text-grayText font-light">(48)</span>
-                    </div>
-                  </div>
-                </div>
-
-                <hr className="my-4 border-borderLight" />
-
-                <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-semibold text-grayText uppercase tracking-wider font-display">
-                  {d.widgetActions.map((label: string) => (
-                    <div
-                      key={label}
-                      className="py-1 border border-borderLight hover:bg-softGray transition-colors cursor-pointer hover:text-gold"
-                    >
-                      {label}
-                    </div>
-                  ))}
-                </div>
+              {/* Map — react-leaflet handles its own container */}
+              <div className="relative bg-[#1a1a1a] aspect-[4/5]">
+                {locations.length > 0
+                  ? <LeafletMap locations={locations} joinLabel={di.joinIndex} />
+                  : fetchError
+                    ? (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-white/20 text-[10px] uppercase tracking-widest font-display">
+                          Carte indisponible
+                        </span>
+                      </div>
+                    )
+                    : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-white/20 text-[10px] uppercase tracking-widest font-display animate-pulse">
+                          Chargement…
+                        </span>
+                      </div>
+                    )
+                }
               </div>
             </div>
           </div>

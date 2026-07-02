@@ -11,12 +11,11 @@ const statsMeta = [
   { target: 131, suffix: '%', barWidth: 75 },
   { target: 116, suffix: '%', barWidth: 68 },
   { target: 816418, suffix: '', barWidth: 90 },
-  { target: 5, suffix: ' / 5', barWidth: 98 },
 ]
 
 const testimonialImgs = [
   '/images/testimonials/senechal.avif',
-  '/images/testimonials/boyer.avif',
+  '/images/testimonials/Alix_Goor.webp',
 ]
 
 export default function StatsSection({ dict }: { dict: Dictionary }) {
@@ -34,7 +33,7 @@ export default function StatsSection({ dict }: { dict: Dictionary }) {
           <SectionHeader eyebrow={d.eyebrow} title={d.title} />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {d.items.map((s, i) => (
             <StatCard
               key={s.label}
@@ -48,16 +47,16 @@ export default function StatsSection({ dict }: { dict: Dictionary }) {
           ))}
         </div>
 
-        <div ref={testimonialsRef} className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto pt-8 border-t border-white/10">
+        <div ref={testimonialsRef} className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto pt-8 border-t border-white/10">
           {d.testimonials.map((t, i) => (
             <div key={t.name} className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="relative w-14 h-14 flex-shrink-0 rounded-full border border-white/20 overflow-hidden ring-2 ring-gold/30 self-start">
+              <div className="relative w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-full border border-white/20 overflow-hidden ring-2 ring-gold/30 self-start">
                 <Image src={testimonialImgs[i]} alt={t.name} fill className="object-cover object-top grayscale" />
               </div>
-              <div className="space-y-2">
-                <div className="flex text-gold text-xs">★ ★ ★ ★ ★</div>
-                <p className="text-xs italic text-white/80 font-light font-serif">&ldquo;{t.quote}&rdquo;</p>
-                <span className="block text-[10px] uppercase tracking-wider text-gold font-semibold font-display">— {t.name}</span>
+              <div className="space-y-3">
+                <div className="flex text-gold text-base">★ ★ ★ ★ ★</div>
+                <p className="text-base italic text-white/80 font-light font-serif leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+                <span className="block text-xs uppercase tracking-wider text-gold font-semibold font-display">— {t.name}</span>
               </div>
             </div>
           ))}

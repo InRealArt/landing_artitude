@@ -25,10 +25,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <Header dict={dict} lang={lang} />
       <AnnouncementBanner text={dict.announcement.text} highlight={dict.announcement.highlight} />
       <main>
-        <HeroSection dict={dict} />
+        <HeroSection dict={dict} locale={lang} />
         <ProblemSection dict={dict} />
         <SolutionSection dict={dict} />
-        <IndexSection dict={dict} locale={lang} />
+        <IndexSection dict={dict} />
         <StatsSection dict={dict} />
         <TeamSection dict={dict} />
         <RegisterSection dict={dict} lang={lang} />

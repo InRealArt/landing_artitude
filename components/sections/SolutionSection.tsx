@@ -31,7 +31,7 @@ export default function SolutionSection({ dict }: { dict: Dictionary }) {
                   {s.number} // {s.label}
                 </div>
                 <h4 className="font-serif text-xl text-inkBlack">{s.title}</h4>
-                <p className="text-xs text-grayText leading-relaxed font-light font-sans">{s.desc}</p>
+                <p className="text-base text-inkBlack/80 leading-relaxed font-light font-sans">{s.desc}</p>
               </div>
               <div className="pt-4 text-[9px] uppercase tracking-wider text-gold font-semibold font-display">
                 {s.meta}

@@ -13,7 +13,6 @@ const teamImgs = [
   '/images/team/anna.webp',
   '/images/team/clara.webp',
   '/images/team/gilles.webp',
-  '/images/team/allegra.webp',
   '/images/team/lauranne.webp',
 ]
 
@@ -30,7 +29,7 @@ export default function TeamSection({ dict }: { dict: Dictionary }) {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div ref={headerRef} className="mb-20">
           <SectionHeader eyebrow={d.eyebrow} title={d.title} />
-          <p className="text-xs text-grayText max-w-lg mx-auto font-light font-sans text-center mt-4">{d.subtitle}</p>
+          <p className="text-base text-inkBlack/80 max-w-lg mx-auto font-light font-sans text-center mt-4">{d.subtitle}</p>
         </div>
 
         {/* 3 colonnes sur 2 lignes, responsive */}

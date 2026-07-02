@@ -8,7 +8,7 @@ type Status = 'idle' | 'pending' | 'success' | 'error'
 function Toast({ message, type }: { message: string; type: 'success' | 'error' }) {
   return (
     <div
-      className={`fixed bottom-8 right-8 z-[9999] px-6 py-4 text-xs font-sans tracking-wide border animate-fade-in
+      className={`fixed bottom-8 right-8 z-[9999] px-6 py-4 text-sm font-sans tracking-wide border animate-fade-in
         ${type === 'success' ? 'text-gold border-gold bg-[#0f0f0f]' : 'text-red-400 border-red-400 bg-[#0f0f0f]'}`}
     >
       {message}
@@ -90,7 +90,7 @@ export default function NewsletterSection({ dict, locale }: { dict: Dictionary; 
 
           {/* Right — copy + form */}
           <div className="flex flex-col justify-center">
-            <span className="text-[0.6rem] uppercase tracking-[0.5em] text-[#aaa] font-display mb-6 block">
+            <span className="text-xs uppercase tracking-[0.5em] text-[#aaa] font-display mb-6 block">
               {d.eyebrow}
             </span>
 
@@ -99,10 +99,10 @@ export default function NewsletterSection({ dict, locale }: { dict: Dictionary; 
               <em className="not-italic text-gold">{d.titleAccent}</em>
             </h2>
 
-            <p className="text-[0.8125rem] text-[#666] leading-loose font-light font-sans mb-2">
+            <p className="text-base text-[#444] leading-loose font-light font-sans mb-2">
               {d.subtitle}
             </p>
-            <p className="text-[0.6875rem] text-[#666] leading-loose font-light font-sans mb-10">
+            <p className="text-sm text-[#555] leading-loose font-light font-sans mb-10">
               {d.description}
             </p>
 
@@ -117,14 +117,14 @@ export default function NewsletterSection({ dict, locale }: { dict: Dictionary; 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isPending}
-                  className="w-full bg-transparent border-none outline-none py-3 text-[0.8125rem] font-light font-sans text-[#000] placeholder:text-[#666] disabled:opacity-50"
+                  className="w-full bg-transparent border-none outline-none py-3 text-base font-light font-sans text-[#000] placeholder:text-[#666] disabled:opacity-50"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isPending}
-                className="self-start px-7 py-4 border border-[#000] text-[0.6rem] uppercase tracking-[0.25em] font-sans bg-transparent text-[#000] transition-all duration-500 hover:bg-[#000] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                className="self-start px-7 py-4 border border-[#000] text-xs uppercase tracking-[0.25em] font-sans bg-transparent text-[#000] transition-all duration-500 hover:bg-[#000] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {isPending ? d.ctaPending : d.cta}
               </button>

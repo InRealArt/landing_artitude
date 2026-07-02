@@ -34,7 +34,7 @@ export default function AtelierCard({ name, role, service, description, imageSrc
             Service Dédié :
           </h5>
           <p className="text-sm font-serif italic text-inkBlack font-semibold">{service}</p>
-          <p className="text-[11px] text-grayText font-light leading-relaxed font-sans">{description}</p>
+          <p className="text-sm text-inkBlack/80 font-light leading-relaxed font-sans">{description}</p>
         </div>
       </div>
     </div>

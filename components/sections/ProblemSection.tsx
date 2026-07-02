@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { useGsapReveal } from '@/hooks/useGsapReveal'
 import type { Dictionary } from '@/lib/dictionaries'
@@ -109,17 +110,22 @@ export default function ProblemSection({ dict }: { dict: Dictionary }) {
                   <Icon />
                 </div>
                 <h3 className="font-serif text-lg text-white font-medium">{p.title}</h3>
-                <p className="text-xs text-white/60 leading-relaxed font-light font-sans">{p.desc}</p>
+                <p className="text-base text-white/90 leading-relaxed font-light font-sans">{p.desc}</p>
               </div>
             )
           })}
         </div>
 
         <div className="mt-16 text-center max-w-2xl mx-auto">
-          <div className="py-6 border-y border-white/10">
+          <div className="py-6 border-y border-white/10 space-y-3 flex flex-col items-center">
+            <div className="relative w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-full border border-white/20 overflow-hidden ring-2 ring-gold/30">
+              <Image src="/images/testimonials/boyer.avif" alt={d.quoteAuthor} fill className="object-cover object-top grayscale" />
+            </div>
+            <div className="flex justify-center text-gold text-xs">★ ★ ★ ★ ★</div>
             <p className="font-serif text-lg italic text-white/90">
               &ldquo;{d.quote}&rdquo;
             </p>
+            <span className="block text-[10px] uppercase tracking-wider text-gold font-semibold font-display">— {d.quoteAuthor}</span>
           </div>
         </div>
       </div>

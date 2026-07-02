@@ -57,13 +57,13 @@ export default function StatCard({ label, target, suffix, description, barWidth,
     <div className="bg-[#1a1a1a] p-6 border border-white/10 flex flex-col justify-between space-y-4">
       <div>
         {headline ? (
-          <div className="text-xl font-serif font-semibold text-white leading-snug">{headline}</div>
+          <div className="text-2xl sm:text-3xl font-serif font-semibold text-white leading-snug">{headline}</div>
         ) : (
           <>
-            <span className="text-[10px] uppercase tracking-widest text-grayText font-display block">{label}</span>
+            <span className="text-sm uppercase tracking-widest text-grayText font-display block">{label}</span>
             <div
               ref={numRef}
-              className="text-4xl font-serif font-light text-white tracking-tight mt-2"
+              className="text-5xl font-serif font-light text-white tracking-tight mt-2"
             >
               0{suffix}
             </div>
@@ -71,7 +71,7 @@ export default function StatCard({ label, target, suffix, description, barWidth,
         )}
       </div>
       <div className="space-y-2">
-        <p className="text-[11px] text-grayText font-sans">{description}</p>
+        <p className="text-base leading-relaxed text-white/80 font-sans">{description}</p>
         <div className="w-full bg-white/10 h-[1px]">
           <div ref={barRef} className="bg-gold h-[1px]" style={{ width: 0 }} />
         </div>

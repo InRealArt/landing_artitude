@@ -13,12 +13,10 @@
         "highlight": "Artitude remains free and open to all creators."
     },
     "hero": {
-        "badge": "Studio Support Initiative 2026",
-        "title": "Your talent deserves",
-        "titleItalic": "to be displayed.",
-        "description": "Our main artist catalog is currently closed. That's why we offer",
+        "title": "Your artistic talent deserves to be seen.",
+        "titleItalic": "the artistic index",
+        "description": "Boost your reputation, make your studio visible, simply.",
         "brand": "Artitude",
-        "descriptionEnd": ": a free tool to list your studio on Google and join our interactive map in 2 minutes.",
         "badges": [
             "100% Free",
             "Live in 48h"
@@ -40,7 +38,8 @@
         "eyebrow": "Your situation",
         "title": "Collectors are searching for you.",
         "titleItalic": "But they can't find you ...",
-        "quote": "It's not a lack of talent. It's a lack of tools.",
+        "quote": "I didn't have time to manage it. The Artitude team structured everything for me in 48h. Simple, effective, and completely transparent.",
+        "quoteAuthor": "Jean-Paul Boyer, Sculptor",
         "items": [
             {
                 "icon": "🔍",
@@ -83,7 +82,7 @@
                 "number": "03",
                 "label": "EXPOSURE",
                 "title": "You're visible on Maps & the Index",
-                "desc": "Your studio becomes discoverable on Google Search, Google Maps, and instantly joins our Studio Index to reach an audience of art enthusiasts.",
+                "desc": "Thanks to Artitude, your profile is automatically updated on Google Maps. Collectors can now find you more easily and view your information, photos of your work, your news, your customer reviews, and contact you more easily.",
                 "meta": "Google + InRealArt visibility"
             }
         ]
@@ -146,11 +145,6 @@
                 "label": "Privacy",
                 "headline": "Your creative bubble, preserved: 100% privacy and peace of mind",
                 "description": "Your studio is a sanctuary, not a train station. Because your creative process demands calm, your Artitude profile fiercely protects your privacy. Sensitive personal details like your exact home address or private phone number can be fully hidden from search engines. We help you control your image, you filter your contacts, and you only welcome the visitors you've chosen."
-            },
-            {
-                "label": "Online reputation",
-                "headline": "A golden reputation: 5/5 average rating on Google",
-                "description": "Trust isn't declared, it's built review after review. Studios supported by our network showcase a perfect average rating on Google, a mark of seriousness and quality in the eyes of future visitors. An impeccable reputation that reassures, convinces, and turns every search into a visit."
             }
         ],
         "testimonials": [
@@ -159,15 +153,15 @@
                 "name": "Catherine Sénéchal, Painter"
             },
             {
-                "quote": "I didn't have time to manage it. The Artitude team structured everything for me in 48h. Simple, effective, and completely transparent.",
-                "name": "Jean-Paul Boyer, Sculptor"
+                "quote": "Since Artitude took over my online presence, my engagement has exploded: my posts reach three times more collectors and my studio hasn't stopped buzzing.",
+                "name": "Eaudalix, Painter"
             }
         ]
     },
     "team": {
         "eyebrow": "Our Team",
         "title": "Experts at your service.",
-        "subtitle": "Seven specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
+        "subtitle": "Six specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
         "cta": "Request professional support",
         "members": [
             {
@@ -199,12 +193,6 @@
                 "role": "WEB & DIGITAL CREATION",
                 "service": "High-performance web showcase and SEO",
                 "description": "Technical design and optimisation of your website or online portfolio to guarantee a robust, fast and perfectly referenced platform."
-            },
-            {
-                "name": "Allegra",
-                "role": "AGENT & MEDIA SUPPORT",
-                "service": "Media relations and creative direction",
-                "description": "Development of your press relations, crafting your key messages and strategic advice on the visual alignment of your brand image."
             },
             {
                 "name": "Lauranne",

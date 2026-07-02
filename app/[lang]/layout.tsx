@@ -6,7 +6,7 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Artitude by InRealArt — L'élégance de la visibilité",
+  title: "Artitude by InRealArt —  L'index des ateliers artistiques ",
   description:
     'Référencez votre atelier sur Google et rejoignez la carte interactive InRealArt en 2 minutes. Gratuit, sans engagement.',
 }
