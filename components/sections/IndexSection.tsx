@@ -50,13 +50,6 @@ export default function IndexSection({ dict, locale }: { dict: Dictionary; local
           <div ref={sectionRef} className="lg:col-span-5 space-y-6 text-left">
             <SectionHeader eyebrow={d.eyebrow} title={d.title} centered={false} />
             <p className="text-grayText text-xs leading-relaxed font-light font-sans">{d.description}</p>
-            <div className="p-6 bg-card border border-white/10 flex items-center gap-5">
-              <div className="h-10 w-10 border border-white/10 flex items-center justify-center text-gold font-mono font-semibold">✦</div>
-              <div>
-                <div className="text-2xl font-serif font-light text-white tracking-tight">{d.statNumber}</div>
-                <div className="text-[10px] uppercase tracking-wider text-white/50 font-light font-display">{d.statLabel}</div>
-              </div>
-            </div>
           </div>
 
           {/* Right: Map */}

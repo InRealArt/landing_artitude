@@ -21,7 +21,6 @@
         "descriptionEnd": ": a free tool to list your studio on Google and join our interactive map in 2 minutes.",
         "badges": [
             "100% Free",
-            "No Commitment",
             "Live in 48h"
         ],
         "cta": "Join Artitude for Free",
@@ -38,9 +37,9 @@
         ]
     },
     "problem": {
-        "eyebrow": "The artist's challenge",
-        "title": "Your clients are searching.",
-        "titleItalic": "They can't find you.",
+        "eyebrow": "Your situation",
+        "title": "Collectors are searching for you.",
+        "titleItalic": "But they can't find you ...",
         "quote": "It's not a lack of talent. It's a lack of tools.",
         "items": [
             {
@@ -55,7 +54,7 @@
             },
             {
                 "icon": "📍",
-                "title": "Your competitors are visible",
+                "title": "Your peers have a visibility strategy",
                 "desc": "Other creators instantly capture the attention of urban collectors simply because they position themselves strategically in local searches."
             }
         ]
@@ -93,8 +92,6 @@
         "eyebrow": "A key differentiator",
         "title": "Your studio also joins our Studio Index.",
         "description": "Every artist listed on Artitude automatically appears in the IRA Studio Index — our online directory with an interactive map, visited by InRealArt website visitors.",
-        "statNumber": "45,000+",
-        "statLabel": "Unique visitors per month on the InRealArt website",
         "mapLabel": "Interactive Index (Demo)",
         "mapHint": "Click to explore",
         "joinIndex": "Join the index",

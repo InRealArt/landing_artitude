@@ -21,7 +21,6 @@
         "descriptionEnd": ": un outil gratuit pour référencer votre atelier sur Google et rejoindre notre carte interactive en 2 minutes.",
         "badges": [
             "100% Gratuit",
-            "Sans Engagement",
             "Activé en 48h"
         ],
         "cta": "Rejoindre Artitude Gratuitement",
@@ -38,9 +37,9 @@
         ]
     },
     "problem": {
-        "eyebrow": "Le défi de l'artiste",
-        "title": "Vos clients vous cherchent.",
-        "titleItalic": "Ils ne vous trouvent pas.",
+        "eyebrow": "Votre situation",
+        "title": "Des collectionneurs vous recherchent.",
+        "titleItalic": "Mais ils ne peuvent pas vous trouver ...",
         "quote": "Ce n'est pas un manque de talent. C'est un manque d'outil.",
         "items": [
             {
@@ -55,7 +54,7 @@
             },
             {
                 "icon": "📍",
-                "title": "Vos concurrents, eux, sont visibles",
+                "title": "Vos pairs ont une stratégie de visibilité",
                 "desc": "D'autres créateurs captent l'attention immédiate des collectionneurs urbains simplement parce qu'ils se positionnent stratégiquement sur les recherches locales."
             }
         ]
@@ -93,8 +92,6 @@
         "eyebrow": "Bénéfice différenciant",
         "title": "Et votre atelier rejoint aussi notre Index des Ateliers.",
         "description": "Chaque artiste référencé sur Artitude apparaît automatiquement dans l'Index des Ateliers IRA — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs du site InRealArt.",
-        "statNumber": "+ de 45 000",
-        "statLabel": "Visiteurs uniques par mois sur le site InRealArt",
         "mapLabel": "Index Interactif (Démonstration)",
         "mapHint": "Cliquez pour explorer",
         "joinIndex": "Rejoindre l'index",
