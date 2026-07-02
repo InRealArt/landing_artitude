@@ -9,15 +9,16 @@ interface StatCardProps {
   suffix: string
   description: string
   barWidth: number
+  headline?: string
 }
 
-export default function StatCard({ label, target, suffix, description, barWidth }: StatCardProps) {
+export default function StatCard({ label, target, suffix, description, barWidth, headline }: StatCardProps) {
   const numRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     registerGsap()
-    if (!numRef.current || !barRef.current) return
+    if (headline || !numRef.current || !barRef.current) return
 
     const obj = { val: 0 }
     const isDecimal = target % 1 !== 0
@@ -50,18 +51,24 @@ export default function StatCard({ label, target, suffix, description, barWidth 
     })
 
     return () => ctx.revert()
-  }, [target, suffix, barWidth])
+  }, [target, suffix, barWidth, headline])
 
   return (
     <div className="bg-[#1a1a1a] p-6 border border-white/10 flex flex-col justify-between space-y-4">
       <div>
-        <span className="text-[10px] uppercase tracking-widest text-grayText font-display block">{label}</span>
-        <div
-          ref={numRef}
-          className="text-4xl font-serif font-light text-white tracking-tight mt-2"
-        >
-          0{suffix}
-        </div>
+        {headline ? (
+          <div className="text-xl font-serif font-semibold text-white leading-snug">{headline}</div>
+        ) : (
+          <>
+            <span className="text-[10px] uppercase tracking-widest text-grayText font-display block">{label}</span>
+            <div
+              ref={numRef}
+              className="text-4xl font-serif font-light text-white tracking-tight mt-2"
+            >
+              0{suffix}
+            </div>
+          </>
+        )}
       </div>
       <div className="space-y-2">
         <p className="text-[11px] text-grayText font-sans">{description}</p>

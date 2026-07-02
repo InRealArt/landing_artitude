@@ -25,12 +25,12 @@
             "Live in 48h"
         ],
         "cta": "Join Artitude for Free",
-        "social": "Already",
-        "socialCount": "420 studios",
-        "socialEnd": "listed.",
+        "social": "",
+        "socialCount": "",
+        "socialEnd": "",
         "widgetBadge": "ARTITUDE OPTIMISED",
         "widgetName": "Catherine Sénéchal Studio",
-        "widgetSubtitle": "Painting & Visual Art • Lyon",
+        "widgetSubtitle": "Painting & Visual Art • Paris",
         "widgetActions": [
             "Call",
             "Directions",
@@ -109,7 +109,7 @@
                 "title": "Catherine Sénéchal Studio",
                 "desc": "Regular studio visits and temporary exhibitions of abstract paintings.",
                 "tag": "Painting",
-                "loc": "Lyon, France"
+                "loc": "Paris, France"
             },
             "boyer": {
                 "title": "Jean-Paul Boyer Studio",
@@ -136,20 +136,24 @@
         "title": "Numbers don't lie.",
         "items": [
             {
-                "label": "+131% searches",
-                "description": "Growth in listed studios after their profile was optimised."
+                "label": "Visual visibility",
+                "headline": "A surge in your visual visibility: +50% to +100% impressions every month",
+                "description": "Art only lives if it's seen. Thanks to your Artitude profile, your works and your universe no longer sleep in the shadow of the studio: they're showcased directly on the screens of art lovers. By pushing your visuals, your news and your creations to the top of search engines, we literally double the number of eyes on your work every month. More views mean more hearts won over."
             },
             {
-                "label": "+116% views",
-                "description": "Average visibility increase on Google Maps and the IRA Index."
+                "label": "Reputation",
+                "headline": "The boost to your signature: +20% to +50% recognition for your artist name",
+                "description": "Becoming a local reference doesn't happen by chance. Your Artitude profile acts as a magnet for a qualified audience: it organically and seamlessly suggests your studio to art lovers typing targeted searches (\"artist studio\", \"professional artist\", \"contemporary art classes\"). Month after month, we make sure your name settles into the collective mind, and you become the go-to artist in your region."
             },
             {
-                "label": "Actions generated",
-                "description": "Direct calls, direction requests and website clicks."
+                "label": "Privacy",
+                "headline": "Your creative bubble, preserved: 100% privacy and peace of mind",
+                "description": "Your studio is a sanctuary, not a train station. Because your creative process demands calm, your Artitude profile fiercely protects your privacy. Sensitive personal details like your exact home address or private phone number can be fully hidden from search engines. We help you control your image, you filter your contacts, and you only welcome the visitors you've chosen."
             },
             {
-                "label": "Average Google Rating",
-                "description": "Average rating of studios supported by our network."
+                "label": "Online reputation",
+                "headline": "A golden reputation: 5/5 average rating on Google",
+                "description": "Trust isn't declared, it's built review after review. Studios supported by our network showcase a perfect average rating on Google, a mark of seriousness and quality in the eyes of future visitors. An impeccable reputation that reassures, convinces, and turns every search into a visit."
             }
         ],
         "testimonials": [
@@ -215,7 +219,7 @@
     },
     "register": {
         "eyebrow": "Free registration",
-        "subtitle": "Join the 420 studios already listed",
+        "subtitle": "",
         "formEyebrow": "GET STARTED TODAY",
         "formTitle": "Activate your Artitude, for free.",
         "formSubtitle": "Fill in this quick registration form. Our expert team will handle the optimisation of your profile within 48 hours.",
@@ -394,6 +398,7 @@
             "mainSite": "InRealArt main website",
             "services": "Apply for Studio Services",
             "register": "List a Studio",
+            "cga": "Membership Terms",
             "legal": "Legal Notice",
             "privacy": "Personal Data"
         },

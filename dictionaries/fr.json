@@ -25,12 +25,12 @@
             "Activé en 48h"
         ],
         "cta": "Rejoindre Artitude Gratuitement",
-        "social": "Déjà plus de",
-        "socialCount": "420 ateliers",
-        "socialEnd": "référencés.",
+        "social": "",
+        "socialCount": "",
+        "socialEnd": "",
         "widgetBadge": "OPTIMISÉ ARTITUDE",
         "widgetName": "Atelier Catherine Sénéchal",
-        "widgetSubtitle": "Peinture & Plasticienne • Lyon",
+        "widgetSubtitle": "Peinture & Plasticienne • Paris",
         "widgetActions": [
             "Appel",
             "Adresse",
@@ -109,7 +109,7 @@
                 "title": "Atelier Catherine Sénéchal",
                 "desc": "Visites d'atelier régulières et expositions temporaires de peintures abstraites.",
                 "tag": "Peinture",
-                "loc": "Lyon, France"
+                "loc": "Paris, France"
             },
             "boyer": {
                 "title": "Atelier Jean-Paul Boyer",
@@ -136,20 +136,24 @@
         "title": "Les chiffres ne mentent pas.",
         "items": [
             {
-                "label": "+131% de recherches",
-                "description": "Progression des ateliers référencés après optimisation de leur fiche."
+                "label": "Visibilité visuelle",
+                "headline": "Une explosion de votre visibilité visuelle : +50% à +100% d’impressions chaque mois",
+                "description": "L'art ne vit que si on le regarde. Grâce à votre Fiche Artitude, vos œuvres et votre univers ne dorment plus dans l’ombre de l'atelier : ils s'exposent directement sur les écrans des passionnés. En propulsant vos visuels, vos actualités et vos créations au sommet des moteurs de recherche, nous doublons littéralement le nombre de regards posés sur votre travail chaque mois. Plus de vues, c'est plus de coups de cœur en perspective."
             },
             {
-                "label": "+116% de vues",
-                "description": "Visibilité moyenne accrue sur Google Maps et l'Index IRA."
+                "label": "Notoriété",
+                "headline": "Le boost de votre signature : +20% à +50% de notoriété pour votre nom d'artiste",
+                "description": "Devenir une référence locale ne s'improvise pas. Votre Fiche Artitude agit comme un aimant auprès d'un public qualifié : elle suggère de manière organique et fluide votre atelier aux amateurs d'art qui tapent des requêtes ciblées (\"atelier d'artiste\", \"artiste professionnel\", \"cours d'art contemporain\"). Mois après mois, nous faisons en sorte que votre nom s'ancre dans l'esprit collectif et vous devenez l'artiste incontournable de votre région."
             },
             {
-                "label": "Actions générées",
-                "description": "Appels directes, demandes d'itinéraires et clics vers sites web."
+                "label": "Confidentialité",
+                "headline": "La bulle de création préservée : 100% de confidentialité et de sérénité",
+                "description": "Votre atelier est un sanctuaire, pas un hall de gare. Parce que votre processus créatif exige de la tranquillité, votre Fiche Artitude protège farouchement votre vie privée. Vos coordonnées personnelles sensibles comme votre adresse résidentielle exacte ou votre numéro de téléphone privé peuvent être totalement masquées sur les moteurs de recherche. Nous vous aidons à contrôler votre image, vous filtrez vos contacts, et vous ne recevez que les visiteurs que vous avez choisis."
             },
             {
-                "label": "Note Google Moyenne",
-                "description": "Évaluation moyenne des ateliers accompagnés par notre réseau."
+                "label": "Réputation en ligne",
+                "headline": "Une réputation en or : 5/5 de moyenne sur Google",
+                "description": "La confiance ne se décrète pas, elle se construit avis après avis. Les ateliers accompagnés par notre réseau affichent une note moyenne parfaite sur Google, gage de sérieux et de qualité aux yeux des futurs visiteurs. Une réputation irréprochable qui rassure, convainc, et transforme chaque recherche en visite."
             }
         ],
         "testimonials": [
@@ -215,7 +219,7 @@
     },
     "register": {
         "eyebrow": "Inscription gratuite",
-        "subtitle": "Rejoignez les 420 ateliers déjà référencés",
+        "subtitle": "",
         "formEyebrow": "DÉMARRER AUJOURD'HUI",
         "formTitle": "Activez votre Artitude, gratuitement.",
         "formSubtitle": "Remplissez ce formulaire d'inscription rapide. Notre équipe d'experts prendra en charge l'optimisation de votre profil sous 48 heures.",
@@ -394,6 +398,7 @@
             "mainSite": "Site principal InRealArt",
             "services": "Candidatez aux Services d'Ateliers",
             "register": "Référencer un Atelier",
+            "cga": "Conditions Générales d'Adhésion",
             "legal": "Mentions Légales",
             "privacy": "Données Personnelles"
         },

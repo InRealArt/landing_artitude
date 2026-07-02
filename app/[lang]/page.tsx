@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getDictionary, hasLocale, type Locale } from '@/lib/dictionaries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -16,7 +16,7 @@ import FaqSection from '@/components/sections/FaqSection'
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
 
-  if (!hasLocale(lang)) notFound()
+  if (!hasLocale(lang)) redirect('/fr')
 
   const dict = await getDictionary(lang as Locale)
 
@@ -35,7 +35,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <NewsletterSection dict={dict} locale={lang} />
         <FaqSection dict={dict} />
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={lang} />
     </>
   )
 }

@@ -123,9 +123,100 @@ export default async function LegalNoticePage({ params }: { params: Promise<{ la
               <p>13.4. Artistes non professionnels (consommateurs) : conformément aux articles L.612-1 et s. du Code de la consommation, l&apos;Artiste peut recourir gratuitement au médiateur de la consommation [NOM ET COORDONNÉES DU MÉDIATEUR] et, à défaut de résolution, saisir les juridictions de droit commun compétentes. La plateforme européenne de règlement en ligne des litiges reste par ailleurs accessible.</p>
             </LegalArticle>
           </section>
+
+          <section id="mentions-legales" className="scroll-mt-24 mt-20">
+            <h2 className="font-serif text-2xl sm:text-3xl font-light mb-2">Partie II — Mentions légales</h2>
+            <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">Obligatoires au titre de l&apos;article 6-III de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&apos;économie numérique (LCEN).</p>
+
+            <LegalArticle title="Éditeur / Responsable">
+              <p>Projet « Artitude » porté par Timothée Roy, agissant au nom et pour le compte de la société [DÉNOMINATION] en cours de constitution.</p>
+              <p>Adresse : [ADRESSE DU FONDATEUR / DU FUTUR SIÈGE]</p>
+              <p>Adresse email : contact@inrealart.com</p>
+              <p>Téléphone : [NUMÉRO]</p>
+              <p>Mention : société en cours de constitution — immatriculation en cours au RCS de [VILLE].</p>
+              <p>Directeur de la publication : Timothée Roy.</p>
+            </LegalArticle>
+
+            <LegalArticle title="Hébergeur">
+              <p>Dénomination : [NOM DE L&apos;HÉBERGEUR]</p>
+              <p>Adresse : [ADRESSE]</p>
+              <p>Téléphone : [NUMÉRO]</p>
+            </LegalArticle>
+
+            <LegalArticle title="Propriété intellectuelle">
+              <p>L&apos;ensemble des éléments du site (marques, logos, textes, éléments graphiques) est protégé. Toute reproduction non autorisée est interdite. Les Œuvres et visuels des artistes référencés restent la propriété de leurs auteurs respectifs.</p>
+            </LegalArticle>
+
+            <LegalArticle title="Médiation de la consommation">
+              <p>Conformément aux articles L.612-1 et s. du Code de la consommation, le consommateur peut recourir gratuitement au médiateur : [NOM ET COORDONNÉES DU MÉDIATEUR].</p>
+            </LegalArticle>
+          </section>
+
+          <section id="confidentialite" className="scroll-mt-24 mt-20">
+            <h2 className="font-serif text-2xl sm:text-3xl font-light mb-2">Partie III — Politique de confidentialité (RGPD)</h2>
+            <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">Conforme au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés modifiée.</p>
+
+            <LegalArticle title="1. Responsable de traitement">
+              <p>Le responsable de traitement est Timothée Roy, agissant pour le compte de la société [DÉNOMINATION] en cours de constitution, [ADRESSE]. Contact : contact@inrealart.com.</p>
+            </LegalArticle>
+
+            <LegalArticle title="2. Données collectées">
+              <p>Via le formulaire d&apos;inscription et l&apos;usage du Programme :</p>
+              <p>Identité et contact : nom et prénom, adresse email, téléphone.</p>
+              <p>Activité : nom de l&apos;atelier / activité, médium artistique principal, site web.</p>
+              <p>Localisation : adresse de l&apos;atelier, horaires.</p>
+              <p>Contenus : photographies des œuvres.</p>
+              <p>Données de navigation : le cas échéant, cookies et traceurs (voir section 9).</p>
+            </LegalArticle>
+
+            <LegalArticle title="3. Finalités et bases légales">
+              <p>Création, optimisation et maintien de la Fiche — Exécution du contrat (art. 6.1.b RGPD).</p>
+              <p>Gestion de la relation avec l&apos;artiste (rappels, suivi) — Exécution du contrat (art. 6.1.b RGPD).</p>
+              <p>Envoi d&apos;actualités / newsletter InRealArt — Consentement (art. 6.1.a RGPD).</p>
+              <p>Amélioration du service, statistiques — Intérêt légitime (art. 6.1.f RGPD).</p>
+              <p>Respect des obligations légales — Obligation légale (art. 6.1.c RGPD).</p>
+              <p>L&apos;envoi de la newsletter et des sollicitations d&apos;accompagnement suppose le consentement recueilli via la case à cocher dédiée du formulaire ; ce consentement est révocable à tout moment.</p>
+            </LegalArticle>
+
+            <LegalArticle title="4. Destinataires">
+              <p>Les données sont destinées aux services habilités d&apos;InRealArt et, pour les besoins du Programme, à ses sous-traitants et partenaires techniques (notamment hébergeur, plateformes de référencement telles que Google, outil d&apos;emailing). Les données de la Fiche destinées à être publiques (nom de l&apos;atelier, adresse, horaires, visuels) sont, par nature, diffusées en ligne. Les données ne sont jamais revendues.</p>
+            </LegalArticle>
+
+            <LegalArticle title="5. Transferts hors UE">
+              <p>Certains partenaires (ex. Google) peuvent impliquer des transferts hors UE, encadrés par des garanties appropriées (clauses contractuelles types de la Commission européenne, décision d&apos;adéquation le cas échéant).</p>
+            </LegalArticle>
+
+            <LegalArticle title="6. Durées de conservation">
+              <p>Artistes actifs : pendant toute la durée de l&apos;adhésion.</p>
+              <p>Après la fin de l&apos;adhésion : archivage intermédiaire à des fins de preuve pendant la durée de prescription applicable, puis suppression.</p>
+              <p>Prospects / non-adhérents : 3 ans à compter du dernier contact (recommandation CNIL).</p>
+              <p>Consentement newsletter : jusqu&apos;au retrait du consentement (désinscription).</p>
+              <p>Cookies : durée maximale de 13 mois (ou selon la réglementation en vigueur).</p>
+            </LegalArticle>
+
+            <LegalArticle title="7. Sécurité">
+              <p>InRealArt met en œuvre des mesures techniques et organisationnelles appropriées pour protéger les données contre tout accès, altération ou divulgation non autorisés.</p>
+            </LegalArticle>
+
+            <LegalArticle title="8. Droits des personnes">
+              <p>Conformément au RGPD, toute personne dispose des droits d&apos;accès, de rectification, d&apos;effacement, de limitation, d&apos;opposition, de portabilité, ainsi que du droit de retirer son consentement et de définir des directives post-mortem. Ces droits s&apos;exercent auprès de : contact@inrealart.com. En cas de difficulté, la personne peut saisir la CNIL (www.cnil.fr).</p>
+            </LegalArticle>
+
+            <LegalArticle title="9. Cookies et traceurs">
+              <p>Le site peut utiliser des cookies. Les cookies non essentiels ne sont déposés qu&apos;après consentement via le bandeau dédié.</p>
+            </LegalArticle>
+
+            <LegalArticle title="10. Avis sollicités">
+              <p>Les avis que l&apos;Artiste sollicite auprès de son entourage (Article 5.2 des CGA) doivent refléter une opinion sincère. Le traitement des données des personnes laissant un avis (identité, contenu de l&apos;avis) relève, selon le canal utilisé, de la plateforme d&apos;avis concernée et/ou de l&apos;Artiste. La collecte et la publication d&apos;avis sont soumises aux obligations de loyauté et de transparence (art. L.111-7-2 du Code de la consommation), notamment l&apos;absence d&apos;avis fictifs ou faussement présentés comme émanant de clients.</p>
+            </LegalArticle>
+
+            <LegalArticle title="11. Contact">
+              <p>Pour toute question relative à la présente politique : contact@inrealart.com.</p>
+            </LegalArticle>
+          </section>
         </div>
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={lang} />
     </>
   )
 }

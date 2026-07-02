@@ -39,6 +39,7 @@ export default function StatsSection({ dict }: { dict: Dictionary }) {
             <StatCard
               key={s.label}
               label={s.label}
+              headline={s.headline}
               target={statsMeta[i].target}
               suffix={statsMeta[i].suffix}
               description={s.description}

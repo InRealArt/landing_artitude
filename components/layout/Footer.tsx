@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Dictionary } from '@/lib/dictionaries'
 
-export default function Footer({ dict }: { dict: Dictionary }) {
+export default function Footer({ dict, lang }: { dict: Dictionary; lang: string }) {
   const d = dict.footer
 
   return (
@@ -78,8 +78,9 @@ export default function Footer({ dict }: { dict: Dictionary }) {
 
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-[9px] text-grayText uppercase tracking-widest font-light font-sans">
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-gold transition-colors">{d.links.legal}</Link>
-            <Link href="#" className="hover:text-gold transition-colors">{d.links.privacy}</Link>
+            <Link href={`/${lang}/legal-notice#cga`} className="hover:text-gold transition-colors">{d.links.cga}</Link>
+            <Link href={`/${lang}/legal-notice#mentions-legales`} className="hover:text-gold transition-colors">{d.links.legal}</Link>
+            <Link href={`/${lang}/legal-notice#confidentialite`} className="hover:text-gold transition-colors">{d.links.privacy}</Link>
           </div>
           <div>{d.tagline}</div>
         </div>
