@@ -241,7 +241,7 @@ function ProgressModal({
   return createPortal(content, document.body)
 }
 
-export default function RegisterSection({ dict }: { dict: Dictionary }) {
+export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang: string }) {
   const d = dict.register
   const sectionRef = useRef<HTMLDivElement>(null)
   useGsapReveal(sectionRef as React.RefObject<HTMLElement>, { y: 30 })
@@ -383,8 +383,10 @@ export default function RegisterSection({ dict }: { dict: Dictionary }) {
 
       const fd = new FormData()
       fd.append('name', name)
+      fd.append('email', email)
       fd.append('title', atelierName)
       fd.append('phone', phone)
+      fd.append('language', lang)
       fd.append('addressLine', address)
       fd.append('postalCode', postalCode)
       fd.append('locality', city)

@@ -5,7 +5,11 @@ const LIST_IDS: Record<string, number> = {
   en: 17,
 }
 
-export async function addContactToBrevo(email: string, language: string): Promise<void> {
+export async function addContactToBrevo(
+  email: string,
+  language: string,
+  source: string = 'Website Newsletter Popup'
+): Promise<void> {
   const apiKey = process.env.BREVO_API_KEY
   if (!apiKey) throw new Error('BREVO_API_KEY not configured')
 
@@ -23,7 +27,7 @@ export async function addContactToBrevo(email: string, language: string): Promis
       listIds: [listId],
       attributes: {
         LANGUAGE: language.toUpperCase(),
-        SOURCE: 'Website Newsletter Popup',
+        SOURCE: source,
       },
     }),
   })

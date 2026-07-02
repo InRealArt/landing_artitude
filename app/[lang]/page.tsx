@@ -31,7 +31,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <IndexSection dict={dict} locale={lang} />
         <StatsSection dict={dict} />
         <TeamSection dict={dict} />
-        <RegisterSection dict={dict} />
+        <RegisterSection dict={dict} lang={lang} />
         <NewsletterSection dict={dict} locale={lang} />
         <FaqSection dict={dict} />
       </main>

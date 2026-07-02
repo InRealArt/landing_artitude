@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateGmbExcel, GmbExcelData } from '@/lib/gmb-excel'
 import { uploadToR2 } from '@/lib/r2-client'
+import { addContactToBrevo } from '@/lib/brevo'
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 const RECIPIENT_EMAIL = 'teaminrealart@gmail.com'
@@ -51,6 +52,8 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData()
 
     const name = formData.get('name') as string | null
+    const email = formData.get('email') as string | null
+    const language = (formData.get('language') as string | null) ?? 'fr'
     const title = formData.get('title') as string | null
     const phone = formData.get('phone') as string | null
     const addressLine = formData.get('addressLine') as string | null
@@ -73,6 +76,12 @@ export async function POST(req: NextRequest) {
 
     if (consent !== 'true') {
       return NextResponse.json({ error: 'Consent required' }, { status: 400 })
+    }
+
+    if (email) {
+      addContactToBrevo(email, language, 'Artitude Register Form').catch((err) => {
+        console.error('[create-location] Brevo contact sync failed:', err)
+      })
     }
 
     if (websiteUri) {
