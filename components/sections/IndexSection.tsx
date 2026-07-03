@@ -4,7 +4,6 @@ import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { registerGsap } from '@/lib/gsap'
 import { useGsapReveal } from '@/hooks/useGsapReveal'
-import SectionHeader from '@/components/ui/SectionHeader'
 import type { Dictionary } from '@/lib/dictionaries'
 
 export default function IndexSection({ dict }: { dict: Dictionary }) {
@@ -22,8 +21,17 @@ export default function IndexSection({ dict }: { dict: Dictionary }) {
 
           {/* Left */}
           <div ref={sectionRef} className="lg:col-span-5 space-y-6 text-left">
-            <SectionHeader eyebrow={d.eyebrow} title={d.title} centered={false} />
-            <p className="text-white/80 text-base leading-relaxed font-light font-sans">{d.description}</p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light leading-tight text-white">
+              {d.title}
+            </h2>
+            <ul className="space-y-2">
+              {d.description.map((item) => (
+                <li key={item} className="text-white/80 text-base leading-relaxed font-light font-sans flex items-start gap-2">
+                  <span className="text-gold">✦</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right: Google Mock Widget */}

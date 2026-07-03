@@ -88,9 +88,9 @@
         ]
     },
     "index": {
-        "eyebrow": "Bénéfice différenciant",
-        "title": "Et votre atelier rejoint aussi notre Index des Ateliers.",
-        "description": "Chaque artiste référencé sur Artitude apparaît automatiquement dans l'Index des Ateliers IRA — notre annuaire en ligne, avec carte interactive, consulté par les visiteurs du site InRealArt.",
+        "eyebrow": "",
+        "title": "Grâce à Artitude, votre page est mis à jour automatiquement dans Google Maps. Les collectionneurs peuvent désormais mieux vous trouver et consulter",
+        "description": ["Vos Informations", "Les photos de vos oeuvres", "Vos actualités", "Vos avis clients", "Pour mieux vous contacter"],
         "mapLabel": "Index Interactif",
         "mapHint": "Cliquez pour explorer",
         "joinIndex": "Rejoindre l'index",
@@ -124,6 +124,26 @@
                 "title": "Atelier Catherine Sénéchal",
                 "category": "Peintre",
                 "description": "Catherine Sénéchal est une artiste autodidacte issue d'une famille de peintres et de musiciens. Elle peint depuis l'âge de 15 ans et expose depuis plus de 25 ans dans les grands salons parisiens et sur des galeries en ligne reconnues. Son travail, guidé par l'instinct et la sensibilité, naît d'un jeu libre de couleurs et de papiers, sans sujet prédéfini, ouvrant sur un univers poétique. Représentée par InRealArt, son œuvre s'inscrit dans une démarche de reconnaissance symbolique et de transmission patrimoniale. InRealArt permet aux dirigeants et chefs d'entreprise d'acquérir ses œuvres grâce à des solutions de leasing artistique."
+            },
+            "sandrine-hirson": {
+                "title": "Atelier Sandrine Hirson",
+                "category": "Peintre",
+                "description": "Peintre française, Sandrine Hirson explore l'abstraction depuis le milieu des années 1990, avec pour médium de prédilection la peinture à l'huile — choisie pour sa capacité à retenir la lumière, à donner corps à la matière, à faire exister ce qui résiste aux mots. Son travail prend racine dans les éléments : le ciel, la terre, l'océan."
+            },
+            "francois-poulat": {
+                "title": "Atelier François Poulat",
+                "category": "Peintre",
+                "description": "François Poulat est un peintre français autodidacte installé en Gironde. Son travail s’inscrit dans une démarche contemporaine où se rencontrent le Pop Art, la bande dessinée et un certain réalisme poétique"
+            },
+            "franck-alagna": {
+                "title": "Atelier Franck Alagna",
+                "category": "Peintre",
+                "description": "Franck Alagna, marqué dès l'enfance par l'œuvre d'André Masson, a embrassé l'art dès ses 13 ans, fasciné par les toiles qui mêlent rêve et réalité"
+            },
+            "eaudalix": {
+                "title": "Atelier Eaudalix",
+                "category": "Peintre",
+                "description": "Artiste autodidacte française, son travail se déploie dans une palette intensément colorée, où formes et motifs cernés de noir vibrent, portés par une énergie instinctive et expressive."
             }
         }
     },

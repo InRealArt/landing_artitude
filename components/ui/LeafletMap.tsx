@@ -22,12 +22,13 @@ function createPinIcon(num: string, isActive: boolean) {
     className: '',
     html: `<div class="ira-marker" data-num="${num}">
       <span class="ira-marker__ping${isActive ? ' ira-marker__ping--active' : ''}"></span>
-      <div class="ira-marker__box${isActive ? ' ira-marker__box--active' : ''}">
-        <span>${num}</span>
-      </div>
+      <svg class="ira-marker__pin${isActive ? ' ira-marker__pin--active' : ''}" width="22" height="31" viewBox="0 0 30 42" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 0C6.716 0 0 6.716 0 15c0 10.5 15 27 15 27s15-16.5 15-27c0-8.284-6.716-15-15-15z" />
+      </svg>
+      <span class="ira-marker__label${isActive ? ' ira-marker__label--active' : ''}">${num}</span>
     </div>`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
+    iconSize: [22, 31],
+    iconAnchor: [11, 31],
   })
 }
 
@@ -54,6 +55,43 @@ function ZoomControls() {
   )
 }
 
+// Nudges markers that render within `minPx` pixels of each other so pins don't fully overlap.
+// Only affects the on-screen position, not the underlying location data (used for the info card).
+function useDeclusteredPositions(map: L.Map, locations: GmbLocation[], minPx = 28) {
+  const [positions, setPositions] = useState<L.LatLng[]>([])
+
+  useEffect(() => {
+    if (!locations.length) return
+
+    const recompute = () => {
+      const points = locations.map((l) => map.latLngToLayerPoint([l.lat, l.lng]))
+
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const dx = points[j].x - points[i].x
+          const dy = points[j].y - points[i].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < minPx) {
+            const angle = dist === 0 ? Math.random() * Math.PI * 2 : Math.atan2(dy, dx)
+            const push = (minPx - dist) / 2 + 2
+            points[i] = points[i].add([-Math.cos(angle) * push, -Math.sin(angle) * push])
+            points[j] = points[j].add([Math.cos(angle) * push, Math.sin(angle) * push])
+          }
+        }
+      }
+
+      setPositions(points.map((p) => map.layerPointToLatLng(p)))
+    }
+
+    recompute()
+    map.on('zoomend moveend', recompute)
+    return () => { map.off('zoomend moveend', recompute) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map, locations, minPx])
+
+  return positions
+}
+
 // Inner component: runs inside MapContainer so useMap() works
 function MapContent({
   locations,
@@ -65,6 +103,7 @@ function MapContent({
   onSelect: (idx: number) => void
 }) {
   const map = useMap()
+  const positions = useDeclusteredPositions(map, locations)
 
   useEffect(() => {
     if (!locations.length) return
@@ -81,6 +120,8 @@ function MapContent({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  if (positions.length !== locations.length) return null
+
   return (
     <>
       <TileLayer
@@ -91,7 +132,7 @@ function MapContent({
       {locations.map((loc, idx) => (
         <Marker
           key={loc.id}
-          position={[loc.lat, loc.lng]}
+          position={positions[idx]}
           icon={createPinIcon(String(idx + 1).padStart(2, '0'), idx === active)}
           eventHandlers={{ click: () => onSelect(idx) }}
         />
@@ -122,20 +163,27 @@ export default function LeafletMap({ locations, joinLabel }: LeafletMapProps) {
   return (
     <>
       <style>{`
-        .ira-marker { position: relative; display: flex; align-items: center; justify-content: center; }
-        .ira-marker__box {
-          width: 24px; height: 24px;
-          border: 1px solid rgba(255,255,255,0.9);
-          background: #000;
-          display: flex; align-items: center; justify-content: center;
-          cursor: pointer; transition: transform 0.2s;
-          position: relative; z-index: 1;
+        .ira-marker { position: relative; width: 22px; height: 31px; cursor: pointer; }
+        .ira-marker__pin {
+          position: absolute; top: 0; left: 0;
+          fill: #fff;
+          stroke: rgba(0,0,0,0.2); stroke-width: 1px;
+          transition: transform 0.2s, fill 0.2s;
+          transform-origin: 11px 31px;
+          z-index: 1;
         }
-        .ira-marker__box span { font-size: 9px; font-weight: 700; color: #fff; font-family: ui-monospace, monospace; }
-        .ira-marker__box--active { background: #b89c72 !important; }
-        .ira-marker__box:hover { transform: scale(1.1); }
+        .ira-marker__pin--active { fill: #b89c72; }
+        .ira-marker:hover .ira-marker__pin { transform: scale(1.1); }
+        .ira-marker__label {
+          position: absolute; top: 5px; left: 0; width: 22px;
+          text-align: center; font-size: 7px; font-weight: 700;
+          color: #000; font-family: ui-monospace, monospace;
+          z-index: 2; pointer-events: none;
+        }
+        .ira-marker__label--active { color: #fff; }
         .ira-marker__ping {
-          position: absolute; width: 24px; height: 24px;
+          position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+          border-radius: 50%;
           background: rgba(184,156,114,0.25); z-index: 0; display: none;
           animation: ira-ping 1.4s cubic-bezier(0,0,0.2,1) infinite;
         }

@@ -22,6 +22,39 @@ const FALLBACK_BASE = [
     lng: 2.2989,
     imageUrl: '/images/ateliers/atelier_catrherine_senechal.webp',
   },
+  {
+    id: 'sandrine-hirson',
+    address: '10 Rue william Cliff, 02100 Saint-quentin',
+    city: 'Saint-quentin',
+    lat: 49.854683  ,
+    lng: 3.286795,
+    imageUrl: '/images/ateliers/atelier_sandrine_hirson.webp',
+  },
+  {
+    id: 'francois-poulat',
+    address: '18 Rue Lafaurie de Monbadon, 33000 Bordeaux',
+    city: 'Bordeaux',
+    lat: 44.843817,
+    lng: -0.579622,
+    imageUrl: '/images/ateliers/atelier_francois_poulat.webp',
+  },
+  {
+    id: 'franck-alagna',
+    address: '3 bis rue des Aires, 13840 Rogne',
+    city: 'Rogne',
+    lat: 43.666180,
+    lng: 5.348585,
+    imageUrl: '/images/ateliers/atelier_franck_alagna.webp',
+  },
+  {
+    id: 'eaudalix',
+    address: '24 Quai Eole, 44560 Paimbœuf',
+    city: 'Paimbœuf',
+    lat: 47.288994,
+    lng: -2.037900,
+    imageUrl: '/images/ateliers/atelier_eaudalix.webp',
+  }
+
 ]
 
 async function buildFallback(locale: string): Promise<GmbLocation[]> {
