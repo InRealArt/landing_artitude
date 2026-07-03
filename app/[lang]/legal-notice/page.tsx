@@ -34,10 +34,10 @@ export default async function LegalNoticePage({ params }: { params: Promise<{ la
 
           <section id="cga" className="scroll-mt-24">
             <h2 className="font-serif text-2xl sm:text-3xl font-light mb-2">Partie I — Conditions Générales d&apos;Adhésion au programme Artitude (CGA)</h2>
-            <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">En vigueur au [DATE]. Version [1.0].</p>
+            <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">EN VIGUEUR AU 3 juillet 2026</p>
 
             <LegalArticle title="Article 1 — Objet et définitions">
-              <p>1.1. Les présentes Conditions Générales d&apos;Adhésion (les « CGA ») régissent l&apos;inscription et la participation des artistes au programme « Artitude » (le « Programme »), édité par le projet Artitude porté par Timothée Roy, agissant au nom et pour le compte de la société [DÉNOMINATION] en cours de constitution, dont les actes ont vocation à être repris après immatriculation (« InRealArt » ou l&apos;« Éditeur »).</p>
+              <p>1.1. Les présentes Conditions Générales d&apos;Adhésion (les « CGA ») régissent l&apos;inscription et la participation des artistes au programme « Artitude » (le « Programme »), édité par le projet Artitude porté par Timothée Roy, agissant au nom et pour le compte de la société InRealArt en cours de constitution, dont les actes ont vocation à être repris après immatriculation (« InRealArt » ou l&apos;« Éditeur »).</p>
               <p>1.2. Le Programme est un service gratuit consistant à créer, optimiser et maintenir une fiche de référencement de l&apos;atelier de l&apos;artiste (la « Fiche ») sur les moteurs et cartographies (Google Search, Google Maps) et à l&apos;intégrer à l&apos;Index des Ateliers publié sur le site InRealArt (l&apos;« Index »).</p>
               <p>1.3. Définitions :</p>
               <p>« Artiste » ou « Adhérent » : toute personne physique ou morale acceptant les présentes CGA et référencée au Programme.</p>
@@ -119,28 +119,25 @@ export default async function LegalNoticePage({ params }: { params: Promise<{ la
             <LegalArticle title="Article 13 — Droit applicable et litiges">
               <p>13.1. Les présentes CGA sont soumises au droit français.</p>
               <p>13.2. En cas de litige, les parties rechercheront une solution amiable.</p>
-              <p>13.3. Artistes professionnels : à défaut d&apos;accord amiable, compétence du Tribunal [de commerce / judiciaire] de [VILLE].</p>
-              <p>13.4. Artistes non professionnels (consommateurs) : conformément aux articles L.612-1 et s. du Code de la consommation, l&apos;Artiste peut recourir gratuitement au médiateur de la consommation [NOM ET COORDONNÉES DU MÉDIATEUR] et, à défaut de résolution, saisir les juridictions de droit commun compétentes. La plateforme européenne de règlement en ligne des litiges reste par ailleurs accessible.</p>
+              <p>13.3. Artistes professionnels : à défaut d&apos;accord amiable, compétence du Tribunal de commerce de Paris.</p>
+              <p>13.4. Artistes non professionnels (consommateurs) : conformément aux articles L.612-1 et s. du Code de la consommation, l&apos;Artiste peut recourir gratuitement au médiateur de la consommation CM2C, 01 89 47 00 14, 49 Rue de Ponthieu, 75008 Paris et, à défaut de résolution, saisir les juridictions de droit commun compétentes. La plateforme européenne de règlement en ligne des litiges reste par ailleurs accessible.</p>
             </LegalArticle>
           </section>
 
           <section id="mentions-legales" className="scroll-mt-24 mt-20">
             <h2 className="font-serif text-2xl sm:text-3xl font-light mb-2">Partie II — Mentions légales</h2>
-            <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">Obligatoires au titre de l&apos;article 6-III de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&apos;économie numérique (LCEN).</p>
 
             <LegalArticle title="Éditeur / Responsable">
-              <p>Projet « Artitude » porté par Timothée Roy, agissant au nom et pour le compte de la société [DÉNOMINATION] en cours de constitution.</p>
-              <p>Adresse : [ADRESSE DU FONDATEUR / DU FUTUR SIÈGE]</p>
+              <p>Projet « Artitude » porté par Timothée Roy, agissant au nom et pour le compte de la société InRealArt en cours de constitution.</p>
               <p>Adresse email : contact@inrealart.com</p>
-              <p>Téléphone : [NUMÉRO]</p>
-              <p>Mention : société en cours de constitution — immatriculation en cours au RCS de [VILLE].</p>
+              <p>Mention : société en cours de constitution — immatriculation en cours au RCS de Paris.</p>
               <p>Directeur de la publication : Timothée Roy.</p>
             </LegalArticle>
 
             <LegalArticle title="Hébergeur">
-              <p>Dénomination : [NOM DE L&apos;HÉBERGEUR]</p>
-              <p>Adresse : [ADRESSE]</p>
-              <p>Téléphone : [NUMÉRO]</p>
+              <p>Dénomination : OVH</p>
+              <p>Adresse : 2 RUE KELLERMANN 59100 ROUBAIX</p>
+              <p>Téléphone : 1007</p>
             </LegalArticle>
 
             <LegalArticle title="Propriété intellectuelle">
@@ -148,7 +145,7 @@ export default async function LegalNoticePage({ params }: { params: Promise<{ la
             </LegalArticle>
 
             <LegalArticle title="Médiation de la consommation">
-              <p>Conformément aux articles L.612-1 et s. du Code de la consommation, le consommateur peut recourir gratuitement au médiateur : [NOM ET COORDONNÉES DU MÉDIATEUR].</p>
+              <p>Conformément aux articles L.612-1 et s. du Code de la consommation, le consommateur peut recourir gratuitement au médiateur : CM2C, 01 89 47 00 14, 49 Rue de Ponthieu, 75008 Paris.</p>
             </LegalArticle>
           </section>
 
@@ -157,7 +154,8 @@ export default async function LegalNoticePage({ params }: { params: Promise<{ la
             <p className="font-sans text-[11px] text-grayText uppercase tracking-widest mb-8">Conforme au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés modifiée.</p>
 
             <LegalArticle title="1. Responsable de traitement">
-              <p>Le responsable de traitement est Timothée Roy, agissant pour le compte de la société [DÉNOMINATION] en cours de constitution, [ADRESSE]. Contact : contact@inrealart.com.</p>
+              <p>Le responsable de traitement est Timothée Roy, agissant pour le compte de la société InRealArt en cours de constitution.</p>
+              <p>Contact : contact@inrealart.com.</p>
             </LegalArticle>
 
             <LegalArticle title="2. Données collectées">
