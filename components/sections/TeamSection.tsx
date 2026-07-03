@@ -40,7 +40,7 @@ export default function TeamSection({ dict }: { dict: Dictionary }) {
         </div>
 
         <div className="mt-16 text-center">
-          <Link href="#register" className="btn-action inline-flex items-center gap-3 px-8 py-4 text-xs">
+          <Link href="https://www.inrealart.com/services" className="btn-action inline-flex items-center gap-3 px-8 py-4 text-xs">
             <span>{d.cta}</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

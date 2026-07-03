@@ -40,11 +40,11 @@ export default function FaqItem({ question, answer }: FaqItemProps) {
         onClick={toggle}
         className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
       >
-        <span className="font-serif text-base sm:text-lg text-inkBlack font-semibold">{question}</span>
-        <span ref={iconRef} className="text-base text-gold ml-4 flex-shrink-0 font-display font-light">+</span>
+        <span className="font-serif text-lg sm:text-xl text-inkBlack font-semibold">{question}</span>
+        <span ref={iconRef} className="text-lg text-gold ml-4 flex-shrink-0 font-display font-light">+</span>
       </button>
       <div ref={contentRef} className="overflow-hidden" style={{ height: 0, display: 'none' }}>
-        <p className="px-6 pb-6 text-xs text-grayText leading-relaxed font-light font-sans">{answer}</p>
+        <p className="px-6 pb-6 text-base text-grayText leading-relaxed font-light font-sans">{answer}</p>
       </div>
     </div>
   )
