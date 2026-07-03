@@ -41,7 +41,7 @@ export default function TeamSection({ dict }: { dict: Dictionary }) {
 
         <div className="mt-16 text-center">
           <Link
-            href="https://www.inrealart.com/services"
+            href="https://www.inrealart.com/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-action inline-flex items-center gap-3 px-8 py-4 text-xs"
