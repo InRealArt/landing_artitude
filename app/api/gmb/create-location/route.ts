@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import sharp from 'sharp'
+import { randomUUID } from 'crypto'
 import { generateGmbExcel, GmbExcelData } from '@/lib/gmb-excel'
 import { uploadToR2 } from '@/lib/r2-client'
 import { addContactToBrevo } from '@/lib/brevo'
+import { prisma } from '@/lib/prisma'
+import { Prisma } from '@/src/generated/prisma/client'
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 const RECIPIENT_EMAIL = 'teaminrealart@gmail.com'
@@ -56,11 +60,30 @@ async function geocode(addressLine: string, postalCode: string, locality: string
   }
 }
 
+async function sendDbErrorAlert(brevoApiKey: string, fullName: string, error: unknown): Promise<void> {
+  const message = error instanceof Error ? error.message : String(error)
+  try {
+    await fetch(BREVO_API_URL, {
+      method: 'POST',
+      headers: { 'api-key': brevoApiKey, 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        sender: { name: 'Artitude', email: 'teaminrealart@gmail.com' },
+        to: [{ email: RECIPIENT_EMAIL, name: 'Team InRealArt' }],
+        subject: `[ ARTITUDE - ERREUR DB ] ${escapeHtml(fullName)}`,
+        htmlContent: `<p>La demande de ${escapeHtml(fullName)} a bien été envoyée par email, mais l'enregistrement en base de données a échoué.</p><p><strong>Erreur :</strong> ${escapeHtml(message)}</p>`,
+      }),
+    })
+  } catch (err) {
+    console.error('[create-location] Failed to send DB error alert email:', err)
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData()
 
-    const name = formData.get('name') as string | null
+    const firstName = formData.get('firstName') as string | null
+    const lastName = formData.get('lastName') as string | null
     const email = formData.get('email') as string | null
     const language = (formData.get('language') as string | null) ?? 'fr'
     const title = formData.get('title') as string | null
@@ -90,7 +113,7 @@ export async function POST(req: NextRequest) {
 
     const consent = formData.get('consent') as string | null
 
-    if (!name || !title || !phone || !addressLine || !postalCode || !locality || !regionCode) {
+    if (!firstName || !lastName || !title || !phone || !addressLine || !postalCode || !locality || !regionCode) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -177,11 +200,12 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const storeCode = toSlug(name)
+    const fullName = `${firstName} ${lastName}`
+    const storeCode = toSlug(fullName)
     if (!storeCode || !/^[a-z0-9-]+$/.test(storeCode)) {
       return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
     }
-    const r2FolderName = toTitleCase(name)
+    const r2FolderName = toTitleCase(fullName)
     if (!r2FolderName) {
       return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
     }
@@ -261,7 +285,7 @@ export async function POST(req: NextRequest) {
       { label: 'Œuvre 4', url: photoArtwork4Url },
       { label: 'Œuvre 5', url: photoArtwork5Url },
     ].filter((p): p is { label: string; url: string } => Boolean(p.url))
-    const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
+    const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(fullName)}`
 
     const brevoPayload = {
       sender: { name: 'Artitude', email: 'teaminrealart@gmail.com' },
@@ -270,7 +294,7 @@ export async function POST(req: NextRequest) {
       htmlContent: `<p>Bonjour,</p>
 <p>Veuillez trouver en pièce jointe le fichier Excel formaté pour l'import Google Business Profile. Les photos de l'atelier sont disponibles via les liens ci-dessous.</p>
 <ul>
-  <li><strong>Demandeur :</strong> ${escapeHtml(name)}</li>
+  <li><strong>Demandeur :</strong> ${escapeHtml(fullName)}</li>
   <li><strong>Atelier :</strong> ${escapeHtml(title)}</li>
   <li><strong>Téléphone :</strong> ${escapeHtml(phone)}</li>
   <li><strong>Adresse :</strong> ${escapeHtml(addressLine)}, ${escapeHtml(postalCode)} ${escapeHtml(locality)}</li>
@@ -308,6 +332,96 @@ ${photoLinks.map((p) => `  <li>${escapeHtml(p.label)} : <a href="${escapeHtml(p.
       const brevoError = await brevoRes.text()
       console.error('Brevo error:', brevoError)
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+    }
+
+    try {
+      const country = await prisma.country.findUnique({ where: { code: regionCode } })
+      const validCountryCode = country ? regionCode : undefined
+      if (!country) {
+        console.warn(`[create-location] Unknown country code "${regionCode}" — persisting artist without countryCode`)
+      }
+
+      let artist = await prisma.artist.findFirst({
+        where: {
+          name: { equals: firstName, mode: 'insensitive' },
+          surname: { equals: lastName, mode: 'insensitive' },
+        },
+      })
+
+      if (!artist) {
+        const ownerWebpBuf = await sharp(Buffer.from(await photoOwner.arrayBuffer())).webp().toBuffer()
+        const artistImageUrl = await uploadToR2({
+          key: `artists/${r2FolderName}/${r2FolderName}.webp`,
+          body: ownerWebpBuf,
+          contentType: 'image/webp',
+        })
+        try {
+          artist = await prisma.artist.create({
+            data: {
+              name: firstName,
+              surname: lastName,
+              description: description || r2FolderName,
+              publicKey: randomUUID(),
+              imageUrl: artistImageUrl,
+              countryCode: validCountryCode,
+            },
+          })
+        } catch (createErr) {
+          // Concurrent submission for the same artist already created it (unique constraint) — re-fetch instead of failing.
+          if (createErr instanceof Prisma.PrismaClientKnownRequestError && createErr.code === 'P2002') {
+            artist = await prisma.artist.findFirst({
+              where: {
+                name: { equals: firstName, mode: 'insensitive' },
+                surname: { equals: lastName, mode: 'insensitive' },
+              },
+            })
+            if (!artist) throw createErr
+          } else {
+            throw createErr
+          }
+        }
+      }
+
+      const existingArtitudeArtist = await prisma.artitudeArtist.findUnique({
+        where: { artistId: artist.id },
+      })
+
+      if (!existingArtitudeArtist) {
+        try {
+          const artitudeArtist = await prisma.artitudeArtist.create({
+            data: {
+              artistId: artist.id,
+              addressLine1: addressLine,
+              postalCode,
+              city: locality,
+              countryCode: validCountryCode,
+              latitude: coords?.lat,
+              longitude: coords?.lng,
+              phoneNumber: phone,
+              websiteUrl: websiteUri || undefined,
+              googleBusinessProfileUrl: '',
+              openingHours: hours,
+            },
+          })
+          await prisma.artitudeArtistImages.create({
+            data: {
+              artitudeArtistId: artitudeArtist.id,
+              coverImage: photoCoverUrl,
+              exteriorImages: [photoExterior1Url, photoExterior2Url, photoExterior3Url].filter((u): u is string => Boolean(u)),
+              interiorImages: [photoInterior1Url, photoInterior2Url, photoInterior3Url, photoInterior4Url].filter((u): u is string => Boolean(u)),
+              artistImages: [photoOwnerUrl],
+              otherImages: [photoArtwork1Url, photoArtwork2Url, photoArtwork3Url, photoArtwork4Url, photoArtwork5Url].filter((u): u is string => Boolean(u)),
+            },
+          })
+        } catch (createErr) {
+          // Concurrent submission already created the ArtitudeArtist (unique constraint on artistId) — nothing left to do.
+          const alreadyExists = createErr instanceof Prisma.PrismaClientKnownRequestError && createErr.code === 'P2002'
+          if (!alreadyExists) throw createErr
+        }
+      }
+    } catch (dbError) {
+      console.error('[create-location] DB persistence failed:', dbError)
+      await sendDbErrorAlert(brevoApiKey, fullName, dbError)
     }
 
     return NextResponse.json({ success: true })

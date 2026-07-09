@@ -38,7 +38,7 @@ function isValidPostalCode(postalCode: string, country: string): boolean {
 }
 
 interface Step1Msgs {
-  validationName: string; validationEmail: string; validationPhone: string
+  validationFirstName: string; validationLastName: string; validationEmail: string; validationPhone: string
   validationAtelier: string; validationDiscipline: string; validationWebsite: string; validationConsent: string
 }
 
@@ -47,11 +47,12 @@ interface Step2Msgs {
 }
 
 function validateStep1(
-  values: { name: string; email: string; phone: string; atelierName: string; discipline: string; website: string; consent: boolean },
+  values: { firstName: string; lastName: string; email: string; phone: string; atelierName: string; discipline: string; website: string; consent: boolean },
   msgs: Step1Msgs
 ): Record<string, string> {
   const errors: Record<string, string> = {}
-  if (values.name.trim().length < 2) errors.name = msgs.validationName
+  if (values.firstName.trim().length < 2) errors.firstName = msgs.validationFirstName
+  if (values.lastName.trim().length < 2) errors.lastName = msgs.validationLastName
   if (!RE_EMAIL.test(values.email.trim())) errors.email = msgs.validationEmail
   if (!RE_PHONE.test(values.phone.trim())) errors.phone = msgs.validationPhone
   if (values.atelierName.trim().length < 2) errors.atelierName = msgs.validationAtelier
@@ -279,7 +280,8 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
   const [showProgress, setShowProgress] = useState(false)
 
   // Step 1
-  const [name, setName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [atelierName, setAtelierName] = useState('')
@@ -322,12 +324,12 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
     setFieldErrors({})
     if (step === 1) {
       const msgs = {
-        validationName: d.validationName, validationEmail: d.validationEmail,
+        validationFirstName: d.validationFirstName, validationLastName: d.validationLastName, validationEmail: d.validationEmail,
         validationPhone: d.validationPhone, validationAtelier: d.validationAtelier,
         validationDiscipline: d.validationDiscipline, validationWebsite: d.validationWebsite,
         validationConsent: d.validationConsent,
       }
-      const errors = validateStep1({ name, email, phone, atelierName, discipline, website, consent }, msgs)
+      const errors = validateStep1({ firstName, lastName, email, phone, atelierName, discipline, website, consent }, msgs)
       if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
     }
     if (step === 2) {
@@ -356,12 +358,12 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
 
     // Re-validate step 1 & 2 defensively — covers any direct state manipulation
     const step1Msgs = {
-      validationName: d.validationName, validationEmail: d.validationEmail,
+      validationFirstName: d.validationFirstName, validationLastName: d.validationLastName, validationEmail: d.validationEmail,
       validationPhone: d.validationPhone, validationAtelier: d.validationAtelier,
       validationDiscipline: d.validationDiscipline, validationWebsite: d.validationWebsite,
       validationConsent: d.validationConsent,
     }
-    const step1Errors = validateStep1({ name, email, phone, atelierName, discipline, website, consent }, step1Msgs)
+    const step1Errors = validateStep1({ firstName, lastName, email, phone, atelierName, discipline, website, consent }, step1Msgs)
     if (Object.keys(step1Errors).length > 0) {
       setFieldErrors(step1Errors)
       setStep(1)
@@ -426,7 +428,8 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       await new Promise((r) => setTimeout(r, 400))
 
       const fd = new FormData()
-      fd.append('name', name)
+      fd.append('firstName', firstName)
+      fd.append('lastName', lastName)
       fd.append('email', email)
       fd.append('title', atelierName)
       fd.append('phone', phone)
@@ -541,7 +544,7 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
     setProgressSteps([])
     setProgressError(null)
     setStep(1)
-    setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
+    setFirstName(''); setLastName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
     setPhotoCover(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoExterior3(null)
     setPhotoInterior1(null); setPhotoInterior2(null); setPhotoInterior3(null); setPhotoInterior4(null)
@@ -610,14 +613,27 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className={labelCls}>{d.fieldName}</label>
-                    <input type="text" className={`${inputCls} ${fieldErrors.name ? 'border-red-400' : ''}`} placeholder={d.fieldNamePlaceholder} value={name} onChange={(e) => setName(e.target.value)} />
-                    <FieldError msg={fieldErrors.name} />
+                    <label className={labelCls}>{d.fieldFirstName}</label>
+                    <input type="text" className={`${inputCls} ${fieldErrors.firstName ? 'border-red-400' : ''}`} placeholder={d.fieldFirstNamePlaceholder} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    <FieldError msg={fieldErrors.firstName} />
                   </div>
+                  <div className="space-y-2">
+                    <label className={labelCls}>{d.fieldLastName}</label>
+                    <input type="text" className={`${inputCls} ${fieldErrors.lastName ? 'border-red-400' : ''}`} placeholder={d.fieldLastNamePlaceholder} value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                    <FieldError msg={fieldErrors.lastName} />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className={labelCls}>{d.fieldEmail}</label>
                     <input type="email" className={`${inputCls} ${fieldErrors.email ? 'border-red-400' : ''}`} placeholder={d.fieldEmailPlaceholder} value={email} onChange={(e) => setEmail(e.target.value)} />
                     <FieldError msg={fieldErrors.email} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={labelCls}>{d.fieldPhone}</label>
+                    <input type="tel" className={`${inputCls} ${fieldErrors.phone ? 'border-red-400' : ''}`} placeholder={d.fieldPhonePlaceholder} value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <FieldError msg={fieldErrors.phone} />
                   </div>
                 </div>
 
@@ -626,11 +642,6 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
                     <label className={labelCls}>{d.fieldAtelier}</label>
                     <input type="text" className={`${inputCls} ${fieldErrors.atelierName ? 'border-red-400' : ''}`} placeholder={d.fieldAtelierPlaceholder} value={atelierName} onChange={(e) => setAtelierName(e.target.value)} />
                     <FieldError msg={fieldErrors.atelierName} />
-                  </div>
-                  <div className="space-y-2">
-                    <label className={labelCls}>{d.fieldPhone}</label>
-                    <input type="tel" className={`${inputCls} ${fieldErrors.phone ? 'border-red-400' : ''}`} placeholder={d.fieldPhonePlaceholder} value={phone} onChange={(e) => setPhone(e.target.value)} />
-                    <FieldError msg={fieldErrors.phone} />
                   </div>
                 </div>
 
