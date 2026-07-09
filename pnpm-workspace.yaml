@@ -1,6 +1,8 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@InRealArt/prisma-schema@1.4.6'
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
