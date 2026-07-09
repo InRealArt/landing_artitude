@@ -61,12 +61,23 @@ export async function POST(req: NextRequest) {
     const locality = formData.get('locality') as string | null
     const regionCode = formData.get('regionCode') as string | null
     const websiteUri = formData.get('websiteUri') as string | null
+    const description = formData.get('description') as string | null
     const hoursRaw = formData.get('hours') as string | null
 
-    const photoInterior = formData.get('photoInterior') as File | null
+    const photoCover = formData.get('photoCover') as File | null
     const photoExterior1 = formData.get('photoExterior1') as File | null
     const photoExterior2 = formData.get('photoExterior2') as File | null
+    const photoExterior3 = formData.get('photoExterior3') as File | null
+    const photoInterior1 = formData.get('photoInterior1') as File | null
+    const photoInterior2 = formData.get('photoInterior2') as File | null
+    const photoInterior3 = formData.get('photoInterior3') as File | null
+    const photoInterior4 = formData.get('photoInterior4') as File | null
     const photoOwner = formData.get('photoOwner') as File | null
+    const photoArtwork1 = formData.get('photoArtwork1') as File | null
+    const photoArtwork2 = formData.get('photoArtwork2') as File | null
+    const photoArtwork3 = formData.get('photoArtwork3') as File | null
+    const photoArtwork4 = formData.get('photoArtwork4') as File | null
+    const photoArtwork5 = formData.get('photoArtwork5') as File | null
 
     const consent = formData.get('consent') as string | null
 
@@ -95,15 +106,29 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (!photoInterior || !photoExterior1 || !photoExterior2 || !photoOwner) {
-      return NextResponse.json({ error: 'All 4 photos are required' }, { status: 400 })
+    if (
+      !photoCover || !photoExterior1 || !photoExterior2 || !photoExterior3 ||
+      !photoInterior1 || !photoInterior2 || !photoInterior3 || !photoInterior4 ||
+      !photoOwner || !photoArtwork1 || !photoArtwork2 || !photoArtwork3 || !photoArtwork4 || !photoArtwork5
+    ) {
+      return NextResponse.json({ error: 'All 14 photos are required' }, { status: 400 })
     }
 
     const photos = [
-      { file: photoInterior, label: 'Intérieur' },
-      { file: photoExterior1, label: 'Extérieur 1' },
-      { file: photoExterior2, label: 'Extérieur 2' },
+      { file: photoCover, label: 'Extérieur principale' },
+      { file: photoExterior1, label: 'Extérieur secondaire 1' },
+      { file: photoExterior2, label: 'Extérieur secondaire 2' },
+      { file: photoExterior3, label: 'Extérieur secondaire 3' },
+      { file: photoInterior1, label: 'Intérieur 1' },
+      { file: photoInterior2, label: 'Intérieur 2' },
+      { file: photoInterior3, label: 'Intérieur 3' },
+      { file: photoInterior4, label: 'Intérieur 4' },
       { file: photoOwner, label: 'Propriétaire' },
+      { file: photoArtwork1, label: 'Œuvre 1' },
+      { file: photoArtwork2, label: 'Œuvre 2' },
+      { file: photoArtwork3, label: 'Œuvre 3' },
+      { file: photoArtwork4, label: 'Œuvre 4' },
+      { file: photoArtwork5, label: 'Œuvre 5' },
     ]
 
     const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp'])
@@ -157,21 +182,47 @@ export async function POST(req: NextRequest) {
     const toBuffer = async (file: File) => Buffer.from(await file.arrayBuffer())
 
     const [
-      interiorBuf, exterior1Buf, exterior2Buf, ownerBuf,
+      coverBuf, exterior1Buf, exterior2Buf, exterior3Buf,
+      interior1Buf, interior2Buf, interior3Buf, interior4Buf,
+      ownerBuf, artwork1Buf, artwork2Buf, artwork3Buf, artwork4Buf, artwork5Buf,
       coords,
     ] = await Promise.all([
-      toBuffer(photoInterior),
+      toBuffer(photoCover),
       toBuffer(photoExterior1),
       toBuffer(photoExterior2),
+      toBuffer(photoExterior3),
+      toBuffer(photoInterior1),
+      toBuffer(photoInterior2),
+      toBuffer(photoInterior3),
+      toBuffer(photoInterior4),
       toBuffer(photoOwner),
+      toBuffer(photoArtwork1),
+      toBuffer(photoArtwork2),
+      toBuffer(photoArtwork3),
+      toBuffer(photoArtwork4),
+      toBuffer(photoArtwork5),
       geocode(addressLine, postalCode, locality, regionCode),
     ])
 
-    const [photoInteriorUrl, photoExterior1Url, photoExterior2Url, photoOwnerUrl] = await Promise.all([
-      uploadToR2({ key: `gmb/${storeCode}/interior.${getExt(photoInterior)}`, body: interiorBuf, contentType: photoInterior.type }),
-      uploadToR2({ key: `gmb/${storeCode}/exterior-1.${getExt(photoExterior1)}`, body: exterior1Buf, contentType: photoExterior1.type }),
-      uploadToR2({ key: `gmb/${storeCode}/exterior-2.${getExt(photoExterior2)}`, body: exterior2Buf, contentType: photoExterior2.type }),
-      uploadToR2({ key: `gmb/${storeCode}/owner.${getExt(photoOwner)}`, body: ownerBuf, contentType: photoOwner.type }),
+    const [
+      photoCoverUrl, photoExterior1Url, photoExterior2Url, photoExterior3Url,
+      photoInterior1Url, photoInterior2Url, photoInterior3Url, photoInterior4Url,
+      photoOwnerUrl, photoArtwork1Url, photoArtwork2Url, photoArtwork3Url, photoArtwork4Url, photoArtwork5Url,
+    ] = await Promise.all([
+      uploadToR2({ key: `gmb/${storeCode}/cover/main.${getExt(photoCover)}`, body: coverBuf, contentType: photoCover.type }),
+      uploadToR2({ key: `gmb/${storeCode}/exterior/1.${getExt(photoExterior1)}`, body: exterior1Buf, contentType: photoExterior1.type }),
+      uploadToR2({ key: `gmb/${storeCode}/exterior/2.${getExt(photoExterior2)}`, body: exterior2Buf, contentType: photoExterior2.type }),
+      uploadToR2({ key: `gmb/${storeCode}/exterior/3.${getExt(photoExterior3)}`, body: exterior3Buf, contentType: photoExterior3.type }),
+      uploadToR2({ key: `gmb/${storeCode}/interior/1.${getExt(photoInterior1)}`, body: interior1Buf, contentType: photoInterior1.type }),
+      uploadToR2({ key: `gmb/${storeCode}/interior/2.${getExt(photoInterior2)}`, body: interior2Buf, contentType: photoInterior2.type }),
+      uploadToR2({ key: `gmb/${storeCode}/interior/3.${getExt(photoInterior3)}`, body: interior3Buf, contentType: photoInterior3.type }),
+      uploadToR2({ key: `gmb/${storeCode}/interior/4.${getExt(photoInterior4)}`, body: interior4Buf, contentType: photoInterior4.type }),
+      uploadToR2({ key: `gmb/${storeCode}/owner/main.${getExt(photoOwner)}`, body: ownerBuf, contentType: photoOwner.type }),
+      uploadToR2({ key: `gmb/${storeCode}/artworks/1.${getExt(photoArtwork1)}`, body: artwork1Buf, contentType: photoArtwork1.type }),
+      uploadToR2({ key: `gmb/${storeCode}/artworks/2.${getExt(photoArtwork2)}`, body: artwork2Buf, contentType: photoArtwork2.type }),
+      uploadToR2({ key: `gmb/${storeCode}/artworks/3.${getExt(photoArtwork3)}`, body: artwork3Buf, contentType: photoArtwork3.type }),
+      uploadToR2({ key: `gmb/${storeCode}/artworks/4.${getExt(photoArtwork4)}`, body: artwork4Buf, contentType: photoArtwork4.type }),
+      uploadToR2({ key: `gmb/${storeCode}/artworks/5.${getExt(photoArtwork5)}`, body: artwork5Buf, contentType: photoArtwork5.type }),
     ])
 
     // Generate Excel with real photo URLs, lat/lng and correct hours
@@ -187,23 +238,33 @@ export async function POST(req: NextRequest) {
       hours,
       latitude: coords?.lat,
       longitude: coords?.lng,
-      photoCoverUrl: photoExterior1Url,
-      photoOtherUrls: [photoInteriorUrl, photoExterior2Url, photoOwnerUrl].join(','),
+      photoCoverUrl,
+      photoOtherUrls: [
+        photoExterior1Url, photoExterior2Url, photoExterior3Url,
+        photoInterior1Url, photoInterior2Url, photoInterior3Url, photoInterior4Url,
+        photoOwnerUrl, photoArtwork1Url, photoArtwork2Url, photoArtwork3Url, photoArtwork4Url, photoArtwork5Url,
+      ].join(','),
     }
 
     const excelBuffer = await generateGmbExcel(excelData)
     const excelBase64 = excelBuffer.toString('base64')
 
-    // Convert photos to base64 for email attachments
-    const [interiorB64, exterior1B64, exterior2B64, ownerB64] = [
-      interiorBuf.toString('base64'),
-      exterior1Buf.toString('base64'),
-      exterior2Buf.toString('base64'),
-      ownerBuf.toString('base64'),
+    const photoLinks = [
+      { label: 'Extérieur principale', url: photoCoverUrl },
+      { label: 'Extérieur secondaire 1', url: photoExterior1Url },
+      { label: 'Extérieur secondaire 2', url: photoExterior2Url },
+      { label: 'Extérieur secondaire 3', url: photoExterior3Url },
+      { label: 'Intérieur 1', url: photoInterior1Url },
+      { label: 'Intérieur 2', url: photoInterior2Url },
+      { label: 'Intérieur 3', url: photoInterior3Url },
+      { label: 'Intérieur 4', url: photoInterior4Url },
+      { label: 'Propriétaire', url: photoOwnerUrl },
+      { label: 'Œuvre 1', url: photoArtwork1Url },
+      { label: 'Œuvre 2', url: photoArtwork2Url },
+      { label: 'Œuvre 3', url: photoArtwork3Url },
+      { label: 'Œuvre 4', url: photoArtwork4Url },
+      { label: 'Œuvre 5', url: photoArtwork5Url },
     ]
-
-
-
     const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
 
     const brevoPayload = {
@@ -211,31 +272,20 @@ export async function POST(req: NextRequest) {
       to: [{ email: RECIPIENT_EMAIL, name: 'Team InRealArt' }],
       subject: emailSubject,
       htmlContent: `<p>Bonjour,</p>
-<p>Veuillez trouver en pièces jointes les photos de l'atelier ainsi que le fichier Excel formaté pour l'import Google Business Profile.</p>
+<p>Veuillez trouver en pièce jointe le fichier Excel formaté pour l'import Google Business Profile. Les photos de l'atelier sont disponibles via les liens ci-dessous.</p>
 <ul>
   <li><strong>Demandeur :</strong> ${escapeHtml(name)}</li>
   <li><strong>Atelier :</strong> ${escapeHtml(title)}</li>
   <li><strong>Téléphone :</strong> ${escapeHtml(phone)}</li>
   <li><strong>Adresse :</strong> ${escapeHtml(addressLine)}, ${escapeHtml(postalCode)} ${escapeHtml(locality)}</li>
 </ul>
+${description ? `<p><strong>Description :</strong><br/>${escapeHtml(description).replace(/\n/g, '<br/>')}</p>` : ''}
+<p><strong>Photos :</strong></p>
+<ul>
+${photoLinks.map((p) => `  <li>${escapeHtml(p.label)} : <a href="${escapeHtml(p.url)}">${escapeHtml(p.url)}</a></li>`).join('\n')}
+</ul>
 <p>Cordialement,<br/>Artitude</p>`,
       attachment: [
-        {
-          content: interiorB64,
-          name: `photo-interieur.${getExt(photoInterior)}`,
-        },
-        {
-          content: exterior1B64,
-          name: `photo-exterieur-1.${getExt(photoExterior1)}`,
-        },
-        {
-          content: exterior2B64,
-          name: `photo-exterieur-2.${getExt(photoExterior2)}`,
-        },
-        {
-          content: ownerB64,
-          name: `photo-proprietaire.${getExt(photoOwner)}`,
-        },
         {
           content: excelBase64,
           name: `gmb-import-${storeCode}.xlsx`,

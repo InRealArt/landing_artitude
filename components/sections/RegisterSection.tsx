@@ -219,6 +219,12 @@ function ProgressModal({
           ))}
         </div>
 
+        {!allDone && !hasError && (
+          <p className="text-[11px] text-gold font-sans bg-gold/10 border border-gold/30 px-4 py-3">
+            {dict.progressWarning}
+          </p>
+        )}
+
         {error && (
           <p className="text-xs text-red-600 font-sans bg-red-50 border border-red-200 px-4 py-3 text-left">
             {error}
@@ -252,6 +258,19 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => { setClientMounted(true) }, [])
+
+  // Warn before leaving while the submission is in flight — closing/refreshing
+  // now would abandon a request the server may already be processing.
+  useEffect(() => {
+    if (!submitting) return
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [submitting])
+
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
 
@@ -276,11 +295,25 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
   const [description, setDescription] = useState('')
   const [hours, setHours] = useState<DayHours[]>(defaultHours())
 
-  // Step 3
-  const [photoInterior, setPhotoInterior] = useState<File | null>(null)
+  // Step 3 — Exterior
+  const [photoCover, setPhotoCover] = useState<File | null>(null)
   const [photoExterior1, setPhotoExterior1] = useState<File | null>(null)
   const [photoExterior2, setPhotoExterior2] = useState<File | null>(null)
+  const [photoExterior3, setPhotoExterior3] = useState<File | null>(null)
+
+  // Step 4 — Interior
+  const [photoInterior1, setPhotoInterior1] = useState<File | null>(null)
+  const [photoInterior2, setPhotoInterior2] = useState<File | null>(null)
+  const [photoInterior3, setPhotoInterior3] = useState<File | null>(null)
+  const [photoInterior4, setPhotoInterior4] = useState<File | null>(null)
+
+  // Step 5 — Owner & Artworks
   const [photoOwner, setPhotoOwner] = useState<File | null>(null)
+  const [photoArtwork1, setPhotoArtwork1] = useState<File | null>(null)
+  const [photoArtwork2, setPhotoArtwork2] = useState<File | null>(null)
+  const [photoArtwork3, setPhotoArtwork3] = useState<File | null>(null)
+  const [photoArtwork4, setPhotoArtwork4] = useState<File | null>(null)
+  const [photoArtwork5, setPhotoArtwork5] = useState<File | null>(null)
 
   const inputCls = 'w-full bg-white border border-borderLight focus:border-inkBlack outline-none px-4 py-3 text-xs text-inkBlack font-sans transition-colors'
   const labelCls = 'block text-[10px] uppercase tracking-wider text-inkBlack font-semibold font-display'
@@ -305,7 +338,7 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       const errors = validateStep2({ address, postalCode, city, country }, msgs)
       if (Object.keys(errors).length > 0) { setFieldErrors(errors); return }
     }
-    setStep((s) => Math.min(s + 1, 3))
+    setStep((s) => Math.min(s + 1, 5))
   }
 
   const handlePrev = () => { setFieldErrors({}); setStep((s) => Math.max(s - 1, 1)) }
@@ -345,16 +378,31 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       return
     }
 
-    if (!photoInterior || !photoExterior1 || !photoExterior2 || !photoOwner) {
+    const allPhotos = [
+      photoCover, photoExterior1, photoExterior2, photoExterior3,
+      photoInterior1, photoInterior2, photoInterior3, photoInterior4,
+      photoOwner, photoArtwork1, photoArtwork2, photoArtwork3, photoArtwork4, photoArtwork5,
+    ]
+    if (allPhotos.some((f) => !f)) {
       setErrorMsg(d.errorPhotos)
       return
     }
 
     const photoChecks = [
-      { file: photoInterior, label: d.photoInterior },
-      { file: photoExterior1, label: d.photoExterior1 },
-      { file: photoExterior2, label: d.photoExterior2 },
-      { file: photoOwner, label: d.photoOwner },
+      { file: photoCover as File, label: d.photoCover },
+      { file: photoExterior1 as File, label: d.photoExterior1 },
+      { file: photoExterior2 as File, label: d.photoExterior2 },
+      { file: photoExterior3 as File, label: d.photoExterior3 },
+      { file: photoInterior1 as File, label: d.photoInterior1 },
+      { file: photoInterior2 as File, label: d.photoInterior2 },
+      { file: photoInterior3 as File, label: d.photoInterior3 },
+      { file: photoInterior4 as File, label: d.photoInterior4 },
+      { file: photoOwner as File, label: d.photoOwner },
+      { file: photoArtwork1 as File, label: d.photoArtwork1 },
+      { file: photoArtwork2 as File, label: d.photoArtwork2 },
+      { file: photoArtwork3 as File, label: d.photoArtwork3 },
+      { file: photoArtwork4 as File, label: d.photoArtwork4 },
+      { file: photoArtwork5 as File, label: d.photoArtwork5 },
     ]
 
     for (const { file, label } of photoChecks) {
@@ -395,10 +443,20 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       if (website) fd.append('websiteUri', website)
       if (description) fd.append('description', description)
       fd.append('hours', JSON.stringify(hours))
-      fd.append('photoInterior', photoInterior)
-      fd.append('photoExterior1', photoExterior1)
-      fd.append('photoExterior2', photoExterior2)
-      fd.append('photoOwner', photoOwner)
+      fd.append('photoCover', photoCover as File)
+      fd.append('photoExterior1', photoExterior1 as File)
+      fd.append('photoExterior2', photoExterior2 as File)
+      fd.append('photoExterior3', photoExterior3 as File)
+      fd.append('photoInterior1', photoInterior1 as File)
+      fd.append('photoInterior2', photoInterior2 as File)
+      fd.append('photoInterior3', photoInterior3 as File)
+      fd.append('photoInterior4', photoInterior4 as File)
+      fd.append('photoOwner', photoOwner as File)
+      fd.append('photoArtwork1', photoArtwork1 as File)
+      fd.append('photoArtwork2', photoArtwork2 as File)
+      fd.append('photoArtwork3', photoArtwork3 as File)
+      fd.append('photoArtwork4', photoArtwork4 as File)
+      fd.append('photoArtwork5', photoArtwork5 as File)
 
       setProgressSteps((prev) => updateStep(prev, 'validate', 'done'))
 
@@ -489,7 +547,9 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
     setStep(1)
     setName(''); setEmail(''); setPhone(''); setAtelierName(''); setWebsite(''); setDiscipline(''); setConsent(false)
     setAddress(''); setPostalCode(''); setCity(''); setCountry('FR'); setDescription(''); setHours(defaultHours())
-    setPhotoInterior(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoOwner(null)
+    setPhotoCover(null); setPhotoExterior1(null); setPhotoExterior2(null); setPhotoExterior3(null)
+    setPhotoInterior1(null); setPhotoInterior2(null); setPhotoInterior3(null); setPhotoInterior4(null)
+    setPhotoOwner(null); setPhotoArtwork1(null); setPhotoArtwork2(null); setPhotoArtwork3(null); setPhotoArtwork4(null); setPhotoArtwork5(null)
     setErrorMsg(null)
     setFieldErrors({})
   }
@@ -520,26 +580,26 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
         <div ref={sectionRef} className="bg-canvas border border-borderLight p-8 sm:p-12 shadow-2xl space-y-8 relative text-inkBlack">
 
           {/* Stepper indicator */}
-          <div className="flex items-center justify-center gap-0">
+          <div className="flex items-start justify-center">
             {stepLabels.map((label, i) => (
-              <div key={i} className="flex items-center">
-                <div className="flex flex-col items-center gap-1">
-                  <div className={`h-7 w-7 flex items-center justify-center text-[10px] font-display border transition-colors
+              <div key={i} className={`flex items-start ${i < stepLabels.length - 1 ? 'flex-1' : ''}`}>
+                <div className="flex flex-col items-center gap-1 shrink-0">
+                  <div className={`h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center text-[9px] sm:text-[10px] font-display border transition-colors
                     ${step === i + 1 ? 'bg-inkBlack text-white border-inkBlack' : step > i + 1 ? 'bg-gold text-white border-gold' : 'bg-white text-grayText border-borderLight'}`}>
                     {step > i + 1 ? '✓' : i + 1}
                   </div>
-                  <span className={`text-[9px] uppercase tracking-widest font-display hidden sm:block transition-colors
+                  <span className={`text-[8px] md:text-[9px] uppercase tracking-wide md:tracking-widest font-display hidden md:block text-center leading-tight max-w-[6.5rem] transition-colors
                     ${step === i + 1 ? 'text-inkBlack' : 'text-grayText'}`}>
                     {label}
                   </span>
                 </div>
-                {i < 2 && <div className={`w-16 h-px mx-2 mb-4 transition-colors ${step > i + 1 ? 'bg-gold' : 'bg-borderLight'}`} />}
+                {i < stepLabels.length - 1 && <div className={`flex-1 h-px mx-1 sm:mx-2 mt-3 transition-colors ${step > i + 1 ? 'bg-gold' : 'bg-borderLight'}`} />}
               </div>
             ))}
           </div>
 
           <form
-            onSubmit={step < 3 ? (e) => { e.preventDefault(); handleNext() } : handleSubmit}
+            onSubmit={step < 5 ? (e) => { e.preventDefault(); handleNext() } : handleSubmit}
             className="space-y-6"
           >
 
@@ -664,20 +724,66 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
               </div>
             )}
 
-            {/* ── STEP 3 ── */}
+            {/* ── STEP 3 — Exterior ── */}
             {step === 3 && (
               <div className="space-y-6">
                 <div className="text-center space-y-1">
-                  <h3 className="font-serif text-2xl font-light text-inkBlack">{d.photosTitle}</h3>
-                  <p className="text-xs text-grayText font-sans">{d.photosSubtitle}</p>
+                  <h3 className="font-serif text-2xl font-light text-inkBlack">{d.photosExteriorTitle}</h3>
+                  <p className="text-xs text-grayText font-sans">{d.photosExteriorSubtitle}</p>
                   <p className="text-[10px] text-gold font-display uppercase tracking-wider">{d.photosSizeWarning}</p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <PhotoUploadZone label={d.photoInterior} hint={d.photoHint} value={photoInterior} onChange={setPhotoInterior} />
+                  <PhotoUploadZone label={d.photoCover} hint={d.photoHint} value={photoCover} onChange={setPhotoCover} />
                   <PhotoUploadZone label={d.photoExterior1} hint={d.photoHint} value={photoExterior1} onChange={setPhotoExterior1} />
                   <PhotoUploadZone label={d.photoExterior2} hint={d.photoHint} value={photoExterior2} onChange={setPhotoExterior2} />
+                  <PhotoUploadZone label={d.photoExterior3} hint={d.photoHint} value={photoExterior3} onChange={setPhotoExterior3} />
+                </div>
+
+                {errorMsg && (
+                  <p className="text-center text-xs text-red-600 font-sans">{errorMsg}</p>
+                )}
+              </div>
+            )}
+
+            {/* ── STEP 4 — Interior ── */}
+            {step === 4 && (
+              <div className="space-y-6">
+                <div className="text-center space-y-1">
+                  <h3 className="font-serif text-2xl font-light text-inkBlack">{d.photosInteriorTitle}</h3>
+                  <p className="text-xs text-grayText font-sans">{d.photosInteriorSubtitle}</p>
+                  <p className="text-[10px] text-gold font-display uppercase tracking-wider">{d.photosSizeWarning}</p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <PhotoUploadZone label={d.photoInterior1} hint={d.photoHint} value={photoInterior1} onChange={setPhotoInterior1} />
+                  <PhotoUploadZone label={d.photoInterior2} hint={d.photoHint} value={photoInterior2} onChange={setPhotoInterior2} />
+                  <PhotoUploadZone label={d.photoInterior3} hint={d.photoHint} value={photoInterior3} onChange={setPhotoInterior3} />
+                  <PhotoUploadZone label={d.photoInterior4} hint={d.photoHint} value={photoInterior4} onChange={setPhotoInterior4} />
+                </div>
+
+                {errorMsg && (
+                  <p className="text-center text-xs text-red-600 font-sans">{errorMsg}</p>
+                )}
+              </div>
+            )}
+
+            {/* ── STEP 5 — Owner & Artworks ── */}
+            {step === 5 && (
+              <div className="space-y-6">
+                <div className="text-center space-y-1">
+                  <h3 className="font-serif text-2xl font-light text-inkBlack">{d.photosOwnerArtworksTitle}</h3>
+                  <p className="text-xs text-grayText font-sans">{d.photosOwnerArtworksSubtitle}</p>
+                  <p className="text-[10px] text-gold font-display uppercase tracking-wider">{d.photosSizeWarning}</p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
                   <PhotoUploadZone label={d.photoOwner} hint={d.photoHint} value={photoOwner} onChange={setPhotoOwner} />
+                  <PhotoUploadZone label={d.photoArtwork1} hint={d.photoHint} value={photoArtwork1} onChange={setPhotoArtwork1} />
+                  <PhotoUploadZone label={d.photoArtwork2} hint={d.photoHint} value={photoArtwork2} onChange={setPhotoArtwork2} />
+                  <PhotoUploadZone label={d.photoArtwork3} hint={d.photoHint} value={photoArtwork3} onChange={setPhotoArtwork3} />
+                  <PhotoUploadZone label={d.photoArtwork4} hint={d.photoHint} value={photoArtwork4} onChange={setPhotoArtwork4} />
+                  <PhotoUploadZone label={d.photoArtwork5} hint={d.photoHint} value={photoArtwork5} onChange={setPhotoArtwork5} />
                 </div>
 
                 {errorMsg && (
@@ -698,7 +804,7 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
                 disabled={submitting}
                 className="btn-action justify-center py-4 text-[11px] disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {submitting ? d.btnSubmitting : step < 3 ? d.btnNext : d.submit}
+                {submitting ? d.btnSubmitting : step < 5 ? d.btnNext : d.submit}
               </button>
             </div>
 

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@InRealArt/prisma-schema':
+        specifier: ^1.4.5
+        version: 1.4.5
       '@aws-sdk/client-s3':
         specifier: ^3.1075.0
         version: 3.1075.0
@@ -71,6 +74,9 @@ importers:
         version: 5.9.3
 
 packages:
+
+  '@InRealArt/prisma-schema@1.4.5':
+    resolution: {integrity: sha512-sZvD4TdEZDwuAcaFY+dhnyiUxcdW+07HhGZG3RDDPSmWEbZ/NAFygEbUbHjK1Z5Cbi5s257vEKQ4Rgwr6F0lTA==, tarball: https://npm.pkg.github.com/download/@InRealArt/prisma-schema/1.4.5/6406dbba6940240f9680cdf5aac68760a511987e}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -2548,6 +2554,8 @@ packages:
     engines: {node: '>= 10'}
 
 snapshots:
+
+  '@InRealArt/prisma-schema@1.4.5': {}
 
   '@alloc/quick-lru@5.2.0': {}
 

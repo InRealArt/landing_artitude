@@ -40,3 +40,6 @@ next-env.d.ts
 
 # History Files
 .history/
+
+# Prisma Schema
+/src/generated/prisma*
