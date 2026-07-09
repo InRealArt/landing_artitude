@@ -25,6 +25,15 @@ function toSlug(name: string): string {
     .replace(/^-|-$/g, '')
 }
 
+function toTitleCase(name: string): string {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ')
+    .replace(/[^\p{L}\p{N} -]/gu, '')
+}
+
 async function fileToBase64(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer()
   return Buffer.from(arrayBuffer).toString('base64')
@@ -106,30 +115,27 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (
-      !photoCover || !photoExterior1 || !photoExterior2 || !photoExterior3 ||
-      !photoInterior1 || !photoInterior2 || !photoInterior3 || !photoInterior4 ||
-      !photoOwner || !photoArtwork1 || !photoArtwork2 || !photoArtwork3 || !photoArtwork4 || !photoArtwork5
-    ) {
-      return NextResponse.json({ error: 'All 14 photos are required' }, { status: 400 })
+    const hasInterior = [photoInterior1, photoInterior2, photoInterior3, photoInterior4].some(Boolean)
+    if (!photoCover || !photoOwner || !hasInterior) {
+      return NextResponse.json({ error: 'Main photo, at least one interior photo, and owner photo are required' }, { status: 400 })
     }
 
     const photos = [
-      { file: photoCover, label: 'Extérieur principale' },
-      { file: photoExterior1, label: 'Extérieur secondaire 1' },
-      { file: photoExterior2, label: 'Extérieur secondaire 2' },
-      { file: photoExterior3, label: 'Extérieur secondaire 3' },
-      { file: photoInterior1, label: 'Intérieur 1' },
-      { file: photoInterior2, label: 'Intérieur 2' },
-      { file: photoInterior3, label: 'Intérieur 3' },
-      { file: photoInterior4, label: 'Intérieur 4' },
-      { file: photoOwner, label: 'Propriétaire' },
-      { file: photoArtwork1, label: 'Œuvre 1' },
-      { file: photoArtwork2, label: 'Œuvre 2' },
-      { file: photoArtwork3, label: 'Œuvre 3' },
-      { file: photoArtwork4, label: 'Œuvre 4' },
-      { file: photoArtwork5, label: 'Œuvre 5' },
-    ]
+      { key: 'cover', file: photoCover, label: 'Extérieur principale' },
+      { key: 'exterior1', file: photoExterior1, label: 'Extérieur secondaire 1' },
+      { key: 'exterior2', file: photoExterior2, label: 'Extérieur secondaire 2' },
+      { key: 'exterior3', file: photoExterior3, label: 'Extérieur secondaire 3' },
+      { key: 'interior1', file: photoInterior1, label: 'Intérieur 1' },
+      { key: 'interior2', file: photoInterior2, label: 'Intérieur 2' },
+      { key: 'interior3', file: photoInterior3, label: 'Intérieur 3' },
+      { key: 'interior4', file: photoInterior4, label: 'Intérieur 4' },
+      { key: 'owner', file: photoOwner, label: 'Propriétaire' },
+      { key: 'artwork1', file: photoArtwork1, label: 'Œuvre 1' },
+      { key: 'artwork2', file: photoArtwork2, label: 'Œuvre 2' },
+      { key: 'artwork3', file: photoArtwork3, label: 'Œuvre 3' },
+      { key: 'artwork4', file: photoArtwork4, label: 'Œuvre 4' },
+      { key: 'artwork5', file: photoArtwork5, label: 'Œuvre 5' },
+    ].filter((p): p is { key: string; file: File; label: string } => p.file !== null)
 
     const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp'])
 
@@ -175,55 +181,45 @@ export async function POST(req: NextRequest) {
     if (!storeCode || !/^[a-z0-9-]+$/.test(storeCode)) {
       return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
     }
+    const r2FolderName = toTitleCase(name)
+    if (!r2FolderName) {
+      return NextResponse.json({ error: 'Invalid artist name' }, { status: 400 })
+    }
 
     // Upload photos to R2 and geocode in parallel
     const getExt = (file: File) => ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[file.type] ?? 'jpg')
 
-    const toBuffer = async (file: File) => Buffer.from(await file.arrayBuffer())
+    const R2_FOLDERS: Record<string, string> = {
+      cover: 'cover/main', exterior1: 'exterior/1', exterior2: 'exterior/2', exterior3: 'exterior/3',
+      interior1: 'interior/1', interior2: 'interior/2', interior3: 'interior/3', interior4: 'interior/4',
+      owner: 'owner/main',
+      artwork1: 'artworks/1', artwork2: 'artworks/2', artwork3: 'artworks/3', artwork4: 'artworks/4', artwork5: 'artworks/5',
+    }
 
-    const [
-      coverBuf, exterior1Buf, exterior2Buf, exterior3Buf,
-      interior1Buf, interior2Buf, interior3Buf, interior4Buf,
-      ownerBuf, artwork1Buf, artwork2Buf, artwork3Buf, artwork4Buf, artwork5Buf,
-      coords,
-    ] = await Promise.all([
-      toBuffer(photoCover),
-      toBuffer(photoExterior1),
-      toBuffer(photoExterior2),
-      toBuffer(photoExterior3),
-      toBuffer(photoInterior1),
-      toBuffer(photoInterior2),
-      toBuffer(photoInterior3),
-      toBuffer(photoInterior4),
-      toBuffer(photoOwner),
-      toBuffer(photoArtwork1),
-      toBuffer(photoArtwork2),
-      toBuffer(photoArtwork3),
-      toBuffer(photoArtwork4),
-      toBuffer(photoArtwork5),
+    const [uploadResults, coords] = await Promise.all([
+      Promise.all(photos.map(async ({ key, file }) => {
+        const buf = Buffer.from(await file.arrayBuffer())
+        const url = await uploadToR2({ key: `ARTITUDE/${r2FolderName}/${R2_FOLDERS[key]}.${getExt(file)}`, body: buf, contentType: file.type })
+        return [key, url] as const
+      })),
       geocode(addressLine, postalCode, locality, regionCode),
     ])
 
-    const [
-      photoCoverUrl, photoExterior1Url, photoExterior2Url, photoExterior3Url,
-      photoInterior1Url, photoInterior2Url, photoInterior3Url, photoInterior4Url,
-      photoOwnerUrl, photoArtwork1Url, photoArtwork2Url, photoArtwork3Url, photoArtwork4Url, photoArtwork5Url,
-    ] = await Promise.all([
-      uploadToR2({ key: `gmb/${storeCode}/cover/main.${getExt(photoCover)}`, body: coverBuf, contentType: photoCover.type }),
-      uploadToR2({ key: `gmb/${storeCode}/exterior/1.${getExt(photoExterior1)}`, body: exterior1Buf, contentType: photoExterior1.type }),
-      uploadToR2({ key: `gmb/${storeCode}/exterior/2.${getExt(photoExterior2)}`, body: exterior2Buf, contentType: photoExterior2.type }),
-      uploadToR2({ key: `gmb/${storeCode}/exterior/3.${getExt(photoExterior3)}`, body: exterior3Buf, contentType: photoExterior3.type }),
-      uploadToR2({ key: `gmb/${storeCode}/interior/1.${getExt(photoInterior1)}`, body: interior1Buf, contentType: photoInterior1.type }),
-      uploadToR2({ key: `gmb/${storeCode}/interior/2.${getExt(photoInterior2)}`, body: interior2Buf, contentType: photoInterior2.type }),
-      uploadToR2({ key: `gmb/${storeCode}/interior/3.${getExt(photoInterior3)}`, body: interior3Buf, contentType: photoInterior3.type }),
-      uploadToR2({ key: `gmb/${storeCode}/interior/4.${getExt(photoInterior4)}`, body: interior4Buf, contentType: photoInterior4.type }),
-      uploadToR2({ key: `gmb/${storeCode}/owner/main.${getExt(photoOwner)}`, body: ownerBuf, contentType: photoOwner.type }),
-      uploadToR2({ key: `gmb/${storeCode}/artworks/1.${getExt(photoArtwork1)}`, body: artwork1Buf, contentType: photoArtwork1.type }),
-      uploadToR2({ key: `gmb/${storeCode}/artworks/2.${getExt(photoArtwork2)}`, body: artwork2Buf, contentType: photoArtwork2.type }),
-      uploadToR2({ key: `gmb/${storeCode}/artworks/3.${getExt(photoArtwork3)}`, body: artwork3Buf, contentType: photoArtwork3.type }),
-      uploadToR2({ key: `gmb/${storeCode}/artworks/4.${getExt(photoArtwork4)}`, body: artwork4Buf, contentType: photoArtwork4.type }),
-      uploadToR2({ key: `gmb/${storeCode}/artworks/5.${getExt(photoArtwork5)}`, body: artwork5Buf, contentType: photoArtwork5.type }),
-    ])
+    const urlByKey = new Map(uploadResults)
+    const photoCoverUrl = urlByKey.get('cover') as string
+    const photoExterior1Url = urlByKey.get('exterior1')
+    const photoExterior2Url = urlByKey.get('exterior2')
+    const photoExterior3Url = urlByKey.get('exterior3')
+    const photoInterior1Url = urlByKey.get('interior1')
+    const photoInterior2Url = urlByKey.get('interior2')
+    const photoInterior3Url = urlByKey.get('interior3')
+    const photoInterior4Url = urlByKey.get('interior4')
+    const photoOwnerUrl = urlByKey.get('owner') as string
+    const photoArtwork1Url = urlByKey.get('artwork1')
+    const photoArtwork2Url = urlByKey.get('artwork2')
+    const photoArtwork3Url = urlByKey.get('artwork3')
+    const photoArtwork4Url = urlByKey.get('artwork4')
+    const photoArtwork5Url = urlByKey.get('artwork5')
 
     // Generate Excel with real photo URLs, lat/lng and correct hours
     const excelData: GmbExcelData = {
@@ -243,7 +239,7 @@ export async function POST(req: NextRequest) {
         photoExterior1Url, photoExterior2Url, photoExterior3Url,
         photoInterior1Url, photoInterior2Url, photoInterior3Url, photoInterior4Url,
         photoOwnerUrl, photoArtwork1Url, photoArtwork2Url, photoArtwork3Url, photoArtwork4Url, photoArtwork5Url,
-      ].join(','),
+      ].filter((url): url is string => Boolean(url)).join(','),
     }
 
     const excelBuffer = await generateGmbExcel(excelData)
@@ -264,7 +260,7 @@ export async function POST(req: NextRequest) {
       { label: 'Œuvre 3', url: photoArtwork3Url },
       { label: 'Œuvre 4', url: photoArtwork4Url },
       { label: 'Œuvre 5', url: photoArtwork5Url },
-    ]
+    ].filter((p): p is { label: string; url: string } => Boolean(p.url))
     const emailSubject = `[ ARTITUDE - DEMANDE DE CREATION D'ATELIER ] ${escapeHtml(name)}`
 
     const brevoPayload = {

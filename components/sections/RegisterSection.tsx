@@ -378,32 +378,28 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       return
     }
 
-    const allPhotos = [
-      photoCover, photoExterior1, photoExterior2, photoExterior3,
-      photoInterior1, photoInterior2, photoInterior3, photoInterior4,
-      photoOwner, photoArtwork1, photoArtwork2, photoArtwork3, photoArtwork4, photoArtwork5,
-    ]
-    if (allPhotos.some((f) => !f)) {
+    const hasInterior = [photoInterior1, photoInterior2, photoInterior3, photoInterior4].some(Boolean)
+    if (!photoCover || !photoOwner || !hasInterior) {
       setErrorMsg(d.errorPhotos)
       return
     }
 
     const photoChecks = [
-      { file: photoCover as File, label: d.photoCover },
-      { file: photoExterior1 as File, label: d.photoExterior1 },
-      { file: photoExterior2 as File, label: d.photoExterior2 },
-      { file: photoExterior3 as File, label: d.photoExterior3 },
-      { file: photoInterior1 as File, label: d.photoInterior1 },
-      { file: photoInterior2 as File, label: d.photoInterior2 },
-      { file: photoInterior3 as File, label: d.photoInterior3 },
-      { file: photoInterior4 as File, label: d.photoInterior4 },
-      { file: photoOwner as File, label: d.photoOwner },
-      { file: photoArtwork1 as File, label: d.photoArtwork1 },
-      { file: photoArtwork2 as File, label: d.photoArtwork2 },
-      { file: photoArtwork3 as File, label: d.photoArtwork3 },
-      { file: photoArtwork4 as File, label: d.photoArtwork4 },
-      { file: photoArtwork5 as File, label: d.photoArtwork5 },
-    ]
+      { file: photoCover, label: d.photoCover },
+      { file: photoExterior1, label: d.photoExterior1 },
+      { file: photoExterior2, label: d.photoExterior2 },
+      { file: photoExterior3, label: d.photoExterior3 },
+      { file: photoInterior1, label: d.photoInterior1 },
+      { file: photoInterior2, label: d.photoInterior2 },
+      { file: photoInterior3, label: d.photoInterior3 },
+      { file: photoInterior4, label: d.photoInterior4 },
+      { file: photoOwner, label: d.photoOwner },
+      { file: photoArtwork1, label: d.photoArtwork1 },
+      { file: photoArtwork2, label: d.photoArtwork2 },
+      { file: photoArtwork3, label: d.photoArtwork3 },
+      { file: photoArtwork4, label: d.photoArtwork4 },
+      { file: photoArtwork5, label: d.photoArtwork5 },
+    ].filter((c): c is { file: File; label: string } => c.file !== null)
 
     for (const { file, label } of photoChecks) {
       if (file.size > MAX_PHOTO_SIZE) {
@@ -443,20 +439,20 @@ export default function RegisterSection({ dict, lang }: { dict: Dictionary; lang
       if (website) fd.append('websiteUri', website)
       if (description) fd.append('description', description)
       fd.append('hours', JSON.stringify(hours))
-      fd.append('photoCover', photoCover as File)
-      fd.append('photoExterior1', photoExterior1 as File)
-      fd.append('photoExterior2', photoExterior2 as File)
-      fd.append('photoExterior3', photoExterior3 as File)
-      fd.append('photoInterior1', photoInterior1 as File)
-      fd.append('photoInterior2', photoInterior2 as File)
-      fd.append('photoInterior3', photoInterior3 as File)
-      fd.append('photoInterior4', photoInterior4 as File)
-      fd.append('photoOwner', photoOwner as File)
-      fd.append('photoArtwork1', photoArtwork1 as File)
-      fd.append('photoArtwork2', photoArtwork2 as File)
-      fd.append('photoArtwork3', photoArtwork3 as File)
-      fd.append('photoArtwork4', photoArtwork4 as File)
-      fd.append('photoArtwork5', photoArtwork5 as File)
+      fd.append('photoCover', photoCover)
+      if (photoExterior1) fd.append('photoExterior1', photoExterior1)
+      if (photoExterior2) fd.append('photoExterior2', photoExterior2)
+      if (photoExterior3) fd.append('photoExterior3', photoExterior3)
+      if (photoInterior1) fd.append('photoInterior1', photoInterior1)
+      if (photoInterior2) fd.append('photoInterior2', photoInterior2)
+      if (photoInterior3) fd.append('photoInterior3', photoInterior3)
+      if (photoInterior4) fd.append('photoInterior4', photoInterior4)
+      fd.append('photoOwner', photoOwner)
+      if (photoArtwork1) fd.append('photoArtwork1', photoArtwork1)
+      if (photoArtwork2) fd.append('photoArtwork2', photoArtwork2)
+      if (photoArtwork3) fd.append('photoArtwork3', photoArtwork3)
+      if (photoArtwork4) fd.append('photoArtwork4', photoArtwork4)
+      if (photoArtwork5) fd.append('photoArtwork5', photoArtwork5)
 
       setProgressSteps((prev) => updateStep(prev, 'validate', 'done'))
 
