@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "install:safe:prisma:inrealart": "npx dotenv-cli -e .env -- pnpm install @InRealArt/prisma-schema",
