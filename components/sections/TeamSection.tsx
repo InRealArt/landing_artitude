@@ -10,10 +10,8 @@ import type { Dictionary } from '@/lib/dictionaries'
 const teamImgs = [
   '/images/team/tim.webp',
   '/images/team/max.webp',
-  '/images/team/anna.webp',
   '/images/team/clara.webp',
   '/images/team/gilles.webp',
-  '/images/team/lauranne.webp',
 ]
 
 export default function TeamSection({ dict }: { dict: Dictionary }) {

@@ -181,7 +181,7 @@
     "team": {
         "eyebrow": "Notre Équipe",
         "title": "Des experts à votre service.",
-        "subtitle": "Six spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
+        "subtitle": "Quatre spécialistes de l'écosystème artistique, disponibles pour vous accompagner dans la structuration et le développement de votre carrière d'artiste indépendant.",
         "cta": "Solliciter un accompagnement professionnel",
         "members": [
             {
@@ -197,12 +197,6 @@
                 "description": "Déploiement de stratégies de croissance numérique, optimisation de vos leviers de conversion et acquisition de nouveaux publics qualifiés pour vos œuvres."
             },
             {
-                "name": "Anna",
-                "role": "AGENT & ACCOMPAGNEMENT ÉVÉNEMENTIEL",
-                "service": "Production, programmation et événementiel",
-                "description": "Direction artistique de vos projets, logistique de vos événements et mise en avant de votre travail auprès des acteurs clés du milieu."
-            },
-            {
                 "name": "Clara",
                 "role": "AGENT & ACCOMPAGNEMENT JURIDIQUE",
                 "service": "Sécurisation légale, agence et gestion de projets",
@@ -213,12 +207,6 @@
                 "role": "CRÉATION WEB & DIGITALE",
                 "service": "Vitrine web haute performance et optimisation SEO",
                 "description": "Conception et optimisation technique de votre site internet ou portfolio en ligne pour garantir une plateforme robuste, rapide et parfaitement référencée."
-            },
-            {
-                "name": "Lauranne",
-                "role": "EXPERT COMMUNICATION, COACHING & MARKETING",
-                "service": "Stratégie de communication et kits marketing",
-                "description": "Relations médias spécialisés, préparation à vos prises de parole publiques, direction artistique de vos supports et création de vos outils de communication dédiés."
             }
         ]
     },

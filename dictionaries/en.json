@@ -161,7 +161,7 @@
     "team": {
         "eyebrow": "Our Team",
         "title": "Experts at your service.",
-        "subtitle": "Six specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
+        "subtitle": "Four specialists from the art ecosystem, available to support you in structuring and developing your independent artist career.",
         "cta": "Request professional support",
         "members": [
             {
@@ -177,12 +177,6 @@
                 "description": "Deployment of digital growth strategies, optimisation of your conversion levers and acquisition of new qualified audiences for your works."
             },
             {
-                "name": "Anna",
-                "role": "AGENT & EVENT SUPPORT",
-                "service": "Production, programming and events",
-                "description": "Artistic direction of your projects, logistics of your events and promotion of your work to key players in the field."
-            },
-            {
                 "name": "Clara",
                 "role": "AGENT & LEGAL SUPPORT",
                 "service": "Legal security, agency and project management",
@@ -193,12 +187,6 @@
                 "role": "WEB & DIGITAL CREATION",
                 "service": "High-performance web showcase and SEO",
                 "description": "Technical design and optimisation of your website or online portfolio to guarantee a robust, fast and perfectly referenced platform."
-            },
-            {
-                "name": "Lauranne",
-                "role": "COMMUNICATIONS, COACHING & MARKETING EXPERT",
-                "service": "Communication strategy and marketing kits",
-                "description": "Specialist media relations, public speaking preparation, artistic direction of your materials and creation of dedicated communication tools."
             }
         ]
     },
