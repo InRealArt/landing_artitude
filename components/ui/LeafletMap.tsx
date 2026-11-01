@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
+import { AttributionControl, MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import { gsap } from '@/lib/gsap'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -125,7 +125,8 @@ function MapContent({
   return (
     <>
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url={`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${process.env.NEXT_PUBLIC_CARTO_API_KEY}`}
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
         subdomains="abcd"
         maxZoom={18}
       />
@@ -194,6 +195,8 @@ export default function LeafletMap({ locations, joinLabel }: LeafletMapProps) {
         }
         .leaflet-container { background: #1a1a1a !important; }
         .leaflet-marker-icon { cursor: pointer !important; }
+        .leaflet-container .leaflet-control-attribution { background: rgba(26, 26, 26, 0.8); color: rgba(255, 255, 255, 0.7); font-size: 9px; }
+        .leaflet-container .leaflet-control-attribution a { color: rgba(255, 255, 255, 0.9); }
       `}</style>
 
       <MapContainer
@@ -205,6 +208,8 @@ export default function LeafletMap({ locations, joinLabel }: LeafletMapProps) {
         scrollWheelZoom={false}
         doubleClickZoom={false}
       >
+        {/* Top-left: the info card covers the bottom of the map and the zoom controls sit top-right. CARTO requires this credit to stay visible. */}
+        <AttributionControl position="topleft" prefix={false} />
         <MapContent locations={locations} active={active} onSelect={handleSelect} />
         <ZoomControls />
       </MapContainer>
